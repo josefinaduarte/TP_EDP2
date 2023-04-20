@@ -32,6 +32,24 @@ class Propiedad():
         campo=input('ingrese campo a actualizar')
         dato=input('ingrese el nuevo dato')
         propiedades=open("ListaPropiedades.txt",'a')
+        def Actualizar(self):
+        campo=input('ingrese campo a actualizar')   
+        dato=input('ingrese el nuevo dato')
+        propiedad=input('que propiedad')
+        propiedades=open("ListaPropiedades.txt",'r')
+        lista =propiedades.readlines()
+        with open("ListaPropiedades.txt",'w')as archivo:
+            for linea in lista:
+                if propiedad in linea:
+
+                    rotulo=linea.split(',')
+                    for elemento in rotulo:
+                        if campo=='m2':
+                            elemento=dato
+                    lineaNueva = rotulo.join()
+                    archivo.write(lineaNueva)
+                else: #no es la propiedad
+                    archivo.write(linea)
         if campo=='m2':
             self.m2=dato
         elif campo=='direccion':
