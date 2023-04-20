@@ -16,7 +16,7 @@ class Propiedad():
         self.precio=precio
         self.antiguedad=anio-anioconstruccion
     def __str__(self):
-        return 'La propiedad tiene{} m2, la direccion es{}, la cantidad de ambientes que tiene es {}, es de tipo {}, se construyo en {} y se encuentra {}'.format(self.m2,self.direccion,self.numambientes,self.tipo,self.fecconstruccio,self.estado)
+        return 'La propiedad tiene{} m2, la direccion es{}, la cantidad de ambientes que tiene es {}, es de tipo {}, se construyo en {} y se encuentra {}'.format(self.m2,self.direccion,self.numambientes,self.tipo,self.antiguedad,self.estado)
     def Dar_alta(self):
         propiedades=open("ListaPropiedades.txt",'a')
         atributos=[self.nombre,self.m2,self.direccion,self.numambientes,self.tipo,self.antiguedad,self.estado,self.precio]
@@ -63,7 +63,7 @@ class Propiedad():
         self.precio = precio
 
         if self.estado == 'vendido':
-            comision = precio  * 0,05
+            comision = precio  * 0.05
 
         return empleado, comision
     
