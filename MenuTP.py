@@ -1,11 +1,3 @@
-def abrir_archivo( nombre ):
-    try:
-       fd = open( nombre ,'r',encoding='utf-8')
-       cont=fd.read()
-       fd.close()
-    except IOError:
-        print('Error leyendo ', nombre)
-    return cont
 
 if __name__ =='__main__':
 
