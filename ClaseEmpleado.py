@@ -35,3 +35,14 @@ class Empleado(Persona):
             print('el campo ingresado no esta registrado')
     def __str__(self):
         return 'El empleado se llama {},su DNI es{}, su genero es {}, su cargo es {}, su contrasenia es {}, su telefono es {}, su direccion es {} y su antiguedad es {}'.format(self.nombre,self.DNI,self.genero,self.usuario,self.contrasenia,self.telefono,self.direccion,self.antiguedad)
+    def Dar_alta(self):
+        empleados=open(r"DatosEmpleados.unknown",'a')
+        atributos=[self.nombre,self.DNI,self.genero,self.cargo,self.salario,self.legajo,self.antiguedad,self.telefono]
+        for i in range(len(atributos)):
+            if i!=len(atributos)-1:
+                empleados.write(str(atributos[i]))
+                empleados.write(',')
+            else:
+                empleados.write(atributos[i])
+                empleados.write('\n')
+        empleados.close()
