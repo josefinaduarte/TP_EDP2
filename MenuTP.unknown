@@ -1,0 +1,23 @@
+def abrir_archivo( nombre ):
+    try:
+       fd = open( nombre ,'r',encoding='utf-8')
+       cont=fd.read()
+       fd.close()
+    except IOError:
+        print('Error leyendo ', nombre)
+    return cont
+
+if __name__ =='__main__':
+
+    print('Menu: \n 1.Log In \n 2.Registrarse \n 3.Ver viviendas en alquiler \n 4.Ver viviendas a la venta \n 5.Ver mis propiedades \n 6.Agregar una vivienda al sistema \n 7.Salir')
+    continuar=True
+    while continuar:
+        eleccion=int(input('Ingrese la opcion del menu a la que desea ingresar: '))
+        while eleccion<1 or eleccion>7:
+            print('El numero ingresado debe estar entre el 1 y el 7.')
+            eleccion=int(input('Ingrese la opcion del menu a la que desea ingresar: '))
+        if eleccion==1:
+            usuario=input('Ingrese su usuario: ')
+            contrasenia=input('Ingrese su contrasenia: ') 
+            #habria que abrir el archivo de la info de cliente
+            
