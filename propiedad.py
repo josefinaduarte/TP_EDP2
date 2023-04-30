@@ -17,8 +17,8 @@ class Propiedad():
         self.id=id
         self.precio=precio
         self.antiguedad=int(anio)-int(anioconstruccion)
-        self.fecha = fecha
-        self.inquilino = inquilino
+        self.fecha = None
+        self.inquilino = None
     def __str__(self):
         return 'La propiedad tiene{} m2, la direccion es{}, la cantidad de ambientes que tiene es {}, es de tipo {}, se construyo en {} y se encuentra {}'.format(self.m2,self.direccion,self.numambientes,self.tipo,self.antiguedad,self.estado)
     def Dar_alta(self):
