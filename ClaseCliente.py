@@ -11,7 +11,7 @@ class Cliente(Persona):
         self.contrasenia=contrasenia
         self.telefono=telefono
         self.direccion=direccion
-        self.antiguedad=anio-anioIngreso
+        self.antiguedad=int(anio)-int(anioIngreso)
         
     def Actualizar(self):
         campo=input('ingrese campo a actualizar')
@@ -46,6 +46,22 @@ class Cliente(Persona):
                 clientes.write(str(atributos[i]))
                 clientes.write(',')
             else:
-                clientes.write(atributos[i])
+                clientes.write(str(atributos[i]))
                 clientes.write('\n')
         clientes.close()
+
+    def Dar_baja(self):
+        try:
+            dni=input("Ingrese el DNI del cliente que desea dar de baja:")
+            clientes=open(r'DatosClientes.unknown','r')
+            se_queda=""
+            for fila in clientes:
+                if dni not in fila:
+                    se_queda+=(fila)
+            clientes.close()
+            clientes_w=open(r'DatosClientes.unknown','w')  
+            clientes_w.write(se_queda)
+            clientes_w.close()
+            return ("Se ha dado de baja el usuario cliente con DNI:",str(dni))      
+        except:     
+            return ("Ha habido un error y no se ha podido dar de baja el usuario cliente pedido")

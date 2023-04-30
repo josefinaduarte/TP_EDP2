@@ -16,7 +16,7 @@ class Propiedad():
         self.estado=estado
         self.id=id
         self.precio=precio
-        self.antiguedad=anio-anioconstruccion
+        self.antiguedad=int(anio)-int(anioconstruccion)
         self.fecha = fecha
     def __str__(self):
         return 'La propiedad tiene{} m2, la direccion es{}, la cantidad de ambientes que tiene es {}, es de tipo {}, se construyo en {} y se encuentra {}'.format(self.m2,self.direccion,self.numambientes,self.tipo,self.antiguedad,self.estado)
@@ -25,10 +25,10 @@ class Propiedad():
         atributos=[self.nombre,self.m2,self.direccion,self.numambientes,self.tipo,self.antiguedad,self.estado,self.precio]
         for i in range(len(atributos)):
             if i!=len(atributos)-1:
-                propiedades.write(atributos[i])
+                propiedades.write(str(atributos[i]))
                 propiedades.write('\t')
             else:
-                propiedades.write(atributos[i])
+                propiedades.write(str(atributos[i]))
                 propiedades.write('\n')
         propiedades.close()
     def Actualizar(self):

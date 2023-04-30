@@ -10,7 +10,7 @@ class Empleado(Persona):
         self.salario=salario
         self.legajo=legajo
         self.telefono=telefono
-        self.antiguedad=anio-anioIngreso
+        self.antiguedad=int(anio)-int(anioIngreso)
         
     def Actualizar(self):
         campo=input('ingrese campo a actualizar')
@@ -43,6 +43,22 @@ class Empleado(Persona):
                 empleados.write(str(atributos[i]))
                 empleados.write(',')
             else:
-                empleados.write(atributos[i])
+                empleados.write(str(atributos[i]))
                 empleados.write('\n')
         empleados.close()
+
+    def Dar_baja(self):
+        try:
+            dni=input("Ingrese el legajo del empleado que desea dar de baja:")
+            empleados=open(r'DatosEmpleados.unknown','r')
+            se_queda=""
+            for fila in empleados:
+                if dni not in fila:
+                    se_queda+=(fila)
+            empleados.close()
+            empleados_w=open(r'DatosEmpleados.unknown','w')  
+            empleados_w.write(se_queda)
+            empleados_w.close()
+            return ("Se ha dado de baja el empleado con DNI:",str(dni))      
+        except:     
+            return ("Ha habido un error y no se ha podido dar de baja el empleado pedido")
