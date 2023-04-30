@@ -1,7 +1,7 @@
 
 if __name__ =='__main__':
 
-    print('Menu: \n 1.Log In \n 2.Registrarse \n 3.Ver viviendas en alquiler \n 4.Ver viviendas a la venta \n 5.Ver mis propiedades \n 6.Agregar una vivienda al sistema \n 7.Salir')
+    print('Menu: \n 1.Log In \n 2.Registrarse \n 3.Ver viviendas en alquiler \n 4.Ver viviendas a la venta \n 5.Buscar vivienda por barrio \n 6.Buscar vivienda por precio \n 7.Ver mis propiedades \n 8.Agregar una vivienda al sistema \n 9.Salir')
     continuar=True
     while continuar:
         eleccion=int(input('Ingrese la opcion del menu a la que desea ingresar: '))
