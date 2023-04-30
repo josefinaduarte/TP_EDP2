@@ -4,7 +4,7 @@ hoy = date.today()
 anio = hoy.year
 class Propiedad():
     estados_validos = ['en venta', 'en alquiler', 'alquilado', 'vendido']
-    def __init__(self,cliente, m2,direccion,barrio,id,numambientes,tipo,anioconstruccion,estado,precio,fecha):
+    def __init__(self,cliente, m2,direccion,barrio,id,numambientes,tipo,anioconstruccion,estado,precio,fecha,inquilino):
         if estado not in Propiedad.estados_validos:
             raise ValueError("el estado no es valido")
         self.cliente=cliente
@@ -18,6 +18,7 @@ class Propiedad():
         self.precio=precio
         self.antiguedad=int(anio)-int(anioconstruccion)
         self.fecha = fecha
+        self.inquilino = inquilino
     def __str__(self):
         return 'La propiedad tiene{} m2, la direccion es{}, la cantidad de ambientes que tiene es {}, es de tipo {}, se construyo en {} y se encuentra {}'.format(self.m2,self.direccion,self.numambientes,self.tipo,self.antiguedad,self.estado)
     def Dar_alta(self):
@@ -87,16 +88,18 @@ class Propiedad():
         except IOError:
             print ('el archivo no fue encontrado')
 
-    def alquiler(self, propietario, estado, idprop, lista):
+    def alquiler(self, propietario, estado, idprop, inquilino, lista):
         self.propietario = propietario
         self.estado = estado
+        self.inquilino = inquilino
         for i in range(lista):
             for j in range(lista[i]):
                 if lista[i][j] == idprop:
                     if lista[i][8] == 'en alquiler':
                         lista[i][8] = estado
                         lista[i][0] = propietario
-                        lista[i][9] = date.today()
+                        lista[i][9] = inquilino
+                        lista[i][10] = date.today()
                     else:
                         print ('la propiedad no esta disponible para alquilar')
 
@@ -104,10 +107,9 @@ class Propiedad():
 
     lista1 = extraerInfo ('ListaPropiedadesAlquiler.txt')
 
-    def venta(self, propietario, estado, empleado, idprop, lista):
+    def venta(self, propietario, estado, idprop, lista):
         self.propietario = propietario
         self.estado = estado
-        self.empelado = empleado
         for i in range(lista):
             for j in range(lista[i]):
                 if lista[i][j] == idprop:
