@@ -90,7 +90,6 @@ class Propiedad():
     def alquiler(self, propietario, estado, idprop, lista):
         self.propietario = propietario
         self.estado = estado
-        #self.fecha_alquiler = date.today()
         for i in range(lista):
             for j in range(lista[i]):
                 if lista[i][j] == idprop:
@@ -99,10 +98,11 @@ class Propiedad():
                         lista[i][0] = propietario
                         lista[i][9] = date.today()
                     else:
-                        print ('esa propiedad no esta disponible para alquilar')
+                        print ('la propiedad no esta disponible para alquilar')
 
         return lista
 
+    lista1 = extraerInfo ('ListaPropiedadesAlquiler.txt')
 
     def venta(self, propietario, estado, empleado, idprop, lista):
         self.propietario = propietario
@@ -116,9 +116,11 @@ class Propiedad():
                         lista[i][0] = propietario
                         lista[i][11] = date.today()
                     else:
-                        print ('esa propiedad no esta disponible para vender')
+                        print ('la propiedad no esta disponible para vender')
 
         return lista
+    
+    lista2 = extraerInfo ('ListaPropiedadesVenta.txt')
 
     #escribo la nueva lista en el archivo
     def escribirinfo (archivo, lista):
