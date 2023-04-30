@@ -3,8 +3,8 @@ from datetime import *
 hoy = date.today()
 anio = hoy.year
 class Propiedad():
-    estados_validos = ['venta', 'alquiler', 'libre']
-    def __init__(self,cliente, m2,direccion,barrio,id,numambientes,tipo,anioconstruccion,estado,precio):
+    estados_validos = ['en venta', 'en alquiler', 'alquilado', 'vendido']
+    def __init__(self,cliente, m2,direccion,barrio,id,numambientes,tipo,anioconstruccion,estado,precio,fecha):
         if estado not in Propiedad.estados_validos:
             raise ValueError("el estado no es valido")
         self.cliente=cliente
@@ -17,6 +17,7 @@ class Propiedad():
         self.id=id
         self.precio=precio
         self.antiguedad=anio-anioconstruccion
+        self.fecha = fecha
     def __str__(self):
         return 'La propiedad tiene{} m2, la direccion es{}, la cantidad de ambientes que tiene es {}, es de tipo {}, se construyo en {} y se encuentra {}'.format(self.m2,self.direccion,self.numambientes,self.tipo,self.antiguedad,self.estado)
     def Dar_alta(self):
@@ -67,15 +68,68 @@ class Propiedad():
         else:
             print('el campo ingresado no esta registrado')
 
-    def alquiler (self, propietario):
-        self.estado = 'alquilado'
+    def extraerInfo (archivo):
+        listaGen = []
+        palabra = ''
+        try:
+            fd= open(archivo, 'r')
+            for linea in fd:
+                propiedad = []
+                for caracter in linea:
+                    if ((caracter != ",") and (caracter != "\n")):
+                        palabra += caracter
+                    else:
+                        propiedad += [palabra]
+                        palabra = ''
+                listaGen += [propiedad]
+            fd.close()
+            return listaGen
+        except IOError:
+            print ('el archivo no fue encontrado')
+
+    def alquiler(self, propietario, estado, idprop, lista):
         self.propietario = propietario
-        self.fecha_alquiler = date.today()
-        
-    def venta (self, propietario, empleado):
-        self.estado = 'vendido'
+        self.estado = estado
+        #self.fecha_alquiler = date.today()
+        for i in range(lista):
+            for j in range(lista[i]):
+                if lista[i][j] == idprop:
+                    if lista[i][8] == 'en alquiler':
+                        lista[i][8] = estado
+                        lista[i][0] = propietario
+                        lista[i][9] = date.today()
+                    else:
+                        print ('esa propiedad no esta disponible para alquilar')
+
+        return lista
+
+
+    def venta(self, propietario, estado, empleado, idprop, lista):
         self.propietario = propietario
-        self.fecha_venta = date.today()
+        self.estado = estado
+        self.empelado = empleado
+        for i in range(lista):
+            for j in range(lista[i]):
+                if lista[i][j] == idprop:
+                    if lista[i][8] == 'en venta':
+                        lista[i][8] = estado
+                        lista[i][0] = propietario
+                        lista[i][11] = date.today()
+                    else:
+                        print ('esa propiedad no esta disponible para vender')
+
+        return lista
+
+    #escribo la nueva lista en el archivo
+    def escribirinfo (archivo, lista):
+        try:
+            fd= open(archivo, 'w')
+            fd.write(lista)
+            fd.close()
+
+        except IOError:
+            print ('el archivo no fue encontrado')
+
        
     def calcular_comision(self, empleado, precio,salario):
         self.empleado = empleado
