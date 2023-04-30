@@ -77,15 +77,18 @@ class Propiedad():
         self.propietario = propietario
         self.fecha_venta = date.today()
        
-    
-    def calcular_comision(self, empleado, precio):
+    def calcular_comision(self, empleado, precio,salario):
         self.empleado = empleado
         self.precio = precio
+        self.salario=salario
 
         if self.estado == 'vendido':
             comision = precio  * 0.05
+        elif self.estado=='alquilado':
+              comision=precio*0.04
+        salarioFinal=salario+comision
 
-        return empleado, comision
+        return empleado, comision,salarioFinal
     
     def Calcular_precio_m2(self):
         return int(self.precio)/int(self.m2)
