@@ -4,15 +4,17 @@ hoy = date.today()
 anio = hoy.year
 class Propiedad():
     estados_validos = ['venta', 'alquiler', 'libre']
-    def __init__(self,cliente, m2,direccion,numambientes,tipo,anioconstruccion,estado,precio):
+    def __init__(self,cliente, m2,direccion,barrio,id,numambientes,tipo,anioconstruccion,estado,precio):
         if estado not in Propiedad.estados_validos:
             raise ValueError("el estado no es valido")
         self.cliente=cliente
         self.m2=m2
         self.direccion=direccion
+        self.barrio=barrio
         self.numambientes=numambientes
         self.tipo=tipo
         self.estado=estado
+        self.id=id
         self.precio=precio
         self.antiguedad=anio-anioconstruccion
     def __str__(self):
