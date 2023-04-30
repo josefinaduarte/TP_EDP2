@@ -32,7 +32,7 @@ class Propiedad():
         campo=input('ingrese campo a actualizar')
         dato=input('ingrese el nuevo dato')
         propiedades=open("ListaPropiedades.txt",'a')
-        def Actualizar(self):
+    def Actualizar(self):
         campo=input('ingrese campo a actualizar')   
         dato=input('ingrese el nuevo dato')
         propiedad=input('que propiedad')
