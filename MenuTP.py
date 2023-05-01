@@ -19,7 +19,7 @@ def extraerInfo (archivo):
 
 if __name__ =='__main__':
 
-    print('Menu: \n 1.Log In \n 2.Registrarse \n 3.Ver propiedades en alquiler \n 4.Ver propiedades en la venta \n 5.Buscar propiedad por barrio \n 6.Buscar propiedad por precio \n 7.Ver mis propiedades \n 8.Agregar una propiedad al sistema \n 9.Quitar una propiedad del sistema \n 10.Salir')
+    print('Menu: \n 1.Log In \n 2.Registrarse \n 3.Salir')
     continuar=True
     while continuar:
         eleccion=int(input('Ingrese la opcion del menu a la que desea ingresar: '))
@@ -38,6 +38,9 @@ if __name__ =='__main__':
                             correcto=True
                 if correcto==False:
                     print('El usuario o la contrasenia ingresados no son correctos. Ingreselos devuelta.')
+            if correcto==True:
+                print('Menu: 1.Ver propiedades en alquiler \n 2.Ver propiedades en la venta \n 3.Buscar propiedad por barrio \n 4.Buscar propiedad por precio \n 5.Ver mis propiedades \n 6.Agregar una propiedad al sistema \n 7.Quitar una propiedad del sistema \n 8.Salir')
+
         
             
 
