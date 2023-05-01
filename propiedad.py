@@ -39,35 +39,52 @@ class Propiedad():
     def Actualizar(self):
         campo=input('ingrese campo a actualizar')   
         dato=input('ingrese el nuevo dato')
-        propiedad=input('que propiedad')
-        propiedades=open("ListaPropiedades.txt",'r')
+        propiedad=input('ingrese id')
+        tipo=input('ingrese si la propiedad esta en venta o en alquiler')
+        while tipo!= 'Alquiler' and tipo!='Venta':
+          tipo=input('ingrese si la propiedad esta en venta o en alquiler')
+        if tipo=='Venta':
+          propiedades=open("C:/Users/Tiziana/Documents/TP GITHUB/ListaPropiedadesVenta.txt",'r')
+          arch="C:/Users/Tiziana/Documents/TP GITHUB/ListaPropiedadesVenta.txt"
+        if tipo=='Alquiler':
+          propiedades=open("C:/Users/Tiziana/Documents/TP GITHUB/ListaPropiedadesAlquiler",'r')
+          arch="C:/Users/Tiziana/Documents/TP GITHUB/ListaPropiedadesAlquiler"
         lista =propiedades.readlines()
-        with open("ListaPropiedades.txt",'w')as archivo:
+        propiedades.close()
+        cont=0
+        with open(arch,'w')as archivo:
             for linea in lista:
                 if propiedad in linea:
-
                     rotulo=linea.split(',')
-                    for elemento in rotulo:
-                        if campo=='m2':
-                            elemento=dato
-                    lineaNueva = rotulo.join()
+                    if campo=='cliente':
+                        rotulo[0]=dato
+                    elif campo=='m2':
+                        rotulo[1]=dato
+                    elif campo=='direccion':
+                        rotulo[2]=dato  
+                    elif campo=='barrio':
+                        rotulo[3]=dato
+                    elif campo=='id':
+                        rotulo[4]=dato
+                    elif campo=='numambientes':
+                        rotulo[5]=dato
+                    elif campo=='tipo':
+                        rotulo[6]=dato
+                    elif campo=='anioconstruccion':
+                        rotulo[7]=anio-dato
+                    elif campo=='estado':
+                        rotulo[8]=dato
+                    elif campo=='precio':
+                        rotulo[9]=dato
+                    else:
+                        print('el campo ingresado no esta registrado')
+                    cont=1
+                    lineaNueva = ','.join(rotulo)
                     archivo.write(lineaNueva)
                 else: #no es la propiedad
                     archivo.write(linea)
-        if campo=='m2':
-            self.m2=dato
-        elif campo=='direccion':
-            self.direccion=dato
-        elif campo=='numambientes':
-            self.numambientes=dato
-        elif campo=='tipo':
-            self.tipo=dato
-        elif campo=='anioconstruccion':
-            self.antiguedad=anio-dato
-        elif campo=='estado':
-            self.estado=dato
-        else:
-            print('el campo ingresado no esta registrado')
+            if cont==0:
+                print('el id ingresado no esta registrado')
 
     def extraerInfo (archivo):
         listaGen = []
