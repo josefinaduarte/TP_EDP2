@@ -15,24 +15,43 @@ class Empleado(Persona):
     def Actualizar(self):
         campo=input('ingrese campo a actualizar')
         dato=input('ingrese el nuevo dato')
-        if campo=='nombre':
-            self.nombre=dato
-        elif campo=='DNI':
-            self.DNI=dato
-        elif campo=='genero':
-            self.genero=dato
-        if campo=='cargo':
-            self.cargo=dato
-        elif campo=='salario':
-            self.salario=dato
-        elif campo=='legajo':
-            self.legajo=dato
-        elif campo=='anioIngreso':
-            self.anioIngreso=dato
-        elif campo=='telefono':
-            self.telefono=dato
-        else:
-            print('el campo ingresado no esta registrado')
+        empleado=input('ingrese dni')
+        empleados=open("DatosEmpleados.unknown",'r')
+        lista =empleados.readlines()
+        empleados.close()
+        cont=0
+        with open("DatosEmpleados.unknown",'w')as archivo:  
+            for linea in lista:
+                if empleado in linea:
+                    rotulo=linea.split(',')
+                    if campo=='nombre':
+                        rotulo[0]=dato
+                    elif campo=='DNI':
+                        rotulo[1]=dato
+                    elif campo=='genero':
+                        rotulo[2]=dato  
+                    elif campo=='cargo':
+                        rotulo[3]=dato 
+                    elif campo=='salario':
+                        rotulo[4]=dato 
+                    elif campo=='legajo':
+                        rotulo[5]=dato
+                    elif campo=='telefono':
+                        rotulo[6]=anio-dato
+                    elif campo=='direccion':
+                        rotulo[7]=dato
+                    elif campo=='anioIngreso':
+                        rotulo[8]=anio-dato
+                    else:
+                        print('el campo ingresado no esta registrado')
+                    cont=1
+                    lineaNueva = ','.join(rotulo)
+                    archivo.write(lineaNueva)
+                else: 
+                    archivo.write(linea)
+            if cont==0:
+                print('el id ingresado no esta registrado')
+    
     def __str__(self):
         return 'El empleado se llama {},su DNI es{}, su genero es {}, su cargo es {}, su contrasenia es {}, su telefono es {}, su direccion es {} y su antiguedad es {}'.format(self.nombre,self.DNI,self.genero,self.usuario,self.contrasenia,self.telefono,self.direccion,self.antiguedad)
     def Dar_alta(self):
