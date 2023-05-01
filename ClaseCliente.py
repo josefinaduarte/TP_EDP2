@@ -39,7 +39,7 @@ class Cliente(Persona):
         return 'El cliente se llama {},su DNI es{}, su genero es {}, su usario es {}, su contrasenia es {}, su telefono es {}, su direccion es {} y su antiguedad es {}'.format(self.nombre,self.DNI,self.genero,self.usuario,self.contrasenia,self.telefono,self.direccion,self.antiguedad)
     
     def Dar_alta(self):
-        clientes=open(r"DatosEmpleados.unknown",'a')
+        clientes=open(r"DatosClientes.unknown",'a')
         atributos=[self.nombre,self.DNI,self.genero,self.usuario,self.contrasenia,self.telefono,self.direccion,self.anioIngreso]
         for i in range(len(atributos)):
             if i!=len(atributos)-1:

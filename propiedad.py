@@ -187,3 +187,36 @@ class Propiedad():
     
     def Calcular_precio_m2(self):
         return int(self.precio)/int(self.m2)
+    
+    def Dar_baja(self):
+        try:
+            id=input("Ingrese el ID de la propiedad que desea dar de baja:")
+            en_venta=open(r'ListaPropiedadesVenta.txt','r')
+            en_alquiler=open(r"ListaPropiedadesAlquiler",'r')
+            se_queda_v=""
+            se_queda_a=""
+            esta=""
+            for linea in en_venta:
+                if id not in linea:
+                    se_queda_v+=(linea)
+                else:
+                    esta="venta"
+            for fil in en_alquiler:
+                if id not in fil:
+                    se_queda_a+=(fil)
+                else:
+                    esta="alquiler"
+            en_venta.close()
+            en_alquiler.close()
+            if esta=="venta":
+                en_venta_w=open(r'ListaPropiedadesVenta.txt','w')  
+                en_venta_w.write(se_queda_v)
+                en_venta_w.close()
+            elif esta=="alquiler":
+                en_alquiler_w=open(r"ListaPropiedadesAlquiler",'w')  
+                en_alquiler_w.write(se_queda_a)
+                en_alquiler_w.close()
+
+            print("Se ha dado de baja la propiedad con ID:"+str(id))    
+        except:
+             print("ha habido un error y no se pudo dar de baja la propiedad")
