@@ -92,8 +92,8 @@ class Propiedad():
         self.propietario = propietario
         self.estado = estado
         self.inquilino = inquilino
-        for i in range(lista):
-            for j in range(lista[i]):
+        for i in range(len(lista)):
+            for j in range(len(lista[i])):
                 if lista[i][j] == idprop:
                     if lista[i][8] == 'en alquiler':
                         lista[i][8] = estado
@@ -110,8 +110,8 @@ class Propiedad():
     def venta(self, propietario, estado, idprop, lista):
         self.propietario = propietario
         self.estado = estado
-        for i in range(lista):
-            for j in range(lista[i]):
+        for i in range(len(lista)):
+            for j in range(len(lista[i])):
                 if lista[i][j] == idprop:
                     if lista[i][8] == 'en venta':
                         lista[i][8] = estado
@@ -138,6 +138,14 @@ class Propiedad():
     listaa = extraerInfo('alquileres.txt')
     listav = extraerInfo('ventas.txt')
     lista = listaa + listav
+
+    #mostrar todas las propiedades
+    def mostrarprop(lista):
+        nueva = []
+        for i in range(len(lista)):
+            if lista[i][8] == 'en alquiler' or lista[i][8] == 'en venta':
+                nueva += [lista[i]]
+        print (nueva)
 
     #buscar por barrio
 
