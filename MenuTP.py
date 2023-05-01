@@ -1,3 +1,21 @@
+def extraerInfo (archivo):
+        listaGen = []
+        palabra = ''
+        try:
+            fd= open(archivo, 'r')
+            for linea in fd:
+                propiedad = []
+                for caracter in linea:
+                    if ((caracter != ",") and (caracter != "\n")):
+                        palabra += caracter
+                    else:
+                        propiedad += [palabra]
+                        palabra = ''
+                listaGen += [propiedad]
+            fd.close()
+            return listaGen
+        except IOError:
+            print ('el archivo no fue encontrado')
 
 if __name__ =='__main__':
 
@@ -9,7 +27,19 @@ if __name__ =='__main__':
             print('El numero ingresado debe estar entre el 1 y el 7.')
             eleccion=int(input('Ingrese la opcion del menu a la que desea ingresar: '))
         if eleccion==1:
-            usuario=input('Ingrese su usuario: ')
-            contrasenia=input('Ingrese su contrasenia: ') 
-            #habria que abrir el archivo de la info de cliente
+            listaArchivo=extraerInfo('/Users/constanzanicoli/Documents/GitHub/TP_EDP2/DatosClientes.unknown')
+            correcto=False
+            while correcto==False:
+                usuario=input('Ingrese su usuario: ')
+                contrasenia=input('Ingrese su contrasenia: ') 
+                for i in range(len(listaArchivo)):
+                    if usuario==listaArchivo[i][3]:
+                        if contrasenia==listaArchivo[i][4]:
+                            correcto=True
+                if correcto==False:
+                    print('El usuario o la contrasenia ingresados no son correctos. Ingreselos devuelta.')
+        
+            
+
+            
             
