@@ -44,11 +44,11 @@ class Propiedad():
         while tipo!= 'Alquiler' and tipo!='Venta':
           tipo=input('ingrese si la propiedad esta en venta o en alquiler')
         if tipo=='Venta':
-          propiedades=open("C:/Users/Tiziana/Documents/TP GITHUB/ListaPropiedadesVenta.txt",'r')
-          arch="C:/Users/Tiziana/Documents/TP GITHUB/ListaPropiedadesVenta.txt"
+          propiedades=open("ListaPropiedadesVenta.txt",'r')
+          arch="ListaPropiedadesVenta.txt"
         if tipo=='Alquiler':
-          propiedades=open("C:/Users/Tiziana/Documents/TP GITHUB/ListaPropiedadesAlquiler",'r')
-          arch="C:/Users/Tiziana/Documents/TP GITHUB/ListaPropiedadesAlquiler"
+          propiedades=open("ListaPropiedadesAlquiler.txt",'r')
+          arch="ListaPropiedadesAlquiler.txt"
         lista =propiedades.readlines()
         propiedades.close()
         cont=0
