@@ -134,6 +134,35 @@ class Propiedad():
         except IOError:
             print ('el archivo no fue encontrado')
 
+    #metodos de busqueda
+    listaa = extraerInfo('alquileres.txt')
+    listav = extraerInfo('ventas.txt')
+    lista = listaa + listav
+
+    #buscar por barrio
+
+    def buscarporbarrio(lista):
+        final = []
+        barrio = input(print ('ingrese el barrio en el que busca una propiedad:' ))
+        for i in range(len(lista)):
+            if (lista[i][8] == 'en alquiler' or lista[i][8] == 'en venta') and (lista[i][3] == barrio):
+                final += [lista[i]]
+
+        print ('las propiedades disponibles en ese barrio son:\n' , final)
+
+
+    #buscar por precio
+
+    def buscarporprecio(lista):
+        final = []
+        min = int(input('ingrese un precio minimo:'))
+        max = int(input('ingrese un precio maximo:'))
+
+        for i in range(len(lista)):
+            if (lista[i][9] < max and lista[i][9] > min):
+                final += [lista[i]]
+
+        print ('las propiedades dentro del rango de precios ingresado son:\n' , final)
        
     def calcular_comision(self, empleado, precio,salario):
         self.empleado = empleado
