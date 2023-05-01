@@ -1,8 +1,8 @@
-Scarlett Greenless,969,374 Sloan Drive,Caballito,001,2,casa,2009,vendido,Norton McClaren,Cecilius Lukas,10/07/22
-Scarlett Greenless,332,3 Hoard Terrace,Recoleta,002,7,departamento,2004,en venta, ,Cyb Burl, 
-Norri Rubertis,328,0 Westend Terrace,Retiro,003,10,departamento,1998,en venta, ,Ardis Hartington, 
-Harmon Hub,509,92040 Springview Junction,Lomas de Zamora,004,9,departamento,2009,en venta, ,Cristen Hebbs, 
-Galina Olivetta,555,7472 Talisman Road,Caballito,005,2,local,2009,en venta, ,Garvey Alliberton, 
-Evelyn Tithacott,702,425 Thierer Trail,Saavedra,006,8,casa,1990,en venta, ,Marlena Skiplorne, 
-Barnard Daudray,576,5 Scofield Road,Palermo,007,8,departamento,1996,en venta, ,Lurlene Rishman, 
-Mendel Rounding,228,28241 Brown Drive,Nunez,008,2,casa,2001,vendido,Barnard Daudray,Nesta Duquesnay,20/10/22
+Scarlett Greenless,969,374 Sloan Drive,Caballito,001,2,casa,2009,vendido,4000000,Norton McClaren,Cecilius Lukas,10/07/22
+Scarlett Greenless,332,3 Hoard Terrace,Recoleta,002,7,departamento,2004,en venta,3000000, ,Cyb Burl, 
+Norri Rubertis,328,0 Westend Terrace,Retiro,003,10,departamento,1998,en venta,5000000, ,Ardis Hartington, 
+Harmon Hub,509,92040 Springview Junction,Lomas de Zamora,004,9,departamento,2009,en venta,7000000, ,Cristen Hebbs, 
+Galina Olivetta,555,7472 Talisman Road,Caballito,005,2,local,2009,en venta,1000000, ,Garvey Alliberton, 
+Evelyn Tithacott,702,425 Thierer Trail,Saavedra,006,8,casa,1990,en venta,2000000, ,Marlena Skiplorne, 
+Barnard Daudray,576,5 Scofield Road,Palermo,007,8,departamento,1996,en venta,4000000, ,Lurlene Rishman, 
+Mendel Rounding,228,28241 Brown Drive,Nunez,008,2,casa,2001,vendido,6000000,Barnard Daudray,Nesta Duquesnay,20/10/22
