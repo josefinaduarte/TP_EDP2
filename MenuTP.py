@@ -51,7 +51,7 @@ if __name__ =='__main__':
     while continuar:
         eleccion=int(input('Ingrese la opcion del menu a la que desea ingresar: '))
         while eleccion<1 or eleccion>3:
-            print('El numero ingresado debe estar entre el 1 y el 7.')
+            print('El numero ingresado debe estar entre el 1 y el 3.')
             eleccion=int(input('Ingrese la opcion del menu a la que desea ingresar: '))
         if eleccion==1:
             listaArchivo=extraerInfo('/Users/constanzanicoli/Documents/GitHub/TP_EDP2/DatosClientes.unknown')
