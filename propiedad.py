@@ -2,6 +2,14 @@
 from datetime import *
 hoy = date.today()
 anio = hoy.year
+
+def agregar_años(fecha, años):
+    try:
+        return fecha.replace(year=fecha.year + años)
+    except ValueError:
+        # si no existe el 29 de febrero, poner el 28:
+        return fecha.replace(year=fecha.year + años, dia=28)
+        
 class Propiedad():
     estados_validos = ['en venta', 'en alquiler', 'alquilado', 'vendido']
     def __init__(self,cliente, m2,direccion,barrio,id,numambientes,tipo,anioconstruccion,estado,precio,fecha,inquilino):
@@ -112,13 +120,6 @@ class Propiedad():
     listav = extraerInfo('ListaPropiedadesAlquiler.txt')
     lista = listaa + listav
 
-    def agregar_años(fecha, años):
-        try:
-            return fecha.replace(year=fecha.year + años)
-        except ValueError:
-            # si no existe el 29 de febrero, poner el 28:
-            return fecha.replace(year=fecha.year + años, dia=28)
-
     def alquiler(self, inquilino, estado, lista):
         self.inquilino = inquilino
         self.estado = estado
@@ -132,7 +133,7 @@ class Propiedad():
                     lista[i][8] = estado
                     lista[i][10] = inquilino 
                     lista[i][11] = str(date.today()) #fecha de inicio de alquiler
-                    #lista[i][12] = str(agregar_años(date.today(), 1)) #fecha de fin de alquiler
+                    lista[i][12] = str(agregar_años(date.today(), 1)) #fecha de fin de alquiler
                     #print(lista)
                     alquilada = False
 
