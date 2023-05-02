@@ -86,6 +86,7 @@ class Propiedad():
             if cont==0:
                 print('el id ingresado no esta registrado')
 
+    #Extraigo la informacion del archivo y la paso a lista
     def extraerInfo (archivo):
         listaGen = []
         palabra = ''
@@ -100,81 +101,83 @@ class Propiedad():
                         propiedad += [palabra]
                         palabra = ''
                 listaGen += [propiedad]
+            #print(listaGen)
             fd.close()
             return listaGen
         except IOError:
             print ('el archivo no fue encontrado')
 
-    def alquiler(self, propietario, estado, idprop, inquilino, lista):
-        self.propietario = propietario
-        self.estado = estado
-        self.inquilino = inquilino
-        for i in range(len(lista)):
-            for j in range(len(lista[i])):
-                if lista[i][j] == idprop:
-                    if lista[i][8] == 'en alquiler':
-                        lista[i][8] = estado
-                        lista[i][0] = propietario
-                        lista[i][9] = inquilino
-                        lista[i][10] = date.today()
-                    else:
-                        print ('la propiedad no esta disponible para alquilar')
-
-        return lista
-
-    lista1 = extraerInfo ('ListaPropiedadesAlquiler.txt')
-
-    def venta(self, propietario, estado, idprop, lista):
-        self.propietario = propietario
-        self.estado = estado
-        for i in range(len(lista)):
-            for j in range(len(lista[i])):
-                if lista[i][j] == idprop:
-                    if lista[i][8] == 'en venta':
-                        lista[i][8] = estado
-                        lista[i][0] = propietario
-                        lista[i][11] = date.today()
-                    else:
-                        print ('la propiedad no esta disponible para vender')
-
-        return lista
-    
-    lista2 = extraerInfo ('ListaPropiedadesVenta.txt')
-
-    #escribo la nueva lista en el archivo
-    def escribirinfo (archivo, lista):
-        try:
-            fd= open(archivo, 'w')
-            fd.write(lista)
-            fd.close()
-
-        except IOError:
-            print ('el archivo no fue encontrado')
-
-    #metodos de busqueda
-    listaa = extraerInfo('alquileres.txt')
-    listav = extraerInfo('ventas.txt')
+    #armado de listas
+    listaa = extraerInfo('ListaPropiedadesVenta.txt')
+    listav = extraerInfo('ListaPropiedadesAlquiler.txt')
     lista = listaa + listav
 
-    #mostrar todas las propiedades
-    def mostrarprop(lista):
-        nueva = []
-        for i in range(len(lista)):
-            if lista[i][8] == 'en alquiler' or lista[i][8] == 'en venta':
-                nueva += [lista[i]]
-        print (nueva)
+    def agregar_años(fecha, años):
+        try:
+            return fecha.replace(year=fecha.year + años)
+        except ValueError:
+            # si no existe el 29 de febrero, poner el 28:
+            return fecha.replace(year=fecha.year + años, dia=28)
+
+    def alquiler(self, inquilino, estado, lista):
+        self.inquilino = inquilino
+        self.estado = estado
+        self.fecha_alquiler = date.today()
+        alquilada = True
+        while alquilada:
+            idprop = input('ingrese el id de la propiedad que quiere alquilar:\n')
+
+            for i in range(len(lista)):
+                if lista[i][4]==idprop and lista[i][8] == 'en alquiler' :
+                    lista[i][8] = estado
+                    lista[i][10] = inquilino 
+                    lista[i][11] = str(date.today()) #fecha de inicio de alquiler
+                    #lista[i][12] = str(agregar_años(date.today(), 1)) #fecha de fin de alquiler
+                    #print(lista)
+                    alquilada = False
+
+            print ('esa propiedad no esta disponible para alquilar')
+
+        return lista
+
+    #alquiler ('Nombre Apellido', 'alquilada', listaa)
+
+    def venta(self, propietario, estado, lista):
+        self.propietario = propietario
+        self.estado = estado
+
+        vendida = True
+        while vendida:
+            idprop = input('ingrese el id de la propiedad que quiere comprar:\n')
+            
+            for i in range(len(lista)):
+                if lista[i][4]==idprop and lista[i][8] == 'en venta' :
+                    lista[i][10] = lista[i][0]
+                    lista[i][0] = propietario
+                    lista[i][8] = estado
+                    lista[i][12] = str(date.today()) #fecha de venta
+                    #print (lista)
+                    vendida = False
+
+            print ('esa propiedad no esta disponible para vender')
+            
+        return lista
+
+    #venta('Nombre Apellido' , 'vendida' , listav)
 
     #buscar por barrio
 
     def buscarporbarrio(lista):
         final = []
-        barrio = input(print ('ingrese el barrio en el que busca una propiedad:' ))
+        barrio = input('ingrese el barrio en el que busca una propiedad:\n')
         for i in range(len(lista)):
             if (lista[i][8] == 'en alquiler' or lista[i][8] == 'en venta') and (lista[i][3] == barrio):
                 final += [lista[i]]
 
         print ('las propiedades disponibles en ese barrio son:\n' , final)
 
+        if len(final) == 0:
+            print ('no hay propiedades disponibles en ese barrio')
 
     #buscar por precio
 
@@ -184,10 +187,34 @@ class Propiedad():
         max = int(input('ingrese un precio maximo:'))
 
         for i in range(len(lista)):
-            if (lista[i][9] < max and lista[i][9] > min):
+            if (lista[i][8] == 'en alquiler' or lista[i][8] == 'en venta') and (int(lista[i][9]) <= max and int(lista[i][9]) >= min):
                 final += [lista[i]]
 
         print ('las propiedades dentro del rango de precios ingresado son:\n' , final)
+
+        if len(final) == 0:
+            print ('no hay propiedades que esten dentro del rango ingresado')
+
+    #buscarporprecio(lista)
+
+    #mostrar todas las propiedades
+    def mostrarprop(lista):
+        nueva = []
+        for i in range(len(lista)):
+            if lista[i][8] == 'en alquiler' or lista[i][8] == 'en venta':
+                nueva += [lista[i]]
+        print (nueva)
+
+    #escribo la nueva lista en el archivo
+    def escribirinfo (archivo, lista):
+            try:
+                fd= open(archivo, 'w')
+                fd.write(lista)
+                fd.close()
+
+            except IOError:
+                print ('el archivo no fue encontrado')
+
        
     def calcular_comision(self, empleado, precio,salario):
         self.empleado = empleado
