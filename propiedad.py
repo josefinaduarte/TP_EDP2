@@ -205,16 +205,19 @@ class Propiedad():
                 nueva += [lista[i]]
         print (nueva)
 
-    #escribo la nueva lista en el archivo
+    def crearstring(lista1):
+        cadena = ''
+        for i in range(len(lista1)):
+            j = ','.join(map(str, lista1[i]))
+            cadena += j
+            cadena += '\n'
+        return(cadena)
+
     def escribirinfo (archivo, lista):
-            try:
-                fd= open(archivo, 'w')
-                fd.write(lista)
-                fd.close()
-
-            except IOError:
-                print ('el archivo no fue encontrado')
-
+        fd= open(archivo, 'w')
+        print(lista)
+        fd.write(lista)
+        fd.close()
        
     def calcular_comision(self, empleado, precio,salario):
         self.empleado = empleado
