@@ -34,59 +34,59 @@ class Propiedad():
                 propiedades.write(str(atributos[i]))
                 propiedades.write('\n')
         propiedades.close()
+
     def Actualizar(self):
-        campo=input('ingrese campo a actualizar')
-        dato=input('ingrese el nuevo dato')
-        propiedades=open("ListaPropiedades.txt",'a')
-    def Actualizar(self):
-        campo=input('ingrese campo a actualizar')   
-        dato=input('ingrese el nuevo dato')
-        propiedad=input('ingrese id')
-        tipo=input('ingrese si la propiedad esta en venta o en alquiler')
-        while tipo!= 'Alquiler' and tipo!='Venta':
-          tipo=input('ingrese si la propiedad esta en venta o en alquiler')
-        if tipo=='Venta':
-          propiedades=open("ListaPropiedadesVenta.txt",'r')
-          arch="ListaPropiedadesVenta.txt"
-        if tipo=='Alquiler':
-          propiedades=open("ListaPropiedadesAlquiler.txt",'r')
-          arch="ListaPropiedadesAlquiler.txt"
-        lista =propiedades.readlines()
-        propiedades.close()
-        cont=0
-        with open(arch,'w')as archivo:
-            for linea in lista:
-                if propiedad in linea:
-                    rotulo=linea.split(',')
-                    if campo=='cliente':
-                        rotulo[0]=dato
-                    elif campo=='m2':
-                        rotulo[1]=dato
-                    elif campo=='direccion':
-                        rotulo[2]=dato  
-                    elif campo=='barrio':
-                        rotulo[3]=dato
-                    elif campo=='id':
-                        rotulo[4]=dato
-                    elif campo=='numambientes':
-                        rotulo[5]=dato
-                    elif campo=='tipo':
-                        rotulo[6]=dato
-                    elif campo=='anioconstruccion':
-                        rotulo[7]=anio-dato
-                    elif campo=='estado':
-                        rotulo[8]=dato
-                    elif campo=='precio':
-                        rotulo[9]=dato
-                    else:
-                        print('el campo ingresado no esta registrado')
-                    cont=1
-                    lineaNueva = ','.join(rotulo)
-                    archivo.write(lineaNueva)
-                else: #no es la propiedad
-                    archivo.write(linea)
-            if cont==0:
-                print('el id ingresado no esta registrado')
+        try:
+            campo=input('ingrese campo a actualizar')   
+            dato=input('ingrese el nuevo dato')
+            propiedad=input('ingrese id')
+            accion=input('ingrese 1 si la propiedad esta en venta o 2 si esta en alquiler')
+            while accion!= 'Alquiler' and accion!='Venta':
+                accion=input('ingrese si la propiedad esta en venta o en alquiler')
+            if accion=='1':
+                propiedades=open("ListaPropiedadesVenta.txt",'r')
+                arch="ListaPropiedadesVenta.txt"
+            if accion=='2':
+                propiedades=open("ListaPropiedadesAlquiler.txt",'r')
+                arch="ListaPropiedadesAlquiler.txt"
+            lista =propiedades.readlines()
+            propiedades.close()
+            cont=0
+            with open(arch,'w')as archivo:
+                for linea in lista:
+                    if propiedad in linea:
+                        rotulo=linea.split(',')
+                        if campo=='cliente':
+                            rotulo[0]=dato
+                        elif campo=='m2':
+                            rotulo[1]=dato
+                        elif campo=='direccion':
+                            rotulo[2]=dato  
+                        elif campo=='barrio':
+                            rotulo[3]=dato
+                        elif campo=='id':
+                            rotulo[4]=dato
+                        elif campo=='numambientes':
+                            rotulo[5]=dato
+                        elif campo=='tipo':
+                            rotulo[6]=dato
+                        elif campo=='anioconstruccion':
+                            rotulo[7]=anio-dato
+                        elif campo=='estado':
+                            rotulo[8]=dato
+                        elif campo=='precio':
+                            rotulo[9]=dato
+                        else:
+                            print('el campo ingresado no esta registrado')
+                        cont=1
+                        lineaNueva = ','.join(rotulo)
+                        archivo.write(lineaNueva)
+                    else: #no es la propiedad
+                        archivo.write(linea)
+                if cont==0:
+                    print('el id ingresado no esta registrado')
+        except:
+            print("ha habido un error y no se pudo dar de baja la propiedad")
 
     def alquiler(self, inquilino, estado, lista):
         self.inquilino = inquilino
@@ -180,10 +180,10 @@ class Propiedad():
               comision=precio*0.04
         salarioFinal=salario+comision
 
-        return empleado, comision,salarioFinal
+        return ('El empleado es',empleado,'su comision es', comision,' y su salario final es',salarioFinal)
     
     def Calcular_precio_m2(self):
-        return int(self.precio)/int(self.m2)
+        return ('El precio del m2 es',int(self.precio)/int(self.m2))
     
     def Dar_baja(self):
         try:
