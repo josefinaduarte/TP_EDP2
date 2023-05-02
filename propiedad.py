@@ -1,9 +1,15 @@
 
 from datetime import *
-from MenuTP import *
 hoy = date.today()
 anio = hoy.year
-        
+
+def agregar_años(fecha, años):
+    try:
+        return fecha.replace(year=fecha.year + años)
+    except ValueError:
+        # si no existe el 29 de febrero, poner el 28:
+        return fecha.replace(year=fecha.year + años, dia=28)
+    
 class Propiedad():
     estados_validos = ['en venta', 'en alquiler', 'alquilado', 'vendido']
     def __init__(self,cliente, m2,direccion,barrio,id,numambientes,tipo,anioconstruccion,estado,precio,fecha,inquilino):
@@ -41,7 +47,7 @@ class Propiedad():
             dato=input('ingrese el nuevo dato')
             propiedad=input('ingrese id')
             accion=input('ingrese 1 si la propiedad esta en venta o 2 si esta en alquiler')
-            while accion!= 'Alquiler' and accion!='Venta':
+            while accion!= '1' and accion!='2':
                 accion=input('ingrese si la propiedad esta en venta o en alquiler')
             if accion=='1':
                 propiedades=open("ListaPropiedadesVenta.txt",'r')

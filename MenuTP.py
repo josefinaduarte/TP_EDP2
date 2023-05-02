@@ -1,3 +1,21 @@
+from propiedad import *
+cliente = 'hola'
+m2 = 1
+direccion = 1
+barrio = 1
+id = 1
+numambientes =1
+tipo = 1
+anioconstruccion = 1
+estado = 1
+precio = 1
+fecha = 1
+inquilino = 1
+
+propiedad = Propiedad(cliente, m2,direccion,barrio,id,numambientes,tipo,anioconstruccion,estado,precio,fecha,inquilino)
+propiedad.mostrarprop()
+
+
 def extraerInfo (archivo):
         listaGen = []
         palabra = ''
@@ -26,10 +44,19 @@ def crearstring(lista1):
     return(cadena)
 
 def escribirinfo (archivo, lista):
+<<<<<<< HEAD
     fd= open(archivo, 'w')
     print(lista)
     fd.write(lista)
     fd.close()
+=======
+    try:
+        fd= open(archivo, 'w')
+        print(lista)
+        fd.write(lista)
+        fd.close()
+    except IOError:
+        print ('el archivo no fue encontrado')
 
 
 def agregar_años(fecha, años):
@@ -38,6 +65,7 @@ def agregar_años(fecha, años):
     except ValueError:
         # si no existe el 29 de febrero, poner el 28:
         return fecha.replace(year=fecha.year + años, dia=28)
+>>>>>>> 06831e7bec8ca6d9f52162848d4f8b6c4628c9bf
     
 #armado de listas para propiedades
 listaa = extraerInfo('ListaPropiedadesVenta.txt')
@@ -72,6 +100,7 @@ if __name__ =='__main__':
                     print('El numero ingresado debe estar entre el 1 y el 7.')
                     eleccion2=int(input('Ingrese un el numero de la opcion a la que desea acceder: '))
                 if eleccion2==1:
+                    
                     continuar=True
                 elif eleccion2==2:
                     continuar=True
