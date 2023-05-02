@@ -44,10 +44,28 @@ def crearstring(lista1):
     return(cadena)
 
 def escribirinfo (archivo, lista):
+<<<<<<< HEAD
     fd= open(archivo, 'w')
     print(lista)
     fd.write(lista)
     fd.close()
+=======
+    try:
+        fd= open(archivo, 'w')
+        print(lista)
+        fd.write(lista)
+        fd.close()
+    except IOError:
+        print ('el archivo no fue encontrado')
+
+
+def agregar_años(fecha, años):
+    try:
+        return fecha.replace(year=fecha.year + años)
+    except ValueError:
+        # si no existe el 29 de febrero, poner el 28:
+        return fecha.replace(year=fecha.year + años, dia=28)
+>>>>>>> 06831e7bec8ca6d9f52162848d4f8b6c4628c9bf
     
 #armado de listas para propiedades
 listaa = extraerInfo('ListaPropiedadesVenta.txt')
