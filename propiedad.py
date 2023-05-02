@@ -41,7 +41,7 @@ class Propiedad():
             dato=input('ingrese el nuevo dato')
             propiedad=input('ingrese id')
             accion=input('ingrese 1 si la propiedad esta en venta o 2 si esta en alquiler')
-            while accion!= 'Alquiler' and accion!='Venta':
+            while accion!= '1' and accion!='2':
                 accion=input('ingrese si la propiedad esta en venta o en alquiler')
             if accion=='1':
                 propiedades=open("ListaPropiedadesVenta.txt",'r')
