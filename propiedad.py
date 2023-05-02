@@ -1,14 +1,8 @@
 
 from datetime import *
+from MenuTP import *
 hoy = date.today()
 anio = hoy.year
-
-def agregar_años(fecha, años):
-    try:
-        return fecha.replace(year=fecha.year + años)
-    except ValueError:
-        # si no existe el 29 de febrero, poner el 28:
-        return fecha.replace(year=fecha.year + años, dia=28)
         
 class Propiedad():
     estados_validos = ['en venta', 'en alquiler', 'alquilado', 'vendido']
@@ -94,32 +88,6 @@ class Propiedad():
             if cont==0:
                 print('el id ingresado no esta registrado')
 
-    #Extraigo la informacion del archivo y la paso a lista
-    def extraerInfo (archivo):
-        listaGen = []
-        palabra = ''
-        try:
-            fd= open(archivo, 'r')
-            for linea in fd:
-                propiedad = []
-                for caracter in linea:
-                    if ((caracter != ",") and (caracter != "\n")):
-                        palabra += caracter
-                    else:
-                        propiedad += [palabra]
-                        palabra = ''
-                listaGen += [propiedad]
-            #print(listaGen)
-            fd.close()
-            return listaGen
-        except IOError:
-            print ('el archivo no fue encontrado')
-
-    #armado de listas
-    listaa = extraerInfo('ListaPropiedadesVenta.txt')
-    listav = extraerInfo('ListaPropiedadesAlquiler.txt')
-    lista = listaa + listav
-
     def alquiler(self, inquilino, estado, lista):
         self.inquilino = inquilino
         self.estado = estado
@@ -166,8 +134,6 @@ class Propiedad():
 
     #venta('Nombre Apellido' , 'vendida' , listav)
 
-    #buscar por barrio
-
     def buscarporbarrio(lista):
         final = []
         barrio = input('ingrese el barrio en el que busca una propiedad:\n')
@@ -179,8 +145,6 @@ class Propiedad():
 
         if len(final) == 0:
             print ('no hay propiedades disponibles en ese barrio')
-
-    #buscar por precio
 
     def buscarporprecio(lista):
         final = []
@@ -198,27 +162,12 @@ class Propiedad():
 
     #buscarporprecio(lista)
 
-    #mostrar todas las propiedades
     def mostrarprop(lista):
         nueva = []
         for i in range(len(lista)):
             if lista[i][8] == 'en alquiler' or lista[i][8] == 'en venta':
                 nueva += [lista[i]]
         print (nueva)
-
-    def crearstring(lista1):
-        cadena = ''
-        for i in range(len(lista1)):
-            j = ','.join(map(str, lista1[i]))
-            cadena += j
-            cadena += '\n'
-        return(cadena)
-
-    def escribirinfo (archivo, lista):
-        fd= open(archivo, 'w')
-        print(lista)
-        fd.write(lista)
-        fd.close()
        
     def calcular_comision(self, empleado, precio,salario):
         self.empleado = empleado

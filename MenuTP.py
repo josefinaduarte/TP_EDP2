@@ -17,6 +17,33 @@ def extraerInfo (archivo):
         except IOError:
             print ('el archivo no fue encontrado')
 
+def crearstring(lista1):
+    cadena = ''
+    for i in range(len(lista1)):
+        j = ','.join(map(str, lista1[i]))
+        cadena += j
+        cadena += '\n'
+    return(cadena)
+
+def escribirinfo (archivo, lista):
+    fd= open(archivo, 'w')
+    print(lista)
+    fd.write(lista)
+    fd.close()
+
+
+def agregar_años(fecha, años):
+    try:
+        return fecha.replace(year=fecha.year + años)
+    except ValueError:
+        # si no existe el 29 de febrero, poner el 28:
+        return fecha.replace(year=fecha.year + años, dia=28)
+    
+#armado de listas para propiedades
+listaa = extraerInfo('ListaPropiedadesVenta.txt')
+listav = extraerInfo('ListaPropiedadesAlquiler.txt')
+lista = listaa + listav
+
 if __name__ =='__main__':
 
     print('Menu: \n 1.Log In \n 2.Registrarse \n 3.Salir')
