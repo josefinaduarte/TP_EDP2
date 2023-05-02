@@ -26,10 +26,13 @@ def crearstring(lista1):
     return(cadena)
 
 def escribirinfo (archivo, lista):
-    fd= open(archivo, 'w')
-    print(lista)
-    fd.write(lista)
-    fd.close()
+    try:
+        fd= open(archivo, 'w')
+        print(lista)
+        fd.write(lista)
+        fd.close()
+    except IOError:
+        print ('el archivo no fue encontrado')
 
 
 def agregar_años(fecha, años):
