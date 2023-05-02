@@ -40,7 +40,11 @@ if __name__ =='__main__':
                     print('El usuario o la contrasenia ingresados no son correctos. Ingreselos devuelta.')
             if correcto==True:
                 print('Menu: 1.Ver propiedades en alquiler \n 2.Ver propiedades en la venta \n 3.Buscar propiedad por barrio \n 4.Buscar propiedad por precio \n 5.Ver mis propiedades \n 6.Agregar una propiedad al sistema \n 7.Quitar una propiedad del sistema \n 8.Salir')
-
+        elif eleccion==2:
+            pass
+        elif eleccion==3:
+            print('Adios!')
+            continuar=False
         
             
 
