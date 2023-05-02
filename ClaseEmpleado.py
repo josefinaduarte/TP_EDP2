@@ -49,7 +49,7 @@ class Empleado(Persona):
                     else: 
                         archivo.write(linea)
                 if cont==0:
-                    print('el id ingresado no esta registrado')
+                    print('el DNI ingresado no esta registrado')
         except:
             print("ha habido un error y no se pudo dar de baja el empleado")
     
