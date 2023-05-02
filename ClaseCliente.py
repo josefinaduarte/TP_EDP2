@@ -5,13 +5,14 @@ from datetime import date
 hoy=date.today()
 anio=hoy.year
 class Cliente(Persona):
-    def __init__(self,nombre,DNI,genero,usuario,contrasenia,telefono,direccion,anioIngreso):
+    def __init__(self,nombre,DNI,genero,usuario,contrasenia,telefono,direccion,anioIngreso,email):
         Persona.__init__(self,nombre,DNI,genero)
         self.usuario=usuario
         self.contrasenia=contrasenia
         self.telefono=telefono
         self.direccion=direccion
         self.antiguedad=int(anio)-int(anioIngreso)
+        self.email=email
         
     def Actualizar(self):
         try:
