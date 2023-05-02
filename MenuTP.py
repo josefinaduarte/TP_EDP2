@@ -76,7 +76,7 @@ if __name__ =='__main__':
                 elif eleccion2==2:
                     continuar=True
                 elif eleccion2==3:
-                    pass
+                    continuar=True
                 elif eleccion2==4:
                     continuar=True
                 elif eleccion2==4:
