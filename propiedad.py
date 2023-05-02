@@ -1,9 +1,15 @@
 
 from datetime import *
-from MenuTP import *
 hoy = date.today()
 anio = hoy.year
-        
+
+def agregar_años(fecha, años):
+    try:
+        return fecha.replace(year=fecha.year + años)
+    except ValueError:
+        # si no existe el 29 de febrero, poner el 28:
+        return fecha.replace(year=fecha.year + años, dia=28)
+    
 class Propiedad():
     estados_validos = ['en venta', 'en alquiler', 'alquilado', 'vendido']
     def __init__(self,cliente, m2,direccion,barrio,id,numambientes,tipo,anioconstruccion,estado,precio,fecha,inquilino):
