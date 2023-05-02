@@ -1,58 +1,14 @@
 from propiedad import *
-cliente = 'hola'
-m2 = 1
-direccion = 1
-barrio = 1
-id = 1
-numambientes =1
-tipo = 1
-anioconstruccion = 1
-estado = 1
-precio = 1
-fecha = 1
-inquilino = 1
-
-propiedad = Propiedad(cliente, m2,direccion,barrio,id,numambientes,tipo,anioconstruccion,estado,precio,fecha,inquilino)
-propiedad.mostrarprop()
-
-
-def extraerInfo (archivo):
-        listaGen = []
-        palabra = ''
-        try:
-            fd= open(archivo, 'r')
-            for linea in fd:
-                propiedad = []
-                for caracter in linea:
-                    if ((caracter != ",") and (caracter != "\n")):
-                        palabra += caracter
-                    else:
-                        propiedad += [palabra]
-                        palabra = ''
-                listaGen += [propiedad]
-            fd.close()
-            return listaGen
-        except IOError:
-            print ('el archivo no fue encontrado')
-
-def crearstring(lista1):
-    cadena = ''
-    for i in range(len(lista1)):
-        j = ','.join(map(str, lista1[i]))
-        cadena += j
-        cadena += '\n'
-    return(cadena)
-
-def escribirinfo (archivo, lista):
-    fd= open(archivo, 'w')
-    print(lista)
-    fd.write(lista)
-    fd.close()
+from funciones import *
     
 #armado de listas para propiedades
-listaa = extraerInfo('ListaPropiedadesVenta.txt')
-listav = extraerInfo('ListaPropiedadesAlquiler.txt')
+listav = extraerInfo('ListaPropiedadesVenta.txt')
+listaa = extraerInfo('ListaPropiedadesAlquiler.txt')
+
 lista = listaa + listav
+
+lista1 =  [['Scarlett Greenless', '969', '374 Sloan Drive', 'Caballito', '001', '2', 'casa', '2009', 'en venta', '4000000', 'Norton McClaren', 'Cecilius Lukas', '10/07/22'], ['pedro', '332', '3 Hoard Terrace', 'Recoleta', '002', '7', 'departamento', '2004', 'en venta', '3000000', 'Scarlett Greenless', 'Cyb Burl', '2023-05-02']]
+prop = Propiedad('Scarlett Greenless','332','3 Hoard Terrace', 'Recoleta','002','7','departamento','2004','en venta','3000000',' ','Cyb Burl',' ')
 
 if __name__ =='__main__':
 
@@ -76,29 +32,44 @@ if __name__ =='__main__':
                 if correcto==False:
                     print('El usuario o la contrasenia ingresados no son correctos. Ingreselos devuelta.')
             if correcto==True:
+<<<<<<< Updated upstream
                 print('Menu: 1.Ver propiedades en alquiler \n 2.Ver propiedades en la venta \n 3.Buscar propiedad por barrio \n 4.Buscar propiedad por precio \n 5.Ver todas las propiedades disponibles \n 6.Agregar una propiedad al sistema \n 7.Quitar una propiedad del sistema \n 8.Dar de baja Cliente \n 9.Salir')
+=======
+                print('Menu: \n 1.Ver propiedades en alquiler \n 2.Ver propiedades en la venta \n 3.Buscar propiedad por barrio \n 4.Buscar propiedad por precio \n 5.Ver todas las propiedades disponibles \n 6.Alquilar una propiedad \n 7. Comprar una propiedad \n 8.Agregar una propiedad al sistema \n 9.Quitar una propiedad del sistema \n 10.Dar de baja Cliente \n 11.Salir')
+>>>>>>> Stashed changes
                 eleccion2=int(input('Ingrese un el numero de la opcion a la que desea acceder: '))
-                while eleccion2<1 or eleccion2>9:
-                    print('El numero ingresado debe estar entre el 1 y el 7.')
+                while eleccion2<1 or eleccion2>11:
+                    print('El numero ingresado debe estar entre el 1 y el 11.')
                     eleccion2=int(input('Ingrese un el numero de la opcion a la que desea acceder: '))
                 if eleccion2==1:
-                    
+                    print('las propiedades en alquiler son las siguientes:')
+                    prop.mostrarprop(listaa)
                     continuar=True
                 elif eleccion2==2:
+                    print('las propiedades en venta son las siguientes:')
+                    prop.mostrarprop(listav)
                     continuar=True
                 elif eleccion2==3:
+                    prop.buscarporbarrio(lista)
                     continuar=True
                 elif eleccion2==4:
-                    continuar=True
-                elif eleccion2==4:
+                    prop.buscarporprecio(lista)
                     continuar=True
                 elif eleccion2==5:
+                    print('las propiedades disponibles para alquilar y vender son las siguientes:')
+                    prop.mostrarprop(lista)
                     continuar=True
                 elif eleccion2==6:
+                    prop.alquiler('alquilado', listaa)
                     continuar=True
                 elif eleccion2==7:
+                    prop.venta('en venta' , listav)
                     continuar=True
                 elif eleccion2==8:
+                    continuar=True
+                elif eleccion2==9:
+                    continuar=True
+                elif eleccion2==10:
                     continuar=True
                 else:
                     print('Adios')

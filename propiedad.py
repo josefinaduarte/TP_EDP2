@@ -1,20 +1,13 @@
 
 from datetime import *
 from random import *
-from MenuTP import extraerInfo
+from funciones import *
 hoy = date.today()
 anio = hoy.year
-
-def agregar_años(fecha, años):
-    try:
-        return fecha.replace(year=fecha.year + años)
-    except ValueError:
-        # si no existe el 29 de febrero, poner el 28:
-        return fecha.replace(year=fecha.year + años, dia=28)
     
 class Propiedad():
     estados_validos = ['en venta', 'en alquiler', 'alquilado', 'vendido']
-    def __init__(self,cliente, m2,direccion,barrio,id,numambientes,tipo,anioconstruccion,estado,precio,fecha,inquilino):
+    def __init__(self,cliente, m2,direccion,barrio,id,numambientes,tipo,anioconstruccion,estado,precio,fechainicio,inquilino, fechafin):
         if estado not in Propiedad.estados_validos:
             raise ValueError("el estado no es valido")
         self.cliente=cliente
@@ -27,8 +20,9 @@ class Propiedad():
         self.id=id
         self.precio=precio
         self.antiguedad=int(anio)-int(anioconstruccion)
-        self.fecha = fecha
+        self.fechainicio = fechainicio
         self.inquilino = inquilino
+        self.fechafin = fechafin
     def __str__(self):
         return 'La propiedad tiene{} m2, la direccion es{}, la cantidad de ambientes que tiene es {}, es de tipo {}, se construyo en {} y se encuentra {}'.format(self.m2,self.direccion,self.numambientes,self.tipo,self.antiguedad,self.estado)
 
@@ -115,13 +109,15 @@ class Propiedad():
         except:
             print("ha habido un error y no se pudo dar de baja la propiedad")
 
-    def alquiler(self, inquilino, estado, lista):
-        self.inquilino = inquilino
-        self.estado = estado
-        self.fecha_alquiler = date.today()
+    def alquiler(self, estado, lista):
         alquilada = True
         while alquilada:
+
+            self.estado = estado
+            self.fecha_alquiler = date.today()
+
             idprop = input('ingrese el id de la propiedad que quiere alquilar:\n')
+            inquilino = input('Ingrese su nombre completo:\n')
 
             for i in range(len(lista)):
                 if lista[i][4]==idprop and lista[i][8] == 'en alquiler' :
@@ -130,20 +126,23 @@ class Propiedad():
                     lista[i][11] = str(date.today()) #fecha de inicio de alquiler
                     lista[i][12] = str(agregar_años(date.today(), 1)) #fecha de fin de alquiler
                     #print(lista)
+                    print ('la operación fue exitosa')
                     alquilada = False
-
-            print ('esa propiedad no esta disponible para alquilar')
-
+            
+            if alquilada:
+                print ('esa propiedad no esta disponible para alquilar')
+        print(lista)
         return lista
 
     #alquiler ('Nombre Apellido', 'alquilada', listaa)
 
-    def venta(self, propietario, estado, lista):
-        self.propietario = propietario
+    def venta(self, estado, lista):
+        
         self.estado = estado
 
         vendida = True
         while vendida:
+            propietario = input('Ingrese su nombre completo')
             idprop = input('ingrese el id de la propiedad que quiere comprar:\n')
             
             for i in range(len(lista)):
@@ -152,28 +151,30 @@ class Propiedad():
                     lista[i][0] = propietario
                     lista[i][8] = estado
                     lista[i][12] = str(date.today()) #fecha de venta
-                    #print (lista)
+                    print (lista)
+                    print ('la operación fue exitosa')
                     vendida = False
-
-            print ('esa propiedad no esta disponible para vender')
+            if vendida:
+                print ('esa propiedad no esta disponible para vender')
             
         return lista
 
     #venta('Nombre Apellido' , 'vendida' , listav)
 
-    def buscarporbarrio(lista):
+    def buscarporbarrio(self, lista):
         final = []
         barrio = input('ingrese el barrio en el que busca una propiedad:\n')
         for i in range(len(lista)):
             if (lista[i][8] == 'en alquiler' or lista[i][8] == 'en venta') and (lista[i][3] == barrio):
                 final += [lista[i]]
 
-        print ('las propiedades disponibles en ese barrio son:\n' , final)
-
         if len(final) == 0:
             print ('no hay propiedades disponibles en ese barrio')
 
-    def buscarporprecio(lista):
+        else:
+            print ('las propiedades disponibles en ese barrio son:\n' , final)
+
+    def buscarporprecio(self, lista):
         final = []
         min = int(input('ingrese un precio minimo:'))
         max = int(input('ingrese un precio maximo:'))
@@ -182,18 +183,20 @@ class Propiedad():
             if (lista[i][8] == 'en alquiler' or lista[i][8] == 'en venta') and (int(lista[i][9]) <= max and int(lista[i][9]) >= min):
                 final += [lista[i]]
 
-        print ('las propiedades dentro del rango de precios ingresado son:\n' , final)
-
         if len(final) == 0:
             print ('no hay propiedades que esten dentro del rango ingresado')
 
+        else:
+            print ('las propiedades dentro del rango de precios ingresado son:\n' , final)
+
     #buscarporprecio(lista)
 
-    def mostrarprop(lista):
+    def mostrarprop(self, lista):
         nueva = []
+        print(len(lista))
         for i in range(len(lista)):
             if lista[i][8] == 'en alquiler' or lista[i][8] == 'en venta':
-                nueva += [lista[i]]
+                nueva.append(lista[i])
         print (nueva)
        
     def calcular_comision(self, empleado, lista1):
