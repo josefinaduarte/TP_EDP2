@@ -1,5 +1,7 @@
 
 from datetime import *
+from random import *
+from MenuTP import extraerInfo
 hoy = date.today()
 anio = hoy.year
 
@@ -29,17 +31,36 @@ class Propiedad():
         self.inquilino = inquilino
     def __str__(self):
         return 'La propiedad tiene{} m2, la direccion es{}, la cantidad de ambientes que tiene es {}, es de tipo {}, se construyo en {} y se encuentra {}'.format(self.m2,self.direccion,self.numambientes,self.tipo,self.antiguedad,self.estado)
+
     def Dar_alta(self):
-        propiedades=open("ListaPropiedades.txt",'a')
-        atributos=[self.nombre,self.m2,self.direccion,self.numambientes,self.tipo,self.antiguedad,self.estado,self.precio]
+        venta=open(r"ListaPropiedadesVenta.txt",'a')
+        alquiler=open(r"ListaPropiedadesAlquiler",'a')
+        arch_empleados=r"DatosEmpleados.unknown"
+        empleados=extraerInfo(arch_empleados)
+        pos_em=randint(0,len(empleados)-1)
+        print(pos_em)
+        for i in range(len(empleados)):
+            if i==pos_em:
+                empleado=empleados[i][0]
+                print(empleado)
+        atributos=[self.cliente,self.m2,self.direccion,self.numambientes,self.tipo,self.antiguedad,self.estado,self.precio,self.inquilino,empleado,self.fecha]
         for i in range(len(atributos)):
             if i!=len(atributos)-1:
-                propiedades.write(str(atributos[i]))
-                propiedades.write('\t')
+                if self.estado=="en venta":
+                    venta.write(str(atributos[i]))
+                    venta.write(',')
+                elif self.estado=="en alquiler":
+                    alquiler.write(str(atributos[i]))
+                    alquiler.write(',')
             else:
-                propiedades.write(str(atributos[i]))
-                propiedades.write('\n')
-        propiedades.close()
+                if self.estado=="en venta":
+                    venta.write(str(atributos[i]))
+                    venta.write('\n')
+                elif self.estado=="en alquiler":
+                    alquiler.write(str(atributos[i]))
+                    alquiler.write('\n')
+        venta.close()
+        alquiler.close()
 
     def Actualizar(self):
         try:
@@ -191,9 +212,8 @@ class Propiedad():
     def Calcular_precio_m2(self):
         return ('El precio del m2 es',int(self.precio)/int(self.m2))
     
-    def Dar_baja(self):
+    def Dar_baja(self,id):
         try:
-            id=input("Ingrese el ID de la propiedad que desea dar de baja:")
             en_venta=open(r'ListaPropiedadesVenta.txt','r')
             en_alquiler=open(r"ListaPropiedadesAlquiler",'r')
             se_queda_v=""
