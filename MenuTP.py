@@ -50,7 +50,7 @@ if __name__ =='__main__':
     continuar=True
     while continuar:
         eleccion=int(input('Ingrese la opcion del menu a la que desea ingresar: '))
-        while eleccion<1 or eleccion>7:
+        while eleccion<1 or eleccion>3:
             print('El numero ingresado debe estar entre el 1 y el 7.')
             eleccion=int(input('Ingrese la opcion del menu a la que desea ingresar: '))
         if eleccion==1:
@@ -66,9 +66,34 @@ if __name__ =='__main__':
                 if correcto==False:
                     print('El usuario o la contrasenia ingresados no son correctos. Ingreselos devuelta.')
             if correcto==True:
-                print('Menu: 1.Ver propiedades en alquiler \n 2.Ver propiedades en la venta \n 3.Buscar propiedad por barrio \n 4.Buscar propiedad por precio \n 5.Ver mis propiedades \n 6.Agregar una propiedad al sistema \n 7.Quitar una propiedad del sistema \n 8.Salir')
+                print('Menu: 1.Ver propiedades en alquiler \n 2.Ver propiedades en la venta \n 3.Buscar propiedad por barrio \n 4.Buscar propiedad por precio \n 5.Ver mis propiedades \n 6.Agregar una propiedad al sistema \n 7.Quitar una propiedad del sistema \n 8.Dar de baja Cliente \n 9.Salir')
+                eleccion2=int(input('Ingrese un el numero de la opcion a la que desea acceder: '))
+                while eleccion2<1 or eleccion2>9:
+                    print('El numero ingresado debe estar entre el 1 y el 7.')
+                    eleccion2=int(input('Ingrese un el numero de la opcion a la que desea acceder: '))
+                if eleccion2==1:
+                    continuar=True
+                elif eleccion2==2:
+                    continuar=True
+                elif eleccion2==3:
+                    pass
+                elif eleccion2==4:
+                    continuar=True
+                elif eleccion2==4:
+                    continuar=True
+                elif eleccion2==5:
+                    continuar=True
+                elif eleccion2==6:
+                    continuar=True
+                elif eleccion2==7:
+                    continuar=True
+                elif eleccion2==8:
+                    continuar=True
+                else:
+                    print('Adios')
+                    continuar=False
         elif eleccion==2:
-            pass
+            continuar=True
         elif eleccion==3:
             print('Adios!')
             continuar=False
