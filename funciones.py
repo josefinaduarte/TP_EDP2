@@ -25,10 +25,10 @@ def crearstring(lista1):
         cadena += '\n'
     return(cadena)
 
-def escribirinfo (archivo, lista):
+def escribirinfo (archivo, contenido):
     fd= open(archivo, 'w')
-    print(lista)
-    fd.write(lista)
+    print(contenido)
+    fd.write(contenido)
     fd.close()
 
 def agregar_años(fecha, años):

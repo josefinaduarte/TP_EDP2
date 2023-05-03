@@ -56,6 +56,39 @@ class Propiedad():
         venta.close()
         alquiler.close()
 
+    def Dar_baja(self,id):
+        try:
+            en_venta=open(r'ListaPropiedadesVenta.txt','r')
+            en_alquiler=open(r"ListaPropiedadesAlquiler",'r')
+            se_queda_v=""
+            se_queda_a=""
+            esta=""
+            for linea in en_venta:
+                if id not in linea:
+                    se_queda_v+=(linea)
+                else:
+                    esta="venta"
+            for fil in en_alquiler:
+                if id not in fil:
+                    se_queda_a+=(fil)
+                else:
+                    esta="alquiler"
+            en_venta.close()
+            en_alquiler.close()
+            if esta=="venta":
+                en_venta_w=open(r'ListaPropiedadesVenta.txt','w')  
+                en_venta_w.write(se_queda_v)
+                en_venta_w.close()
+            elif esta=="alquiler":
+                en_alquiler_w=open(r"ListaPropiedadesAlquiler",'w')  
+                en_alquiler_w.write(se_queda_a)
+                en_alquiler_w.close()
+
+            print("Se ha dado de baja la propiedad con ID:"+str(id))    
+        except:
+             print("ha habido un error y no se pudo dar de baja la propiedad")
+             
+
     def Actualizar(self):
         try:
             campo=input('ingrese campo a actualizar')   
@@ -111,13 +144,13 @@ class Propiedad():
 
     def alquiler(self, estado, lista):
         alquilada = True
+        inquilino = input('Ingrese su nombre completo:\n')
+        self.estado = estado
+        self.fecha_alquiler = date.today()
+        
         while alquilada:
 
-            self.estado = estado
-            self.fecha_alquiler = date.today()
-
             idprop = input('ingrese el id de la propiedad que quiere alquilar:\n')
-            inquilino = input('Ingrese su nombre completo:\n')
 
             for i in range(len(lista)):
                 if lista[i][4]==idprop and lista[i][8] == 'en alquiler' :
@@ -125,7 +158,9 @@ class Propiedad():
                     lista[i][10] = inquilino 
                     lista[i][11] = str(date.today()) #fecha de inicio de alquiler
                     lista[i][12] = str(agregar_años(date.today(), 1)) #fecha de fin de alquiler
-                    #print(lista)
+                    
+                    contenido = crearstring(lista)
+                    escribirinfo('ListaPropiedadesAlquiler.txt' , contenido)
                     print ('la operación fue exitosa')
                     alquilada = False
             
@@ -139,10 +174,11 @@ class Propiedad():
     def venta(self, estado, lista):
         
         self.estado = estado
-
+        propietario = input('Ingrese su nombre completo')
         vendida = True
+
         while vendida:
-            propietario = input('Ingrese su nombre completo')
+
             idprop = input('ingrese el id de la propiedad que quiere comprar:\n')
             
             for i in range(len(lista)):
@@ -151,9 +187,11 @@ class Propiedad():
                     lista[i][0] = propietario
                     lista[i][8] = estado
                     lista[i][12] = str(date.today()) #fecha de venta
-                    print (lista)
+                    contenido = crearstring(lista)
+                    escribirinfo('ListaPropiedadesVenta.txt' , contenido)
                     print ('la operación fue exitosa')
                     vendida = False
+
             if vendida:
                 print ('esa propiedad no esta disponible para vender')
             
@@ -223,34 +261,3 @@ class Propiedad():
     def Calcular_precio_m2(self):
         return ('El precio del m2 es',int(self.precio)/int(self.m2))
     
-    def Dar_baja(self,id):
-        try:
-            en_venta=open(r'ListaPropiedadesVenta.txt','r')
-            en_alquiler=open(r"ListaPropiedadesAlquiler",'r')
-            se_queda_v=""
-            se_queda_a=""
-            esta=""
-            for linea in en_venta:
-                if id not in linea:
-                    se_queda_v+=(linea)
-                else:
-                    esta="venta"
-            for fil in en_alquiler:
-                if id not in fil:
-                    se_queda_a+=(fil)
-                else:
-                    esta="alquiler"
-            en_venta.close()
-            en_alquiler.close()
-            if esta=="venta":
-                en_venta_w=open(r'ListaPropiedadesVenta.txt','w')  
-                en_venta_w.write(se_queda_v)
-                en_venta_w.close()
-            elif esta=="alquiler":
-                en_alquiler_w=open(r"ListaPropiedadesAlquiler",'w')  
-                en_alquiler_w.write(se_queda_a)
-                en_alquiler_w.close()
-
-            print("Se ha dado de baja la propiedad con ID:"+str(id))    
-        except:
-             print("ha habido un error y no se pudo dar de baja la propiedad")
