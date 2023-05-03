@@ -165,7 +165,7 @@ if __name__ =='__main__':
             contrasenia=input("Ingrese una contraseña: ")
             nombre=input("Ingrese su nombre completo: ")
             dni=input("Ingrese su numero de DNI")
-            while not dni.isdigit() and len(dni)!=8:
+            while not dni.isdigit() or len(dni)!=8:
                 dni=input("El dni no es valido, ingreselo nuevamente: ")
             genero=input("Ingrese 1 si es hombre, o 2 si es mujer: ")
             while genero not in "12":
