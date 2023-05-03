@@ -135,8 +135,12 @@ class Propiedad():
                             rotulo[8]=dato
                         elif campo=='precio':
                             rotulo[9]=dato
-                        elif campo == 'fechainico':
+                        elif campo == 'fechainicio':
                             rotulo[10] = dato
+                        elif campo=='inquilino':
+                            rotulo[11]=dato
+                        elif campo=='fechafin':
+                            rotulo[12]=dato
                         else:
                             print('el campo ingresado no esta registrado')
                         cont=1
