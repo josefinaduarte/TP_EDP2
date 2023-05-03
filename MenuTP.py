@@ -79,7 +79,7 @@ if __name__ =='__main__':
                     for i in range(len(listav)):
                         lista_ids.append(listav[i][4])
                     for j in range(len(listaa)):
-                        lista_ids.append(listaa[i][4])
+                        lista_ids.append(listaa[j][4])
                     while id in lista_ids:
                         id=str(randint(000,999))
                     num_ambientes=input("Ingres el numero de ambientes de la propiedad: ")
