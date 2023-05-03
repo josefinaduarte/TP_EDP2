@@ -18,7 +18,7 @@ class Cliente(Persona):
         try:
             campo=input('ingrese campo a actualizar')
             dato=input('ingrese el nuevo dato')
-            cliente=input('ingrese DNI')
+            cliente=input('ingrese DNI del cliente que quiere actualizar')
             clientes=open("ListaClientes.txt",'r')
             lista =clientes.readlines()
             clientes.close()

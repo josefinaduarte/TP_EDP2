@@ -16,7 +16,7 @@ class Empleado(Persona):
         try:
             campo=input('ingrese campo a actualizar')
             dato=input('ingrese el nuevo dato')
-            empleado=input('ingrese dni')
+            empleado=input('ingrese dni del empleado que quiere actualizar')
             empleados=open("DatosEmpleados.unknown",'r')
             lista =empleados.readlines()
             empleados.close()
