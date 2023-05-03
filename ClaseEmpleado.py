@@ -55,7 +55,7 @@ class Empleado(Persona):
     
     def __str__(self):
         return 'El empleado se llama {},su DNI es{}, su genero es {}, su cargo es {}, su contrasenia es {}, su telefono es {}, su direccion es {} y su antiguedad es {}'.format(self.nombre,self.DNI,self.genero,self.usuario,self.contrasenia,self.telefono,self.direccion,self.antiguedad)
-    
+        
     def Dar_alta(self):
         try:
             empleados=open(r"DatosEmpleados.unknown",'a')
@@ -68,21 +68,21 @@ class Empleado(Persona):
                     empleados.write(str(atributos[i]))
                     empleados.write('\n')
             empleados.close()
-        except:     
-            return ("Ha habido un error y no se ha podido dar de alta el empleado pedido")
-    
-    def Dar_baja(self):
+            print("Se ha creado el empleado.")
+        except:
+            print("Ha habido un error y no se pudo ingresar al empleado al sistema.")
+
+    def Dar_baja(self,legajo):
         try:
-            dni=input("Ingrese el legajo del empleado que desea dar de baja:")
             empleados=open(r'DatosEmpleados.unknown','r')
             se_queda=""
             for fila in empleados:
-                if dni not in fila:
+                if legajo not in fila:
                     se_queda+=(fila)
             empleados.close()
             empleados_w=open(r'DatosEmpleados.unknown','w')  
             empleados_w.write(se_queda)
             empleados_w.close()
-            return ("Se ha dado de baja el empleado con DNI:",str(dni))      
+            print("Se ha dado de baja el empleado con legajo:",str(legajo))      
         except:     
-            return ("Ha habido un error y no se ha podido dar de baja el empleado pedido")
+            print("Ha habido un error y no se ha podido dar de baja el empleado pedido")

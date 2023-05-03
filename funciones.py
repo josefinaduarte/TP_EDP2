@@ -37,3 +37,11 @@ def agregar_años(fecha, años):
     except ValueError:
         # si no existe el 29 de febrero, poner el 28:
         return fecha.replace(year=fecha.year + años, dia=28)
+    
+def leer_archivo(archivo):
+    archivo=open(archivo,'r')
+    texto=""
+    for linea in archivo:
+        texto+=linea
+    archivo.close()
+    return texto

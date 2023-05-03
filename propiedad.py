@@ -26,35 +26,39 @@ class Propiedad():
     def __str__(self):
         return 'La propiedad tiene{} m2, la direccion es{}, la cantidad de ambientes que tiene es {}, es de tipo {}, se construyo en {} y se encuentra {}'.format(self.m2,self.direccion,self.numambientes,self.tipo,self.antiguedad,self.estado)
 
+    
     def Dar_alta(self):
-        venta=open(r"ListaPropiedadesVenta.txt",'a')
-        alquiler=open(r"ListaPropiedadesAlquiler",'a')
-        arch_empleados=r"DatosEmpleados.unknown"
-        empleados=extraerInfo(arch_empleados)
-        pos_em=randint(0,len(empleados)-1)
-        print(pos_em)
-        for i in range(len(empleados)):
-            if i==pos_em:
-                empleado=empleados[i][0]
-                print(empleado)
-        atributos=[self.cliente,self.m2,self.direccion,self.numambientes,self.tipo,self.antiguedad,self.estado,self.precio,self.inquilino,empleado,self.fecha]
-        for i in range(len(atributos)):
-            if i!=len(atributos)-1:
-                if self.estado=="en venta":
-                    venta.write(str(atributos[i]))
-                    venta.write(',')
-                elif self.estado=="en alquiler":
-                    alquiler.write(str(atributos[i]))
-                    alquiler.write(',')
-            else:
-                if self.estado=="en venta":
-                    venta.write(str(atributos[i]))
-                    venta.write('\n')
-                elif self.estado=="en alquiler":
-                    alquiler.write(str(atributos[i]))
-                    alquiler.write('\n')
-        venta.close()
-        alquiler.close()
+        try:
+            venta=open(r"ListaPropiedadesVenta.txt",'a')
+            alquiler=open(r"ListaPropiedadesAlquiler",'a')
+            arch_empleados=r"DatosEmpleados.unknown"
+            empleados=extraerInfo(arch_empleados)
+            pos_em=randint(0,len(empleados)-1)
+            for i in range(len(empleados)):
+                if i==pos_em:
+                    empleado=empleados[i][0]
+            #hablemos esto
+            atributos=[self.cliente,self.m2,self.direccion,self.numambientes,self.tipo,self.antiguedad,self.estado,self.precio,self.inquilino,empleado,self.fechainicio,self.fechafin]
+            for i in range(len(atributos)):
+                if i!=len(atributos)-1:
+                    if self.estado=="en venta":
+                        venta.write(str(atributos[i]))
+                        venta.write(',')
+                    elif self.estado=="en alquiler":
+                        alquiler.write(str(atributos[i]))
+                        alquiler.write(',')
+                else:
+                    if self.estado=="en venta":
+                        venta.write(str(atributos[i]))
+                        venta.write('\n')
+                    elif self.estado=="en alquiler":
+                        alquiler.write(str(atributos[i]))
+                        alquiler.write('\n')
+            venta.close()
+            alquiler.close()
+            print("Se ha ingresado la propiedad al sistema")
+        except:
+            print("Ha habido un error y no se pudo ingresar la propiedad al sistema")
 
     def Dar_baja(self,id):
         try:
@@ -86,7 +90,7 @@ class Propiedad():
 
             print("Se ha dado de baja la propiedad con ID:"+str(id))    
         except:
-             print("ha habido un error y no se pudo dar de baja la propiedad")
+             print("Ha habido un error y no se pudo dar de baja la propiedad")
              
 
     def Actualizar(self):

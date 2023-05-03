@@ -57,11 +57,11 @@ class Cliente(Persona):
 
     def __str__(self):
         return 'El cliente se llama {},su DNI es{}, su genero es {}, su usario es {}, su contrasenia es {}, su telefono es {}, su direccion es {} y su antiguedad es {}'.format(self.nombre,self.DNI,self.genero,self.usuario,self.contrasenia,self.telefono,self.direccion,self.antiguedad)
-    
+        
     def Dar_alta(self):
         try:
             clientes=open(r"DatosClientes.unknown",'a')
-            atributos=[self.nombre,self.DNI,self.genero,self.usuario,self.contrasenia,self.telefono,self.direccion,self.anioIngreso]
+            atributos=[self.nombre,self.DNI,self.genero,self.usuario,self.contrasenia,self.telefono,self.direccion,self.antiguedad,self.email]
             for i in range(len(atributos)):
                 if i!=len(atributos)-1:
                     clientes.write(str(atributos[i]))
@@ -70,12 +70,12 @@ class Cliente(Persona):
                     clientes.write(str(atributos[i]))
                     clientes.write('\n')
             clientes.close()
-        except:     
-            return ("Ha habido un error y no se ha podido dar de alta el usuario cliente pedido")
-
-    def Dar_baja(self):
+            print("Se ha dado creado el usuario.")
+        except:
+            print("Ha habido un error y no se pudo crear el usuario.")
+    
+    def Dar_baja(self,dni):
         try:
-            dni=input("Ingrese el DNI del cliente que desea dar de baja:")
             clientes=open(r'DatosClientes.unknown','r')
             se_queda=""
             for fila in clientes:
@@ -85,6 +85,6 @@ class Cliente(Persona):
             clientes_w=open(r'DatosClientes.unknown','w')  
             clientes_w.write(se_queda)
             clientes_w.close()
-            return ("Se ha dado de baja el usuario cliente con DNI:",str(dni))      
+            print("Se ha dado de baja el usuario cliente con DNI:",str(dni))      
         except:     
-            return ("Ha habido un error y no se ha podido dar de baja el usuario cliente pedido")
+            print("Ha habido un error y no se ha podido dar de baja el usuario cliente pedido")
