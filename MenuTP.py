@@ -18,9 +18,10 @@ prop = Propiedad('Scarlett Greenless','332','3 Hoard Terrace', 'Recoleta','002',
 
 if __name__ =='__main__':
 
-    print('Menu: \n 1.Log In \n 2.Registrarse \n 3.Salir')
+    
     continuar=True
     while continuar:
+        print('Menu: \n 1.Log In \n 2.Registrarse \n 3.Salir')
         eleccion=int(input('Ingrese la opcion del menu a la que desea ingresar: '))
         while eleccion<1 or eleccion>3:
             print('El numero ingresado debe estar entre el 1 y el 3.')
@@ -36,7 +37,7 @@ if __name__ =='__main__':
                             correcto=True
                 if correcto==False:
                     print('El usuario o la contrasenia ingresados no son correctos. Ingreselos devuelta.')
-            if correcto==True:
+            while correcto==True:
                 print('Menu: \n 1.Ver propiedades en alquiler \n 2.Ver propiedades en la venta \n 3.Buscar propiedad por barrio \n 4.Buscar propiedad por precio \n 5.Ver todas las propiedades disponibles \n 6.Alquilar una propiedad \n 7. Comprar una propiedad \n 8.Agregar una propiedad al sistema \n 9.Quitar una propiedad del sistema \n 10.Dar de baja Cliente \n 11.Salir')
                 eleccion2=int(input('Ingrese un el numero de la opcion a la que desea acceder: '))
                 while eleccion2<1 or eleccion2>11:
@@ -45,27 +46,27 @@ if __name__ =='__main__':
                 if eleccion2==1:
                     print('las propiedades en alquiler son las siguientes:')
                     prop.mostrarprop(listaa)
-                    continuar=True
+                    correcto=True
                 elif eleccion2==2:
                     print('las propiedades en venta son las siguientes:')
                     prop.mostrarprop(listav)
-                    continuar=True
+                    correcto=True
                 elif eleccion2==3:
                     prop.buscarporbarrio(lista)
-                    continuar=True
+                    correcto=True
                 elif eleccion2==4:
                     prop.buscarporprecio(lista)
-                    continuar=True
+                    correcto=True
                 elif eleccion2==5:
                     print('las propiedades disponibles para alquilar y vender son las siguientes:')
                     prop.mostrarprop(lista)
-                    continuar=True
+                    correcto=True
                 elif eleccion2==6:
                     prop.alquiler('alquilado', listaa)
-                    continuar=True
+                    correcto=True
                 elif eleccion2==7:
                     prop.venta('en venta' , listav)
-                    continuar=True
+                    correcto=True
                 elif eleccion2==8:
                     print("Ha seleccionado ingresar una propiedad.")
                     propietario=input("Ingrese el nombre del propietario: ")
@@ -114,7 +115,7 @@ if __name__ =='__main__':
                     fechafin=" "
                     propiedad_nueva=Propiedad(propietario,m2,direccion,barrio,id,num_ambientes,tipo,anio_const,estado,precio,inquilino,fechainicio,fechafin)
                     propiedad_nueva.Dar_alta()
-                    continuar=True
+                    correcto=True
                 elif eleccion2==9:
                     print("Ha seleccionado eliminar una propiedad del sistema.")
                     id=input("Ingrese el id de la propiedad que desea eliminar: ")
@@ -135,7 +136,7 @@ if __name__ =='__main__':
                             fechafin=lista[i][12]
                             prop=Propiedad(cliente,m2,direccion,barrio,id,num_ambientes,tipo,anio_const,estado,precio,inquilino,fechainicio,fechafin)
                             prop.Dar_baja(id)
-                    continuar=True
+                    correcto=True
                 elif eleccion2==10:
                     print("Ha seleccionado eliminar un cliente del sistema.")
                     dni=input("Ingrese el dni del cliente que desea eliminar: ")
@@ -152,10 +153,10 @@ if __name__ =='__main__':
                             email=clientes[i][8]
                             cli=Cliente(nombre,dni,genero,usuario,contrasenia,telefono,direccion,anio_ingreso,email)
                             cli.Dar_baja(dni)
-                    continuar=True
+                    correcto=True
                 else:
                     print('Adios')
-                    continuar=False
+                    correcto=False
         elif eleccion==2:
             print("Ha seleccionado registrarse")
             nuevo_usuario=input("Ingrese un nombre de usuario") 
