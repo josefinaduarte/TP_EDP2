@@ -60,3 +60,9 @@ def verificarmenu():
         print('Adios')
 
     return correcto, continuar
+
+def print_tabla( lista ):
+    for fila in lista:
+        for dato in fila:
+            print(dato, end='\t') 
+        print()

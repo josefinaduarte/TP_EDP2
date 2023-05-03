@@ -223,7 +223,7 @@ class Propiedad():
             
             if alquilada:
                 print ('esa propiedad no esta disponible para alquilar')
-        print(lista)
+        print_tabla(lista)
         return lista
 
     #alquiler ('Nombre Apellido', 'alquilada', listaa)
@@ -267,7 +267,9 @@ class Propiedad():
             print ('no hay propiedades disponibles en ese barrio')
 
         else:
-            print ('las propiedades disponibles en ese barrio son:\n' , final)
+            print ('las propiedades disponibles en ese barrio son:')
+            print_tabla(final)
+                   
 
     def buscarporprecio(self, lista):
         final = []
@@ -282,7 +284,8 @@ class Propiedad():
             print ('no hay propiedades que esten dentro del rango ingresado')
 
         else:
-            print ('las propiedades dentro del rango de precios ingresado son:\n' , final)
+            print ('las propiedades dentro del rango de precios ingresado son:')
+            print_tabla(final)
 
     #buscarporprecio(lista)
 
@@ -292,7 +295,7 @@ class Propiedad():
         for i in range(len(lista)):
             if lista[i][8] == 'en alquiler' or lista[i][8] == 'en venta':
                 nueva.append(lista[i])
-        print (nueva)
+        print_tabla(nueva)
        
     def calcular_comision(self, empleado, lista1):
         self.empleado = empleado
@@ -303,7 +306,7 @@ class Propiedad():
         else:
             comision=0
         es=False
-        print(lista1)
+        print_tabla(lista1)
         for i in range(len(lista1)):
           if lista1[i][0]==empleado:
               es=True
