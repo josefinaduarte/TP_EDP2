@@ -157,6 +157,7 @@ if __name__ =='__main__':
                 else:
                     print('Adios')
                     correcto=False
+                    continuar=False
         elif eleccion==2:
             print("Ha seleccionado registrarse")
             nuevo_usuario=input("Ingrese un nombre de usuario") 
