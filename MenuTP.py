@@ -3,12 +3,13 @@ from ClaseCliente import *
 from ClaseEmpleado import *
 from propiedad import *
 from funciones import *
+from ClaseLista import *
 from random import *
     
 #armado de listas para propiedades
 listav = extraerInfo(r'C:\Users\consu\OneDrive\Documents\GitHub\TP_EDP2\ListaPropiedadesVenta.txt')
 listaa = extraerInfo(r'C:\Users\consu\OneDrive\Documents\GitHub\TP_EDP2\ListaPropiedadesAlquiler')
-
+empleados = extraerInfo(r'C:\Users\consu\OneDrive\Documents\GitHub\TP_EDP2\DatosEmpleados.unknown')
 lista = listaa + listav
 clientes=extraerInfo(r"C:\Users\consu\OneDrive\Documents\GitHub\TP_EDP2\DatosClientes.unknown")
 
@@ -39,7 +40,7 @@ if __name__ =='__main__':
                 if correcto==False:
                     print('El usuario o la contrasenia ingresados no son correctos. Ingreselos devuelta.')
             while correcto==True:
-                print('Menu: \n 1.Ver propiedades en alquiler \n 2.Ver propiedades en la venta \n 3.Buscar propiedad por barrio \n 4.Buscar propiedad por precio \n 5.Ver todas las propiedades disponibles \n 6.Alquilar una propiedad \n 7. Comprar una propiedad \n 8.Agregar una propiedad al sistema \n 9.Quitar una propiedad del sistema \n 10.Dar de baja Cliente \n 11.Actualizar Cliente \n 12.Actualizar Empleado \n 13.Actualizar Propiedad \n 14.Salir')
+                print('Menu: \n 1.Ver propiedades en alquiler \n 2.Ver propiedades en la venta \n 3.Buscar propiedad por barrio \n 4.Buscar propiedad por precio \n 5.Ver todas las propiedades disponibles \n 6.Alquilar una propiedad \n 7. Comprar una propiedad \n 8.Agregar una propiedad al sistema \n 9.Quitar una propiedad del sistema \n 10.Dar de baja Cliente \n 11.Actualizar Cliente \n 12.Actualizar Empleado \n 13.Actualizar Propiedad \n 14.Conocer nuestros empleados \n 15.Mostrar barrios con propiedades disponibles \n 16.Salir')
                 eleccion2=int(input('Ingrese un el numero de la opcion a la que desea acceder: '))
                 while eleccion2<1 or eleccion2>14:
                     print('El numero ingresado debe estar entre el 1 y el 14.')
@@ -164,10 +165,38 @@ if __name__ =='__main__':
                 elif eleccion2==13:
                     prop.Actualizar()
                     correcto, continuar = verificarmenu()
+                    
+                elif eleccion2 == 14:
+                    list=Lista()
+    
+                    list.agregarinicio(Nodo(empleados[0][0])) 
+
+                    for i in range(len(empleados)):
+                        list.append(Nodo(empleados[i][0]))
+                    
+                    list.pop(1)
+                    print(list)
+                    correcto, continuar = verificarmenu()
+                    
+                elif eleccion2 == 15:
+                    list=Lista()
+        
+                    if lista[0][2] == 'en alquiler' or lista[0][2] == 'en venta':
+                        list.agregarinicio(Nodo(lista[0][1]))
+                        
+                    for i in range(len(lista)):
+                        if lista[i][2] == 'en alquiler' or lista[i][2] == 'en venta':
+                            list.append(Nodo(lista[i][1]))
+                            
+                    list.pop(1)
+                    print(list)
+                    correcto, continuar = verificarmenu()
+                    
                 else:
                     print('Adios')
                     correcto=False
                     continuar=False
+                    
         elif eleccion==2:
             print("Ha seleccionado registrarse")
             nuevo_usuario=input("Ingrese un nombre de usuario") 
@@ -195,6 +224,7 @@ if __name__ =='__main__':
             nuevo_cliente=Cliente(nombre,dni,genero,nuevo_usuario,contrasenia,telefono,direccion,anio_ingreso,email)
             nuevo_cliente.Dar_alta()
             correcto, continuar = verificarmenu()
+            
         elif eleccion==3:
             print('Adios!')
             continuar=False
