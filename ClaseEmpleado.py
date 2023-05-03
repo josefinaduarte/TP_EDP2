@@ -58,7 +58,7 @@ class Empleado(Persona):
         
     def Dar_alta(self):
         try:
-            empleados=open(r"DatosEmpleados.unknown",'a')
+            empleados=open(r"C:\Users\consu\OneDrive\Documents\GitHub\TP_EDP2\DatosEmpleados.unknown",'a')
             atributos=[self.nombre,self.DNI,self.genero,self.cargo,self.salario,self.legajo,self.antiguedad,self.telefono]
             for i in range(len(atributos)):
                 if i!=len(atributos)-1:

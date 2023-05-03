@@ -6,11 +6,11 @@ from funciones import *
 from random import *
     
 #armado de listas para propiedades
-listav = extraerInfo('ListaPropiedadesVenta.txt')
-listaa = extraerInfo('ListaPropiedadesAlquiler.txt')
+listav = extraerInfo(r'C:\Users\consu\OneDrive\Documents\GitHub\TP_EDP2\ListaPropiedadesVenta.txt')
+listaa = extraerInfo(r'C:\Users\consu\OneDrive\Documents\GitHub\TP_EDP2\ListaPropiedadesAlquiler')
 
 lista = listaa + listav
-clientes=extraerInfo(r"DatosClientes.unknown")
+clientes=extraerInfo(r"C:\Users\consu\OneDrive\Documents\GitHub\TP_EDP2\DatosClientes.unknown")
 
 lista1 =  [['Scarlett Greenless', '969', '374 Sloan Drive', 'Caballito', '001', '2', 'casa', '2009', 'en alquiler', '4000000', 'Norton McClaren', 'Cecilius Lukas', '10/07/22'], ['pedro', '332', '3 Hoard Terrace', 'Recoleta', '002', '7', 'departamento', '2004', 'en venta', '3000000', 'Scarlett Greenless', 'Cyb Burl', '2023-05-02']]
 prop = Propiedad('Scarlett Greenless','332','3 Hoard Terrace', 'Recoleta','002','7','departamento','2004','en venta','3000000',' ','Cyb Burl',' ')
@@ -46,27 +46,27 @@ if __name__ =='__main__':
                 if eleccion2==1:
                     print('las propiedades en alquiler son las siguientes:')
                     prop.mostrarprop(listaa)
-                    correcto=True
+                    correcto, continuar = verificarmenu()
                 elif eleccion2==2:
                     print('las propiedades en venta son las siguientes:')
                     prop.mostrarprop(listav)
-                    correcto=True
+                    correcto, continuar = verificarmenu()
                 elif eleccion2==3:
                     prop.buscarporbarrio(lista)
-                    correcto=True
+                    correcto, continuar = verificarmenu()
                 elif eleccion2==4:
                     prop.buscarporprecio(lista)
-                    correcto=True
+                    correcto, continuar = verificarmenu()
                 elif eleccion2==5:
                     print('las propiedades disponibles para alquilar y vender son las siguientes:')
                     prop.mostrarprop(lista)
-                    correcto=True
+                    correcto, continuar = verificarmenu()
                 elif eleccion2==6:
                     prop.alquiler('alquilado', listaa)
-                    correcto=True
+                    correcto, continuar = verificarmenu()
                 elif eleccion2==7:
                     prop.venta('en venta' , listav)
-                    correcto=True
+                    correcto, continuar = verificarmenu()
                 elif eleccion2==8:
                     print("Ha seleccionado ingresar una propiedad.")
                     propietario=input("Ingrese el nombre del propietario: ")
@@ -75,7 +75,7 @@ if __name__ =='__main__':
                         m2=input("El ingreso no es valido. Ingrese el numero de metros cuadrados de la propiedad: ")
                     direccion=input("Ingrese la direccion de la propiedad: ")
                     barrio=input("Ingrese el barrio donde se encuantra la propiedad: ")
-                    id=str(randint(000,999))
+                    id=str(randint(100,999))
                     lista_ids=[]
                     for i in range(len(listav)):
                         lista_ids.append(listav[i][4])
@@ -115,7 +115,7 @@ if __name__ =='__main__':
                     fechafin=" "
                     propiedad_nueva=Propiedad(propietario,m2,direccion,barrio,id,num_ambientes,tipo,anio_const,estado,precio,inquilino,fechainicio,fechafin)
                     propiedad_nueva.Dar_alta()
-                    correcto=True
+                    correcto, continuar = verificarmenu()
                 elif eleccion2==9:
                     print("Ha seleccionado eliminar una propiedad del sistema.")
                     id=input("Ingrese el id de la propiedad que desea eliminar: ")
@@ -136,7 +136,7 @@ if __name__ =='__main__':
                             fechafin=lista[i][12]
                             prop=Propiedad(cliente,m2,direccion,barrio,id,num_ambientes,tipo,anio_const,estado,precio,inquilino,fechainicio,fechafin)
                             prop.Dar_baja(id)
-                    correcto=True
+                    correcto, continuar = verificarmenu()
                 elif eleccion2==10:
                     print("Ha seleccionado eliminar un cliente del sistema.")
                     dni=input("Ingrese el dni del cliente que desea eliminar: ")
@@ -153,7 +153,7 @@ if __name__ =='__main__':
                             email=clientes[i][8]
                             cli=Cliente(nombre,dni,genero,usuario,contrasenia,telefono,direccion,anio_ingreso,email)
                             cli.Dar_baja(dni)
-                    correcto=True
+                    correcto, continuar = verificarmenu()
                 else:
                     print('Adios')
                     correcto=False
@@ -184,7 +184,7 @@ if __name__ =='__main__':
             email=input("Ingrese su email:")
             nuevo_cliente=Cliente(nombre,dni,genero,nuevo_usuario,contrasenia,telefono,direccion,anio_ingreso,email)
             nuevo_cliente.Dar_alta()
-            continuar=True
+            correcto, continuar = verificarmenu()
         elif eleccion==3:
             print('Adios!')
             continuar=False

@@ -7,7 +7,7 @@ anio = hoy.year
     
 class Propiedad():
     estados_validos = ['en venta', 'en alquiler', 'alquilado', 'vendido']
-    def __init__(self,cliente, m2,direccion,barrio,id,numambientes,tipo,anioconstruccion,estado,precio,fechainicio,inquilino, fechafin):
+    def __init__(self,cliente, m2,direccion,barrio,id,numambientes,tipo,anioconstruccion,estado,precio,fechainicio,inquilino,fechafin):
         if estado not in Propiedad.estados_validos:
             raise ValueError("el estado no es valido")
         self.cliente=cliente
@@ -38,7 +38,7 @@ class Propiedad():
                 if i==pos_em:
                     empleado=empleados[i][0]
             #hablemos esto
-            atributos=[self.cliente,self.m2,self.direccion,self.numambientes,self.tipo,self.antiguedad,self.estado,self.precio,self.inquilino,empleado,self.fechainicio,self.fechafin]
+            atributos=[self.cliente,self.m2,self.direccion,self.barrio,self.id,self.numambientes,self.tipo,self.antiguedad,self.estado,self.precio,self.inquilino,empleado,self.fechainicio,self.fechafin]
             for i in range(len(atributos)):
                 if i!=len(atributos)-1:
                     if self.estado=="en venta":
@@ -60,9 +60,10 @@ class Propiedad():
         except:
             print("Ha habido un error y no se pudo ingresar la propiedad al sistema")
 
-    def Dar_baja(self,id):
+    def Dar_baja(id): #volver a poner self
         try:
-            en_venta=open(r'ListaPropiedadesVenta.txt','r')
+            en_venta=open(r'C:\Users\consu\OneDrive\Documents\GitHub\TP_EDP2\ListaPropiedadesVenta.txt','r')
+            #en_venta = extraerInfo()
             en_alquiler=open(r"ListaPropiedadesAlquiler",'r')
             se_queda_v=""
             se_queda_a=""
@@ -70,8 +71,9 @@ class Propiedad():
             for linea in en_venta:
                 if id not in linea:
                     se_queda_v+=(linea)
+                    #print(se_queda_v)
                 else:
-                    esta="venta"
+                    esta = 'venta'
             for fil in en_alquiler:
                 if id not in fil:
                     se_queda_a+=(fil)
@@ -91,6 +93,8 @@ class Propiedad():
             print("Se ha dado de baja la propiedad con ID:"+str(id))    
         except:
              print("Ha habido un error y no se pudo dar de baja la propiedad")
+
+    Dar_baja('303')
              
 
     def Actualizar(self):
@@ -134,6 +138,8 @@ class Propiedad():
                             rotulo[8]=dato
                         elif campo=='precio':
                             rotulo[9]=dato
+                        elif campo == 'fechainico':
+                            rotulo[10] = dato
                         else:
                             print('el campo ingresado no esta registrado')
                         cont=1
@@ -160,11 +166,11 @@ class Propiedad():
                 if lista[i][4]==idprop and lista[i][8] == 'en alquiler' :
                     lista[i][8] = estado
                     lista[i][10] = inquilino 
-                    lista[i][11] = str(date.today()) #fecha de inicio de alquiler
-                    lista[i][12] = str(agregar_años(date.today(), 1)) #fecha de fin de alquiler
+                    lista[i][12] = str(date.today()) #fecha de inicio de alquiler
+                    lista[i][13] = str(agregar_años(date.today(), 1)) #fecha de fin de alquiler
                     
                     contenido = crearstring(lista)
-                    escribirinfo('ListaPropiedadesAlquiler.txt' , contenido)
+                    escribirinfo(r'C:\Users\consu\OneDrive\Documents\GitHub\TP_EDP2\ListaPropiedadesAlquiler', contenido)
                     print ('la operación fue exitosa')
                     alquilada = False
             
@@ -178,7 +184,7 @@ class Propiedad():
     def venta(self, estado, lista):
         
         self.estado = estado
-        propietario = input('Ingrese su nombre completo')
+        propietario = input('Ingrese su nombre completo:\n')
         vendida = True
 
         while vendida:
@@ -192,7 +198,7 @@ class Propiedad():
                     lista[i][8] = estado
                     lista[i][12] = str(date.today()) #fecha de venta
                     contenido = crearstring(lista)
-                    escribirinfo('ListaPropiedadesVenta.txt' , contenido)
+                    escribirinfo(r'C:\Users\consu\OneDrive\Documents\GitHub\TP_EDP2\ListaPropiedadesVenta.txt', contenido)
                     print ('la operación fue exitosa')
                     vendida = False
 

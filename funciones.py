@@ -45,3 +45,18 @@ def leer_archivo(archivo):
         texto+=linea
     archivo.close()
     return texto
+
+def verificarmenu():
+    opcion = input('Desea volver al menu?\n 1. Si \n 2. No\n')
+    while opcion!='1' and opcion!='2':
+        print('Porfavor ingrese una opcion valida')
+        opcion = input('Desea volver al menu?\n 1. Si \n 2. No\n')
+    if opcion == '1':
+        correcto=True
+        continuar = True
+    else:
+        correcto=False
+        continuar = False
+        print('Adios')
+
+    return correcto, continuar
