@@ -56,14 +56,13 @@ class Propiedad():
                         alquiler.write('\n')
             venta.close()
             alquiler.close()
-            print("Se ha ingresado la propiedad al sistema")
+            print("Se ha ingresado la propiedad al sistema. El id de su nueva propiedad es "+str(self.id))
         except:
             print("Ha habido un error y no se pudo ingresar la propiedad al sistema")
 
-    def Dar_baja(id): #volver a poner self
+    def Dar_baja(self,id): 
         try:
             en_venta=open(r'C:\Users\consu\OneDrive\Documents\GitHub\TP_EDP2\ListaPropiedadesVenta.txt','r')
-            #en_venta = extraerInfo()
             en_alquiler=open(r"ListaPropiedadesAlquiler",'r')
             se_queda_v=""
             se_queda_a=""
@@ -71,7 +70,6 @@ class Propiedad():
             for linea in en_venta:
                 if id not in linea:
                     se_queda_v+=(linea)
-                    #print(se_queda_v)
                 else:
                     esta = 'venta'
             for fil in en_alquiler:
@@ -94,7 +92,6 @@ class Propiedad():
         except:
              print("Ha habido un error y no se pudo dar de baja la propiedad")
 
-    Dar_baja('303')
              
 
     def Actualizar(self):
