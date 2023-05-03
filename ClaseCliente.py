@@ -60,10 +60,33 @@ class Cliente(Persona):
     def __str__(self):
         return 'El cliente se llama {},su DNI es{}, su genero es {}, su usario es {}, su contrasenia es {}, su telefono es {}, su direccion es {} y su antiguedad es {}'.format(self.nombre,self.DNI,self.genero,self.usuario,self.contrasenia,self.telefono,self.direccion,self.antiguedad)
         
-    def Dar_alta(self):
+    def Dar_alta(self,list_clientes):
         try:
+            print("Ha seleccionado registrarse")
+            nuevo_usuario=input("Ingrese un nombre de usuario") 
+            for i in range(len(list_clientes)):
+                if list_clientes[i][3]==nuevo_usuario:
+                    nuevo_usuario=input("El usuario ya existe, ingrese otro:")
+            contrasenia=input("Ingrese una contraseña: ")
+            nombre=input("Ingrese su nombre completo: ")
+            dni=input("Ingrese su numero de DNI")
+            while not dni.isdigit() or len(dni)!=8:
+                dni=input("El dni no es valido, ingreselo nuevamente: ")
+            genero=input("Ingrese 1 si es hombre, o 2 si es mujer: ")
+            while genero not in "12":
+                genero=input("Lo ingresado no es valido, intentelo nuevamente.Ingrese 1 si es hombre, o 2 si es mujer: ")
+            if genero=="1":
+                genero="Male"
+            else:
+                genero="Female"
+            telefono=input("Ingrese su numero de telefono: ")
+            while not telefono.isdigit():
+                telefono=input("El numero de telefono no es valido, ingrese nuevamente un numero de telefono: ")
+            direccion=input("Ingrese su direccion: ")
+            anio_ingreso=anio
+            email=input("Ingrese su email:")
             clientes=open(r"DatosClientes.unknown",'a')
-            atributos=[self.nombre,self.DNI,self.genero,self.usuario,self.contrasenia,self.telefono,self.direccion,self.antiguedad,self.email]
+            atributos=[nombre,dni,genero,nuevo_usuario,contrasenia,telefono,direccion,anio_ingreso,email]
             for i in range(len(atributos)):
                 if i!=len(atributos)-1:
                     clientes.write(str(atributos[i]))
@@ -76,8 +99,10 @@ class Cliente(Persona):
         except:
             print("Ha habido un error y no se pudo crear el usuario.")
     
-    def Dar_baja(self,dni):
+    def Dar_baja(self):
         try:
+            print("Ha seleccionado eliminar un cliente del sistema.")
+            dni=input("Ingrese el dni del cliente que desea eliminar: ")
             clientes=open(r'DatosClientes.unknown','r')
             se_queda=""
             for fila in clientes:

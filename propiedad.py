@@ -27,8 +27,53 @@ class Propiedad():
         return 'La propiedad tiene{} m2, la direccion es{}, la cantidad de ambientes que tiene es {}, es de tipo {}, se construyo en {} y se encuentra {}'.format(self.m2,self.direccion,self.numambientes,self.tipo,self.antiguedad,self.estado)
 
     
-    def Dar_alta(self):
+    def Dar_alta(self,listav,listaa):
         try:
+            print("Ha seleccionado ingresar una propiedad.")
+            propietario=input("Ingrese el nombre del propietario: ")
+            m2=input("Ingrese el numero de metros cuadrados de la propiedad: ")
+            while not m2.isdigit():
+                m2=input("El ingreso no es valido. Ingrese el numero de metros cuadrados de la propiedad: ")
+            direccion=input("Ingrese la direccion de la propiedad: ")
+            barrio=input("Ingrese el barrio donde se encuantra la propiedad: ")
+            id=str(randint(100,999))
+            lista_ids=[]
+            for i in range(len(listav)):
+                lista_ids.append(listav[i][4])
+            for j in range(len(listaa)):
+                lista_ids.append(listaa[j][4])
+            while id in lista_ids:
+                id=str(randint(000,999))
+            num_ambientes=input("Ingres el numero de ambientes de la propiedad: ")
+            while not num_ambientes.isdigit():
+                num_ambientes=input("Hubo un error con el numero ingresado, intente nuevamente. Ingres el numero de ambientes de la propiedad: ")
+            tipo=input("Ingrese 1 si la propiedad es un departamento,2 si es una casa, o 3 si es un local comercial: ")
+            while tipo not in "123":
+                tipo=input("Hubo un error con el numero ingresado. Ingrese 1 si la propiedad es un departamento,2 si es una casa, o 3 si es un local comercial: ")
+            if tipo=="1":
+                tipo="departamento"
+            elif tipo=="2":
+                tipo="casa"
+            else:
+                tipo="local"
+            anio_const=input("Ingrese el año de contruccion de la propiedad: ") #Que pasa si no lo conoce?
+            while not anio_const.isdigit():
+                anio_const=input("Hubo un error con el valor ingresado. Ingrese el año de contruccion de la propiedad: ")
+            estado=input("Ingrese 1 si desea poner su popiedad en venta, o 2 si desea ponerla en alquiler: ")#Asumo q no va a estar vendida o alquilada cuando se ingresa
+            while estado not in "12":
+                estado=input("Hubo un error con el valor ingresado. Ingrese 1 si desea poner su popiedad en venta, o 2 si desea ponerla en alquiler: ")
+            if estado=="1":
+                estado="en venta"
+                actividad="vender"
+            else:
+                estado="en alquiler"
+                actividad="alquilar"
+            precio=input("Ingrese el monto en dolares al cual desea {} la propiedad: ".format(actividad))
+            while not precio.isdigit():
+                precio=input("Hubo un error con el monto ingresado. Ingrese el monto en dolares al cual desea {} la propiedad: ".format(actividad))
+            inquilino=" "
+            fechainicio=" "
+            fechafin=" "
             venta=open(r"ListaPropiedadesVenta.txt",'a')
             alquiler=open(r"ListaPropiedadesAlquiler",'a')
             arch_empleados=r"DatosEmpleados.unknown"
@@ -37,8 +82,7 @@ class Propiedad():
             for i in range(len(empleados)):
                 if i==pos_em:
                     empleado=empleados[i][0]
-            #hablemos esto
-            atributos=[self.cliente,self.m2,self.direccion,self.barrio,self.id,self.numambientes,self.tipo,self.antiguedad,self.estado,self.precio,self.inquilino,empleado,self.fechainicio,self.fechafin]
+            atributos=[propietario,m2,direccion,barrio,id,num_ambientes,tipo,anio_const,estado,precio,inquilino,empleado,fechainicio,fechafin]
             for i in range(len(atributos)):
                 if i!=len(atributos)-1:
                     if self.estado=="en venta":
@@ -60,9 +104,11 @@ class Propiedad():
         except:
             print("Ha habido un error y no se pudo ingresar la propiedad al sistema")
 
-    def Dar_baja(self,id): 
+    def Dar_baja(self): 
         try:
-            en_venta=open(r'C:\Users\consu\OneDrive\Documents\GitHub\TP_EDP2\ListaPropiedadesVenta.txt','r')
+            print("Ha seleccionado eliminar una propiedad del sistema.")
+            id=input("Ingrese el id de la propiedad que desea eliminar: ")
+            en_venta=open(r'ListaPropiedadesVenta.txt','r')
             en_alquiler=open(r"ListaPropiedadesAlquiler",'r')
             se_queda_v=""
             se_queda_a=""
