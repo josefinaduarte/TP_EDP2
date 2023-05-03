@@ -43,6 +43,8 @@ class Cliente(Persona):
                             rotulo[6]=dato
                         elif campo=='anioIngreso':
                             rotulo[7]=int(anio)-int(dato)
+                        elif campo=='email':
+                            rotulo[8]=dato
                         else:
                             print('el campo ingresado no esta registrado')
                         cont=1
