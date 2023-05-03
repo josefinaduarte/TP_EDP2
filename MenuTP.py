@@ -14,7 +14,8 @@ clientes=extraerInfo(r"C:\Users\consu\OneDrive\Documents\GitHub\TP_EDP2\DatosCli
 
 lista1 =  [['Scarlett Greenless', '969', '374 Sloan Drive', 'Caballito', '001', '2', 'casa', '2009', 'en alquiler', '4000000', 'Norton McClaren', 'Cecilius Lukas', '10/07/22'], ['pedro', '332', '3 Hoard Terrace', 'Recoleta', '002', '7', 'departamento', '2004', 'en venta', '3000000', 'Scarlett Greenless', 'Cyb Burl', '2023-05-02']]
 prop = Propiedad('Scarlett Greenless','332','3 Hoard Terrace', 'Recoleta','002','7','departamento','2004','en venta','3000000',' ','Cyb Burl',' ')
-
+empl=Empleado('Marlena Skiplorne','44816108','Male','Administrativo','20000','62750','1980','408-722-6688')
+cliente=Cliente('Evelyn Tithacott','44116184','Female','mroundg9','df45tg','412-766-0581','56 Doe Crossing Crossing','2000','bbon@youku.com')
 
 if __name__ =='__main__':
 
@@ -38,10 +39,10 @@ if __name__ =='__main__':
                 if correcto==False:
                     print('El usuario o la contrasenia ingresados no son correctos. Ingreselos devuelta.')
             while correcto==True:
-                print('Menu: \n 1.Ver propiedades en alquiler \n 2.Ver propiedades en la venta \n 3.Buscar propiedad por barrio \n 4.Buscar propiedad por precio \n 5.Ver todas las propiedades disponibles \n 6.Alquilar una propiedad \n 7. Comprar una propiedad \n 8.Agregar una propiedad al sistema \n 9.Quitar una propiedad del sistema \n 10.Dar de baja Cliente \n 11.Salir')
+                print('Menu: \n 1.Ver propiedades en alquiler \n 2.Ver propiedades en la venta \n 3.Buscar propiedad por barrio \n 4.Buscar propiedad por precio \n 5.Ver todas las propiedades disponibles \n 6.Alquilar una propiedad \n 7. Comprar una propiedad \n 8.Agregar una propiedad al sistema \n 9.Quitar una propiedad del sistema \n 10.Dar de baja Cliente \n 11.Actualizar Cliente \n 12.Actualizar Empleado \n 13.Actualizar Propiedad \n 14.Salir')
                 eleccion2=int(input('Ingrese un el numero de la opcion a la que desea acceder: '))
-                while eleccion2<1 or eleccion2>11:
-                    print('El numero ingresado debe estar entre el 1 y el 11.')
+                while eleccion2<1 or eleccion2>14:
+                    print('El numero ingresado debe estar entre el 1 y el 14.')
                     eleccion2=int(input('Ingrese un el numero de la opcion a la que desea acceder: '))
                 if eleccion2==1:
                     print('las propiedades en alquiler son las siguientes:')
@@ -153,6 +154,15 @@ if __name__ =='__main__':
                             email=clientes[i][8]
                             cli=Cliente(nombre,dni,genero,usuario,contrasenia,telefono,direccion,anio_ingreso,email)
                             cli.Dar_baja(dni)
+                    correcto, continuar = verificarmenu()
+                elif eleccion2==11:
+                    cliente.Actualizar()
+                    correcto, continuar = verificarmenu()
+                elif eleccion2==12:
+                    empl.Actualizar()
+                    correcto, continuar = verificarmenu()
+                elif eleccion2==13:
+                    prop.Actualizar()
                     correcto, continuar = verificarmenu()
                 else:
                     print('Adios')
