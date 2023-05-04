@@ -27,7 +27,7 @@ class Propiedad():
         return 'La propiedad tiene{} m2, la direccion es{}, la cantidad de ambientes que tiene es {}, es de tipo {}, se construyo en {} y se encuentra {}'.format(self.m2,self.direccion,self.numambientes,self.tipo,self.antiguedad,self.estado)
 
     
-    def Dar_alta(self,listav,listaa,clientess,empleadoss):
+    def Dar_alta(self,listav,listaa,clientess,empleadoss): #la utilizamos para agregar una propiedad al sistema
         try:
             print("Ha seleccionado ingresar una propiedad.")
             propietario=input("Ingrese el nombre del propietario: ")
@@ -80,7 +80,7 @@ class Propiedad():
         except:
             print("Ha habido un error y no se pudo ingresar la propiedad al sistema")
 
-    def Dar_baja(self): 
+    def Dar_baja(self): #la utilizamos para quitar una propiedad del sistema
         try:
             print("Ha seleccionado eliminar una propiedad del sistema.")
             id=input("Ingrese el id de la propiedad que desea eliminar: ")
@@ -116,7 +116,7 @@ class Propiedad():
 
              
 
-    def Actualizar(self,listav,listaa,clientess,empleadoss):
+    def Actualizar(self,listav,listaa,clientess,empleadoss): #la utlizamos para modificar datos del sistema
         try:
             campo=input('Ingrese campo a actualizar: ')   
             dato=input('Ingrese el nuevo dato: ')
@@ -176,7 +176,7 @@ class Propiedad():
         except:
             print("Ha habido un error y no se pudo actualizar la propiedad")
 
-    def alquiler(self, estado, lista):
+    def alquiler(self, estado, lista): #la utilizamos para los alquileres de propiedades
         alquilada = True
         inquilino = input('Ingrese su nombre completo:\n')
         self.estado = estado
@@ -203,9 +203,7 @@ class Propiedad():
         print_tabla(lista)
         return lista
 
-    #alquiler ('Nombre Apellido', 'alquilada', listaa)
-
-    def venta(self, estado, lista):
+    def venta(self, estado, lista): #la utilizamos para la venta de propiedades
         
         self.estado = estado
         propietario = input('Ingrese su nombre completo:\n')
@@ -230,8 +228,6 @@ class Propiedad():
                 print ('esa propiedad no esta disponible para vender')
             
         return lista
-
-    #venta('Nombre Apellido' , 'vendida' , listav)
 
     def buscarporbarrio(self, lista):
         final = []
@@ -263,8 +259,6 @@ class Propiedad():
         else:
             print ('las propiedades dentro del rango de precios ingresado son:')
             print_tabla(final)
-
-    #buscarporprecio(lista)
 
     def mostrarprop(self, lista):
         nueva = []

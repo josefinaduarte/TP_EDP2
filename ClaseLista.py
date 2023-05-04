@@ -5,7 +5,7 @@ class Lista():
         self.head = None
         self.len = 0
     def agregarinicio(self, nodo=Nodo):
-        if(self.len==0): #averiguo la longitud de mi lista. Si es =0 mi lista esvacia, por lo que mi head va a estar direccionada al nodo
+        if(self.len==0): #averiguamos la longitud de mi lista. Si es =0 quiere decir que la lista esvacia, por lo que el head estará direccionada al nodo
             self.head=nodo
             self.len+=1
         else:
@@ -32,11 +32,11 @@ class Lista():
                 nodomov=nodomov.prox
             nodomov.prox=nodo
         self.len+=1
-    def pop(self,pos=None): #elimina el ultimo elemento de la lista. El pop sin ningun parametro sabe que elimina el ultimo de la lista. Si le ongo una direccion saca ese elemento
+    def pop(self,pos=None):
         nodo=Nodo()
         nodo=self.head
         if pos==None:
-            final=self.len-2 #me muevo hasta la penultima posicion
+            final=self.len-2
             for i in range(final):
                 nodo=nodo.prox
             nodo.prox=None

@@ -1,5 +1,5 @@
 from random import randint
-
+#En este archivo guardamos funciones generales que usamos dentro de ciertos métodos y en el programa principal para que sean más fáciles de acceder
 def extraerInfo (archivo):
         listaGen = []
         palabra = ''

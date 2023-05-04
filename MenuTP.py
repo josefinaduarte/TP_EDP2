@@ -1,3 +1,5 @@
+#Importamos las clases que necesitamos para comenzar nuestro programa principal
+
 from ClasePersonaTP import *
 from ClaseCliente import *
 from ClaseEmpleado import *
@@ -6,11 +8,11 @@ from funciones import *
 from ClaseLista import *
 from random import *
     
-#armado de listas para propiedades
+#Armamos las listas que necesitamos para la implementación de los métodos
 listav = extraerInfo(r'/Users/constanzanicoli/Documents/GitHub/TP_EDP2/ListaPropiedadesVenta.txt')
 listaa = extraerInfo(r'/Users/constanzanicoli/Documents/GitHub/TP_EDP2/ListaPropiedadesAlquiler')
-empleados = extraerInfo(r'/Users/constanzanicoli/Documents/GitHub/TP_EDP2/DatosEmpleados.unknown')
 lista = listaa + listav
+empleados = extraerInfo(r'/Users/constanzanicoli/Documents/GitHub/TP_EDP2/DatosEmpleados.unknown')
 clientes=extraerInfo(r"/Users/constanzanicoli/Documents/GitHub/TP_EDP2/DatosClientes.unknown")
 
 lista1 =  [['Scarlett Greenless', '969', '374 Sloan Drive', 'Caballito', '001', '2', 'casa', '2009', 'en alquiler', '4000000', 'Norton McClaren', 'Cecilius Lukas', '10/07/22'], ['pedro', '332', '3 Hoard Terrace', 'Recoleta', '002', '7', 'departamento', '2004', 'en venta', '3000000', 'Scarlett Greenless', 'Cyb Burl', '2023-05-02']]
@@ -21,9 +23,8 @@ emp=Empleado('Marlena Skiplorne',44816108,'Male','Administrativo',20000,62750,19
 cliente=Cliente('Evelyn Tithacott','44116184','Female','mroundg9','df45tg','412-766-0581','56 Doe Crossing Crossing','2000','bbon@youku.com')
 client=Cliente('Evelyn Tithacott',44116184,'Female','mroundg9','df45tg','412-766-0581','56 Doe Crossing Crossing',2000,'bbon@youku.com')
 
+#Programa principal:
 if __name__ =='__main__':
-
-    
     continuar=True
     while continuar:
         print('Menu: \n 1.Log In \n 2.Registrarse \n 3.Salir')
@@ -35,13 +36,13 @@ if __name__ =='__main__':
             correcto=False
             while correcto==False:
                 usuario=input('Ingrese su usuario: ')
-                contrasenia=input('Ingrese su contrasenia: ') 
+                contrasenia=input('Ingrese su contraseña: ') 
                 for i in range(len(clientes)):
                     if usuario==clientes[i][3]:
                         if contrasenia==clientes[i][4]:
                             correcto=True
                 if correcto==False:
-                    print('El usuario o la contrasenia ingresados no son correctos. Ingreselos devuelta.')
+                    print('El usuario o la contraseña ingresados no son correctos. Ingreselos devuelta.')
             while correcto==True:
                 print('Menu: \n 1.Ver propiedades en alquiler \n 2.Ver propiedades en la venta \n 3.Buscar propiedad por barrio \n 4.Buscar propiedad por precio \n 5.Ver todas las propiedades disponibles \n 6.Alquilar una propiedad \n 7. Comprar una propiedad \n 8.Agregar una propiedad al sistema \n 9.Quitar una propiedad del sistema \n 10.Dar de baja Cliente \n 11.Actualizar Cliente \n 12.Actualizar Empleado \n 13.Actualizar Propiedad \n 14.Conocer nuestros empleados \n 15.Mostrar barrios con propiedades disponibles \n 16.Salir')
                 eleccion2=int(input('Ingrese un el numero de la opcion a la que desea acceder: '))
@@ -92,6 +93,7 @@ if __name__ =='__main__':
                     correcto, continuar = verificarmenu()
                     
                 elif eleccion2 == 14:
+                    #Creamos una lista enlazada para mostrar los empleados de la inmobiliaria:
                     list=Lista()
     
                     list.agregarinicio(Nodo(empleados[0][0])) 
@@ -104,6 +106,7 @@ if __name__ =='__main__':
                     correcto, continuar = verificarmenu()
                     
                 elif eleccion2 == 15:
+                    #Creamos una lista enlazada para mostrar los barrios que tengan propiedades disponibles:
                     list=Lista()
         
                     if lista[0][2] == 'en alquiler' or lista[0][2] == 'en venta':
@@ -130,7 +133,3 @@ if __name__ =='__main__':
             print('Adios!')
             continuar=False
         
-            
-
-            
-            
