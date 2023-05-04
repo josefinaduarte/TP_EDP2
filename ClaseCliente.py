@@ -17,6 +17,7 @@ class Cliente(Persona):
         
     def Actualizar(self,listav,listaa,clientess,empleadoss):
         try:
+            print('Campos disponibles a actualizar:nombre, DNIcliente, genero, usuario, contrasenia, telefono, direccion, anioIngreso, email')
             campo=input('Ingrese campo a actualizar: ')
             dato=input('Ingrese el nuevo dato: ')
             dato=validacionesgrales(campo,dato,listav,listaa,clientess,empleadoss)

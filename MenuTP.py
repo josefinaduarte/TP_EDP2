@@ -15,7 +15,6 @@ lista = listaa + listav
 empleados = extraerInfo(r'DatosEmpleados.txt')
 clientes=extraerInfo(r"DatosClientes.txt")
 
-lista1 =  [['Scarlett Greenless', '969', '374 Sloan Drive', 'Caballito', '001', '2', 'casa', '2009', 'en alquiler', '4000000', 'Norton McClaren', 'Cecilius Lukas', '10/07/22'], ['pedro', '332', '3 Hoard Terrace', 'Recoleta', '002', '7', 'departamento', '2004', 'en venta', '3000000', 'Scarlett Greenless', 'Cyb Burl', '2023-05-02']]
 prop = Propiedad('Scarlett Greenless','332','3 Hoard Terrace', 'Recoleta','002','7','departamento','2004','en venta','3000000',' ','Cyb Burl',' ')
 pro = Propiedad('Scarlett Greenless',332,'3 Hoard Terrace', 'Recoleta',2,7,'departamento',2004,'en venta',3000000,' ','Cyb Burl',' ')
 empl=Empleado('Marlena Skiplorne','44816108','Male','Administrativo','20000','62750','1980','408-722-6688')

@@ -19,7 +19,7 @@ class Propiedad():
         self.estado=estado
         self.id=id
         self.precio=precio
-        self.antiguedad=str(int(anio)-int(anioconstruccion))
+        self.antiguedad=int(anio)-int(anioconstruccion)
         self.fechainicio = fechainicio
         self.inquilino = inquilino
         self.fechafin = fechafin
@@ -50,9 +50,9 @@ class Propiedad():
             inquilino=" "
             fechainicio=" "
             fechafin=" "
-            venta=open("ListaPropiedadesVenta.txt",'a')
-            alquiler=open("ListaPropiedadesAlquiler.txt",'a')
-            arch_empleados="DatosEmpleados.txt"
+            venta=open(r"ListaPropiedadesVenta.txt",'a')
+            alquiler=open(r"ListaPropiedadesAlquiler.txt",'a')
+            arch_empleados=r"DatosEmpleados.txt"
             empleados=extraerInfo(arch_empleados)
             pos_em=randint(0,len(empleados)-1)
             for i in range(len(empleados)):
@@ -84,8 +84,8 @@ class Propiedad():
         try:
             print("Ha seleccionado eliminar una propiedad del sistema.")
             id=input("Ingrese el id de la propiedad que desea eliminar: ")
-            en_venta=open('ListaPropiedadesVenta.txt','r')
-            en_alquiler=open("ListaPropiedadesAlquiler.txt",'r')
+            en_venta=open(r'ListaPropiedadesVenta.txt','r')
+            en_alquiler=open(r"ListaPropiedadesAlquiler.txt",'r')
             se_queda_v=""
             se_queda_a=""
             esta=""
@@ -102,11 +102,11 @@ class Propiedad():
             en_venta.close()
             en_alquiler.close()
             if esta=="venta":
-                en_venta_w=open('ListaPropiedadesVenta.txt','w')  
+                en_venta_w=open(r'ListaPropiedadesVenta.txt','w')  
                 en_venta_w.write(se_queda_v)
                 en_venta_w.close()
             elif esta=="alquiler":
-                en_alquiler_w=open("ListaPropiedadesAlquiler.txt",'w')  
+                en_alquiler_w=open(r"ListaPropiedadesAlquiler.txt",'w')  
                 en_alquiler_w.write(se_queda_a)
                 en_alquiler_w.close()
 
@@ -118,6 +118,7 @@ class Propiedad():
 
     def Actualizar(self,listav,listaa,clientess,empleadoss): #la utlizamos para modificar datos del sistema
         try:
+            print('Campos disponibles a actualizar: cliente, m2, direccion, barrio, id, numambientes, tipo, anioconstruccion, estado, precio, fechainicio, inquilino, fechafin')
             campo=input('Ingrese campo a actualizar: ')   
             dato=input('Ingrese el nuevo dato: ')
             dato=validacionesgrales(campo,dato,listav,listaa,clientess,empleadoss)
@@ -141,29 +142,29 @@ class Propiedad():
                         if campo=='cliente':
                             rotulo[0]=dato
                         elif campo=='m2':
-                            rotulo[1]=str(dato)
+                            rotulo[1]=dato
                         elif campo=='direccion':
                             rotulo[2]=dato  
                         elif campo=='barrio':
                             rotulo[3]=dato
                         elif campo=='id':
-                            rotulo[4]=str(dato)
+                            rotulo[4]=dato
                         elif campo=='numambientes':
-                            rotulo[5]=str(dato)
+                            rotulo[5]=dato
                         elif campo=='tipo':
                             rotulo[6]=dato
                         elif campo=='anioconstruccion':
-                            rotulo[7]=str(int(anio)-int(dato))
+                            rotulo[7]=int(anio)-int(dato)
                         elif campo=='estado':
                             rotulo[8]=dato
                         elif campo=='precio':
                             rotulo[9]=dato
                         elif campo == 'fechainicio':
-                            rotulo[10] = str(dato)
+                            rotulo[10] = dato
                         elif campo=='inquilino':
                             rotulo[11]=dato
                         elif campo=='fechafin':
-                            rotulo[12]=str(dato)
+                            rotulo[12]=dato
                         else:
                             print('El campo ingresado no esta registrado.')
                         cont=1
@@ -194,7 +195,7 @@ class Propiedad():
                     lista[i][13] = str(agregar_anios(date.today(), 1)) #fecha de fin de alquiler
                     
                     contenido = crearstring(lista)
-                    escribirinfo('ListaPropiedadesAlquiler.txt', contenido)
+                    escribirinfo(r'ListaPropiedadesAlquiler.txt', contenido)
                     print ('La operacion fue exitosa.')
                     alquilada = False
             
@@ -220,7 +221,7 @@ class Propiedad():
                     lista[i][8] = estado
                     lista[i][12] = str(date.today()) #fecha de venta
                     contenido = crearstring(lista)
-                    escribirinfo('ListaPropiedadesVenta.txt', contenido)
+                    escribirinfo(r'ListaPropiedadesVenta.txt', contenido)
                     print ('La operacion fue exitosa')
                     vendida = False
 
@@ -246,8 +247,8 @@ class Propiedad():
 
     def buscarporprecio(self, lista):
         final = []
-        min = int(input('ingrese un precio minimo:'))
-        max = int(input('ingrese un precio maximo:'))
+        min = int(input('ingrese un precio minimo: '))
+        max = int(input('ingrese un precio maximo: '))
 
         for i in range(len(lista)):
             if (lista[i][8] == 'en alquiler' or lista[i][8] == 'en venta') and (int(lista[i][9]) <= max and int(lista[i][9]) >= min):
