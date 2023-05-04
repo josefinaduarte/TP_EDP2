@@ -34,7 +34,7 @@ class Propiedad():
             m2=input("Ingrese el numero de metros cuadrados de la propiedad: ")
             m2=validacionesgrales("m2",m2,listav,listaa,clientess,empleadoss)
             direccion=input("Ingrese la direccion de la propiedad: ")
-            barrio=input("Ingrese el barrio donde se encuantra la propiedad: ")
+            barrio=input("Ingrese el barrio donde se encuentra la propiedad: ")
             id=str(randint(100,999))
             id=validacionesgrales("id",id,listav,listaa,clientess,empleadoss)
             num_ambientes=input("Ingrese el numero de ambientes de la propiedad: ")

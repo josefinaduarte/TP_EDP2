@@ -71,7 +71,7 @@ class Cliente(Persona):
             nombre=input("Ingrese su nombre completo: ")
             dni=input("Ingrese su numero de DNI: ")
             dni=validacionesgrales("DNIcliente",dni,listav,listaa,list_clientes,empleadoss)
-            genero=input("Ingrese 1 si es hombre, o 2 si es mujer: ")
+            genero=input("Ingrese 1 si es hombre, o 2 si es mujer o 3 si desea no aclarar : ")
             genero=validacionesgrales("genero",genero,listav,listaa,list_clientes,empleadoss)
             telefono=input("Ingrese su numero de telefono: ")
             direccion=input("Ingrese su direccion: ")
@@ -87,7 +87,7 @@ class Cliente(Persona):
                     clientes.write(str(atributos[i]))
                     clientes.write('\n')
             clientes.close()
-            print("Se ha dado creado el usuario.")
+            print("Se ha creado el usuario.")
         except:
             print("Ha habido un error y no se pudo crear el usuario.")
     
