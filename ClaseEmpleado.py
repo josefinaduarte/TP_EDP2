@@ -30,7 +30,7 @@ class Empleado(Persona):
                         rotulo=linea.split(',')
                         if campo=='nombre':
                             rotulo[0]=dato
-                        elif campo=='DNI':
+                        elif campo=='DNIempleado':
                             rotulo[1]=dato
                         elif campo=='genero':
                             rotulo[2]=dato  
@@ -41,7 +41,7 @@ class Empleado(Persona):
                         elif campo=='legajo':
                             rotulo[5]=dato
                         elif campo=='anioIngreso':
-                            rotulo[6]=dato
+                            rotulo[6]=int(anio)-int(dato)
                         elif campo=='telefono':
                             rotulo[7]=dato
                         else:

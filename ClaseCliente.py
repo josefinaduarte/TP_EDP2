@@ -31,7 +31,7 @@ class Cliente(Persona):
                         rotulo=linea.split(',')
                         if campo=='nombre':
                             rotulo[0]=dato
-                        elif campo=='DNI':
+                        elif campo=='DNIcliente':
                             rotulo[1]=dato
                         elif campo=='genero':
                             rotulo[2]=dato  
