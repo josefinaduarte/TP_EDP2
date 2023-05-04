@@ -19,7 +19,7 @@ class Propiedad():
         self.estado=estado
         self.id=id
         self.precio=precio
-        self.antiguedad=int(anio)-int(anioconstruccion)
+        self.antiguedad=str(int(anio)-int(anioconstruccion))
         self.fechainicio = fechainicio
         self.inquilino = inquilino
         self.fechafin = fechafin
@@ -141,29 +141,29 @@ class Propiedad():
                         if campo=='cliente':
                             rotulo[0]=dato
                         elif campo=='m2':
-                            rotulo[1]=dato
+                            rotulo[1]=str(dato)
                         elif campo=='direccion':
                             rotulo[2]=dato  
                         elif campo=='barrio':
                             rotulo[3]=dato
                         elif campo=='id':
-                            rotulo[4]=dato
+                            rotulo[4]=str(dato)
                         elif campo=='numambientes':
-                            rotulo[5]=dato
+                            rotulo[5]=str(dato)
                         elif campo=='tipo':
                             rotulo[6]=dato
                         elif campo=='anioconstruccion':
-                            rotulo[7]=int(anio)-int(dato)
+                            rotulo[7]=str(int(anio)-int(dato))
                         elif campo=='estado':
                             rotulo[8]=dato
                         elif campo=='precio':
                             rotulo[9]=dato
                         elif campo == 'fechainicio':
-                            rotulo[10] = dato
+                            rotulo[10] = str(dato)
                         elif campo=='inquilino':
                             rotulo[11]=dato
                         elif campo=='fechafin':
-                            rotulo[12]=dato
+                            rotulo[12]=str(dato)
                         else:
                             print('El campo ingresado no esta registrado.')
                         cont=1

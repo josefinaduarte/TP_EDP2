@@ -21,11 +21,11 @@ class Cliente(Persona):
             dato=input('Ingrese el nuevo dato: ')
             dato=validacionesgrales(campo,dato,listav,listaa,clientess,empleadoss)
             cliente=input('Ingrese DNI del cliente que quiere actualizar: ')
-            clientes=open("DatosClientes.txt",'r')
+            clientes=open(r"DatosClientes.txt",'r')
             lista =clientes.readlines()
             clientes.close()
             cont=0
-            with open("DatosClientes.txt",'w')as archivo:  
+            with open(r"DatosClientes.txt",'w')as archivo:  
                 for linea in lista:
                     if cliente in linea:
                         rotulo=linea.split(',')
@@ -44,7 +44,7 @@ class Cliente(Persona):
                         elif campo=='direccion':
                             rotulo[6]=dato
                         elif campo=='anioIngreso':
-                            rotulo[7]=int(anio)-int(dato)
+                            rotulo[7]= int(anio)-int(dato)
                         elif campo=='email':
                             rotulo[8]=dato
                         else:
@@ -77,7 +77,7 @@ class Cliente(Persona):
             direccion=input("Ingrese su direccion: ")
             anio_ingreso=anio
             email=input("Ingrese su email: ")
-            clientes=open("DatosClientes.txt",'a')
+            clientes=open(r"DatosClientes.txt",'a')
             atributos=[nombre,dni,genero,nuevo_usuario,contrasenia,telefono,direccion,anio_ingreso,email]
             for i in range(len(atributos)):
                 if i!=len(atributos)-1:
@@ -101,7 +101,7 @@ class Cliente(Persona):
                 if dni not in fila:
                     se_queda+=(fila)
             clientes.close()
-            clientes_w=open('DatosClientes.txt','w')  
+            clientes_w=open(r'DatosClientes.txt','w')  
             clientes_w.write(se_queda)
             clientes_w.close()
             print("Se ha dado de baja el usuario cliente con DNI:",str(dni))      

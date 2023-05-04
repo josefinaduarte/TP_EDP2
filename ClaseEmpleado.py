@@ -11,7 +11,7 @@ class Empleado(Persona):
         self.cargo=cargo
         self.salario=salario
         self.legajo=legajo
-        self.antiguedad=int(anio)-int(anioIngreso)
+        self.antiguedad=str(int(anio)-int(anioIngreso))
         self.telefono=telefono
     
     def Actualizar(self,listav,listaa,clientes,empleadoss):
@@ -24,7 +24,7 @@ class Empleado(Persona):
             lista =empleados.readlines()
             empleados.close()
             cont=0
-            with open("DatosEmpleados.txt",'w')as archivo:  
+            with open(r"DatosEmpleados.txt",'w')as archivo:  
                 for linea in lista:
                     if empleado in linea:
                         rotulo=linea.split(',')
@@ -37,7 +37,7 @@ class Empleado(Persona):
                         elif campo=='cargo':
                             rotulo[3]=dato 
                         elif campo=='salario':
-                            rotulo[4]=dato 
+                            rotulo[4]=dato
                         elif campo=='legajo':
                             rotulo[5]=dato
                         elif campo=='anioIngreso':
@@ -72,7 +72,7 @@ class Empleado(Persona):
             salario=str(randint(50000,500000))
             legajo=str(randint(10000,99999))
             legajo=validacionesgrales("legajo",legajo,listav,listaa,clientes,lista_empleados)
-            empleados=open("DatosEmpleados.txt",'a')
+            empleados=open(r"DatosEmpleados.txt",'a')
             atributos=[nuevo_nombre,dni,genero,cargo,salario,legajo,anio_ingreso,telefono]
             for i in range(len(atributos)):
                 if i!=len(atributos)-1:
@@ -88,13 +88,13 @@ class Empleado(Persona):
 
     def Dar_baja(self,legajo):
         try:
-            empleados=open('DatosEmpleados.txt','r')
+            empleados=open(r'DatosEmpleados.txt','r')
             se_queda=""
             for fila in empleados:
                 if legajo not in fila:
                     se_queda+=(fila)
             empleados.close()
-            empleados_w=open('DatosEmpleados.txt','w')  
+            empleados_w=open(r'DatosEmpleados.txt','w')  
             empleados_w.write(se_queda)
             empleados_w.close()
             print("Se ha dado de baja el empleado con legajo:",str(legajo))      

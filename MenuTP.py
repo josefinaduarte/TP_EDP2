@@ -9,11 +9,11 @@ from ClaseLista import *
 from random import *
     
 #Armamos las listas que necesitamos para la implementación de los métodos
-listav = extraerInfo('ListaPropiedadesVenta.txt')
-listaa = extraerInfo('ListaPropiedadesAlquiler.txt')
+listav = extraerInfo(r'ListaPropiedadesVenta.txt')
+listaa = extraerInfo(r'ListaPropiedadesAlquiler.txt')
 lista = listaa + listav
-empleados = extraerInfo('DatosEmpleados.txt')
-clientes=extraerInfo('DatosClientes.txt')
+empleados = extraerInfo(r'DatosEmpleados.txt')
+clientes=extraerInfo(r"DatosClientes.txt")
 
 lista1 =  [['Scarlett Greenless', '969', '374 Sloan Drive', 'Caballito', '001', '2', 'casa', '2009', 'en alquiler', '4000000', 'Norton McClaren', 'Cecilius Lukas', '10/07/22'], ['pedro', '332', '3 Hoard Terrace', 'Recoleta', '002', '7', 'departamento', '2004', 'en venta', '3000000', 'Scarlett Greenless', 'Cyb Burl', '2023-05-02']]
 prop = Propiedad('Scarlett Greenless','332','3 Hoard Terrace', 'Recoleta','002','7','departamento','2004','en venta','3000000',' ','Cyb Burl',' ')
@@ -93,7 +93,7 @@ if __name__ =='__main__':
                     correcto, continuar = verificarmenu()
                     
                 elif eleccion2 == 14:
-                    #Creamos una lista enlazada para mostrar los empleados de la inmobiliaria:
+                    #Creamos una lista enlazada para mostrar los empleados de la inmobiliaria
                     list=Lista()
     
                     list.agregarinicio(Nodo(empleados[0][0])) 
@@ -106,7 +106,6 @@ if __name__ =='__main__':
                     correcto, continuar = verificarmenu()
                     
                 elif eleccion2 == 15:
-                    #Creamos una lista enlazada para mostrar los barrios que tengan propiedades disponibles:
                     list=Lista()
         
                     if lista[0][2] == 'en alquiler' or lista[0][2] == 'en venta':
