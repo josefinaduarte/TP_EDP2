@@ -27,50 +27,26 @@ class Propiedad():
         return 'La propiedad tiene{} m2, la direccion es{}, la cantidad de ambientes que tiene es {}, es de tipo {}, se construyo en {} y se encuentra {}'.format(self.m2,self.direccion,self.numambientes,self.tipo,self.antiguedad,self.estado)
 
     
-    def Dar_alta(self,listav,listaa):
+    def Dar_alta(self,listav,listaa,clientess,empleadoss):
         try:
             print("Ha seleccionado ingresar una propiedad.")
             propietario=input("Ingrese el nombre del propietario: ")
             m2=input("Ingrese el numero de metros cuadrados de la propiedad: ")
-            while not m2.isdigit():
-                m2=input("El ingreso no es valido. Ingrese el numero de metros cuadrados de la propiedad: ")
+            m2=validacionesgrales("m2",m2,listav,listaa,clientess,empleadoss)
             direccion=input("Ingrese la direccion de la propiedad: ")
             barrio=input("Ingrese el barrio donde se encuantra la propiedad: ")
             id=str(randint(100,999))
-            lista_ids=[]
-            for i in range(len(listav)):
-                lista_ids.append(listav[i][4])
-            for j in range(len(listaa)):
-                lista_ids.append(listaa[j][4])
-            while id in lista_ids:
-                id=str(randint(000,999))
-            num_ambientes=input("Ingres el numero de ambientes de la propiedad: ")
-            while not num_ambientes.isdigit():
-                num_ambientes=input("Hubo un error con el numero ingresado, intente nuevamente. Ingres el numero de ambientes de la propiedad: ")
+            id=validacionesgrales("id",id,listav,listaa,clientess,empleadoss)
+            num_ambientes=input("Ingrese el numero de ambientes de la propiedad: ")
+            num_ambientes=validacionesgrales("numambientes",num_ambientes,listav,listaa,clientess,empleadoss)
             tipo=input("Ingrese 1 si la propiedad es un departamento,2 si es una casa, o 3 si es un local comercial: ")
-            while tipo not in "123":
-                tipo=input("Hubo un error con el numero ingresado. Ingrese 1 si la propiedad es un departamento,2 si es una casa, o 3 si es un local comercial: ")
-            if tipo=="1":
-                tipo="departamento"
-            elif tipo=="2":
-                tipo="casa"
-            else:
-                tipo="local"
-            anio_const=input("Ingrese el año de contruccion de la propiedad: ") #Que pasa si no lo conoce?
-            while not anio_const.isdigit():
-                anio_const=input("Hubo un error con el valor ingresado. Ingrese el año de contruccion de la propiedad: ")
+            tipo=validacionesgrales("tipo",tipo,listav,listaa,clientess,empleadoss)
+            anio_const=input("Ingrese el año de contruccion de la propiedad: ")
+            anio_const=validacionesgrales("anioconstruccion",anio_const,listav,listaa,clientess,empleadoss)
             estado=input("Ingrese 1 si desea poner su popiedad en venta, o 2 si desea ponerla en alquiler: ")#Asumo q no va a estar vendida o alquilada cuando se ingresa
-            while estado not in "12":
-                estado=input("Hubo un error con el valor ingresado. Ingrese 1 si desea poner su popiedad en venta, o 2 si desea ponerla en alquiler: ")
-            if estado=="1":
-                estado="en venta"
-                actividad="vender"
-            else:
-                estado="en alquiler"
-                actividad="alquilar"
-            precio=input("Ingrese el monto en dolares al cual desea {} la propiedad: ".format(actividad))
-            while not precio.isdigit():
-                precio=input("Hubo un error con el monto ingresado. Ingrese el monto en dolares al cual desea {} la propiedad: ".format(actividad))
+            estado=validacionesgrales("estado",estado,listav,listaa,clientess,empleadoss)
+            precio=input("Ingrese el monto en dolares al cual desea ofrecer la propiedad: ")
+            precio=validacionesgrales("precio",precio,listav,listaa,clientess,empleadoss)
             inquilino=" "
             fechainicio=" "
             fechafin=" "
@@ -140,10 +116,11 @@ class Propiedad():
 
              
 
-    def Actualizar(self):
+    def Actualizar(self,listav,listaa,clientess,empleadoss):
         try:
             campo=input('ingrese campo a actualizar')   
             dato=input('ingrese el nuevo dato')
+            dato=validacionesgrales(campo,dato,listav,listaa,clientess,empleadoss)
             propiedad=input('ingrese id de la propiedad que quiere actualizar')
             accion=input('ingrese 1 si la propiedad esta en venta o 2 si esta en alquiler')
             while accion!= '1' and accion!='2':
@@ -152,8 +129,8 @@ class Propiedad():
                 propiedades=open("ListaPropiedadesVenta.txt",'r')
                 arch="ListaPropiedadesVenta.txt"
             if accion=='2':
-                propiedades=open("ListaPropiedadesAlquiler.txt",'r')
-                arch="ListaPropiedadesAlquiler.txt"
+                propiedades=open("ListaPropiedadesAlquiler",'r')
+                arch="ListaPropiedadesAlquiler"
             lista =propiedades.readlines()
             propiedades.close()
             cont=0
@@ -176,7 +153,7 @@ class Propiedad():
                         elif campo=='tipo':
                             rotulo[6]=dato
                         elif campo=='anioconstruccion':
-                            rotulo[7]=anio-dato
+                            rotulo[7]=int(anio)-int(dato)
                         elif campo=='estado':
                             rotulo[8]=dato
                         elif campo=='precio':
@@ -197,7 +174,7 @@ class Propiedad():
                 if cont==0:
                     print('el id ingresado no esta registrado')
         except:
-            print("ha habido un error y no se pudo dar de baja la propiedad")
+            print("ha habido un error y no se pudo actualizar la propiedad")
 
     def alquiler(self, estado, lista):
         alquilada = True
@@ -217,7 +194,7 @@ class Propiedad():
                     lista[i][13] = str(agregar_años(date.today(), 1)) #fecha de fin de alquiler
                     
                     contenido = crearstring(lista)
-                    escribirinfo(r'C:\Users\consu\OneDrive\Documents\GitHub\TP_EDP2\ListaPropiedadesAlquiler', contenido)
+                    escribirinfo(r'ListaPropiedadesAlquiler', contenido)
                     print ('la operación fue exitosa')
                     alquilada = False
             
@@ -245,7 +222,7 @@ class Propiedad():
                     lista[i][8] = estado
                     lista[i][12] = str(date.today()) #fecha de venta
                     contenido = crearstring(lista)
-                    escribirinfo(r'C:\Users\consu\OneDrive\Documents\GitHub\TP_EDP2\ListaPropiedadesVenta.txt', contenido)
+                    escribirinfo(r'ListaPropiedadesVenta.txt', contenido)
                     print ('la operación fue exitosa')
                     vendida = False
 

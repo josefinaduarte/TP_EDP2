@@ -1,6 +1,6 @@
 from ClasePersonaTP import*
 from datetime import date
-
+from funciones import *
 
 hoy=date.today()
 anio=hoy.year
@@ -14,16 +14,17 @@ class Cliente(Persona):
         self.antiguedad=int(anio)-int(anioIngreso)
         self.email=email
         
-    def Actualizar(self):
+    def Actualizar(self,listav,listaa,clientess,empleadoss):
         try:
             campo=input('ingrese campo a actualizar')
             dato=input('ingrese el nuevo dato')
+            dato=validacionesgrales(campo,dato,listav,listaa,clientess,empleadoss)
             cliente=input('ingrese DNI del cliente que quiere actualizar')
-            clientes=open("ListaClientes.txt",'r')
+            clientes=open("DatosClientes.unknown",'r')
             lista =clientes.readlines()
             clientes.close()
             cont=0
-            with open("ListaClientes.txt",'w')as archivo:  
+            with open("DatosClientes.unknown",'w')as archivo:  
                 for linea in lista:
                     if cliente in linea:
                         rotulo=linea.split(',')
@@ -60,28 +61,18 @@ class Cliente(Persona):
     def __str__(self):
         return 'El cliente se llama {},su DNI es{}, su genero es {}, su usario es {}, su contrasenia es {}, su telefono es {}, su direccion es {} y su antiguedad es {}'.format(self.nombre,self.DNI,self.genero,self.usuario,self.contrasenia,self.telefono,self.direccion,self.antiguedad)
         
-    def Dar_alta(self,list_clientes):
+    def Dar_alta(self,listav,listaa,list_clientes,empleadoss):
         try:
             print("Ha seleccionado registrarse")
             nuevo_usuario=input("Ingrese un nombre de usuario") 
-            for i in range(len(list_clientes)):
-                if list_clientes[i][3]==nuevo_usuario:
-                    nuevo_usuario=input("El usuario ya existe, ingrese otro:")
+            nuevo_usuario=validacionesgrales("usuario",nuevo_usuario,listav,listaa,list_clientes,empleadoss)
             contrasenia=input("Ingrese una contraseña: ")
             nombre=input("Ingrese su nombre completo: ")
             dni=input("Ingrese su numero de DNI")
-            while not dni.isdigit() or len(dni)!=8:
-                dni=input("El dni no es valido, ingreselo nuevamente: ")
+            dni=validacionesgrales("DNIcliente",dni,listav,listaa,list_clientes,empleadoss)
             genero=input("Ingrese 1 si es hombre, o 2 si es mujer: ")
-            while genero not in "12":
-                genero=input("Lo ingresado no es valido, intentelo nuevamente.Ingrese 1 si es hombre, o 2 si es mujer: ")
-            if genero=="1":
-                genero="Male"
-            else:
-                genero="Female"
+            genero=validacionesgrales("genero",genero,listav,listaa,list_clientes,empleadoss)
             telefono=input("Ingrese su numero de telefono: ")
-            while not telefono.isdigit():
-                telefono=input("El numero de telefono no es valido, ingrese nuevamente un numero de telefono: ")
             direccion=input("Ingrese su direccion: ")
             anio_ingreso=anio
             email=input("Ingrese su email:")

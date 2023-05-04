@@ -1,6 +1,7 @@
 from ClasePersonaTP import*
 from datetime import date
 from random import *
+from funciones import *
 hoy=date.today()
 anio=hoy.year
 
@@ -13,10 +14,11 @@ class Empleado(Persona):
         self.antiguedad=int(anio)-int(anioIngreso)
         self.telefono=telefono
     
-    def Actualizar(self):
+    def Actualizar(self,listav,listaa,clientes,empleadoss):
         try:
             campo=input('ingrese campo a actualizar')
             dato=input('ingrese el nuevo dato')
+            dato=validacionesgrales(campo,dato,listav,listaa,clientes,empleadoss)
             empleado=input('ingrese dni del empleado que quiere actualizar')
             empleados=open("DatosEmpleados.unknown",'r')
             lista =empleados.readlines()
@@ -39,9 +41,9 @@ class Empleado(Persona):
                         elif campo=='legajo':
                             rotulo[5]=dato
                         elif campo=='anioIngreso':
-                            rotulo[8]=int(anio)-int(dato)
-                        elif campo=='telefono':
                             rotulo[6]=dato
+                        elif campo=='telefono':
+                            rotulo[7]=dato
                         else:
                             print('el campo ingresado no esta registrado')
                         cont=1
@@ -52,40 +54,25 @@ class Empleado(Persona):
                 if cont==0:
                     print('el DNI ingresado no esta registrado')
         except:
-            print("ha habido un error y no se pudo dar de baja el empleado")
+            print("ha habido un error y no se pudo actualizar el empleado")
     
     def __str__(self):
         return 'El empleado se llama {},su DNI es{}, su genero es {}, su cargo es {}, su contrasenia es {}, su telefono es {}, su direccion es {} y su antiguedad es {}'.format(self.nombre,self.DNI,self.genero,self.usuario,self.contrasenia,self.telefono,self.direccion,self.antiguedad)
         
-    def Dar_alta(self,lista_empleados):
+    def Dar_alta(self,listav,listaa,clientes,lista_empleados):
         try:
             nuevo_nombre=input("Ingrese el nombre completo del empleado") 
             dni=input("Ingrese su numero de DNI")
-            while not dni.isdigit() or len(dni)!=8:
-                dni=input("El dni no es valido, ingreselo nuevamente: ")
-            for i in range(len(lista_empleados)):
-                if lista_empleados[i][1]==dni:
-                    nuevo_=input("El empleado ya esta registrado, ingrese otro:")
+            dni=validacionesgrales("DNIempleado",dni,listav,listaa,clientes,lista_empleados)
             genero=input("Ingrese 1 si es hombre, o 2 si es mujer: ")
-            while genero not in "12":
-                genero=input("Lo ingresado no es valido, intentelo nuevamente.Ingrese 1 si es hombre, o 2 si es mujer: ")
-            if genero=="1":
-                genero="Male"
-            else:
-                genero="Female"
+            genero=validacionesgrales("genero",genero,listav,listaa,clientes,lista_empleados)
             telefono=input("Ingrese su numero de telefono: ")
-            while not telefono.isdigit():
-                telefono=input("El numero de telefono no es valido, ingrese nuevamente un numero de telefono: ")
             anio_ingreso=anio
             cargo=input("Ingrese el cargo del nuevo empleado: ")
             salario=str(randint(50000,500000))
             legajo=str(randint(10000,99999))
-            lista_legajos=[]
-            for i in range(len(lista_empleados)):
-                lista_legajos.append(lista_empleados[i][5])
-            while legajo in lista_legajos:
-                legajo=str(randint(10000,99999))
-            empleados=open(r"C:\Users\consu\OneDrive\Documents\GitHub\TP_EDP2\DatosEmpleados.unknown",'a')
+            legajo=validacionesgrales("legajo",legajo,listav,listaa,clientes,lista_empleados)
+            empleados=open(r"DatosEmpleados.unknown",'a')
             atributos=[nuevo_nombre,dni,genero,cargo,salario,legajo,anio_ingreso,telefono]
             for i in range(len(atributos)):
                 if i!=len(atributos)-1:

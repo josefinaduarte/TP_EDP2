@@ -106,24 +106,33 @@ def validacionesgrales(campo,dato,listav,listaa,clientes,empleados):
         lista_dni=[]
         for i in range(len(empleados)):
             lista_dni.append(empleados[i][1])
-        while dato in lista_dnis or not dato.isdigit():
+        while dato in lista_dnis or not dato.isdigit() or len(dato)!=8:
             dato=input("Hubo un error con el valor ingresado. Ingrese el dni del empleado: ")
     if campo=='DNIcliente':
         lista_dnis=[]
         for i in range(len(clientes)):
             lista_dnis.append(clientes[i][1])
-        while dato in lista_dnis or not dato.isdigit():
+        while dato in lista_dnis or not dato.isdigit() or len(dato)!=8:
             dato=input("Hubo un error con el valor ingresado. Ingrese el dni del cliente: ")
     if campo=='legajo':
         lista_legajos=[]
         for i in range(len(empleados)):
-            lista_dnis.append(empleados[i][1])
+            lista_dnis.append(empleados[i][5])
         while dato in lista_legajos or not dato.isdigit():
-            dato=input("Hubo un error con el valor ingresado. Ingrese el legajo del cliente: ")
+            dato=input("Hubo un error con el valor ingresado. Ingrese el legajo del empleado: ")
     if campo=='usuario':
         lista_usuarios=[]
         for i in range(len(clientes)):
-            lista_dnis.append(clientes[i][5])
+            lista_usuarios.append(clientes[i][3])
         while dato in lista_usuarios:
             dato=input("Hubo un error con el valor ingresado. Ingrese el dni del cliente: ")
+    if campo=='genero':
+        while dato not in "123":
+            dato=input("Lo ingresado no es valido, intentelo nuevamente.Ingrese 1 si es hombre, 2 si es mujer, o 3 si desea no aclarar: ")
+        if dato=="1":
+            dato="Male"
+        elif dato=="2":
+            dato="Female"
+        else:
+            dato="Polygender"
     return dato

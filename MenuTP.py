@@ -7,16 +7,19 @@ from ClaseLista import *
 from random import *
     
 #armado de listas para propiedades
-listav = extraerInfo(r'C:\Users\consu\OneDrive\Documents\GitHub\TP_EDP2\ListaPropiedadesVenta.txt')
-listaa = extraerInfo(r'C:\Users\consu\OneDrive\Documents\GitHub\TP_EDP2\ListaPropiedadesAlquiler')
-empleados = extraerInfo(r'C:\Users\consu\OneDrive\Documents\GitHub\TP_EDP2\DatosEmpleados.unknown')
+listav = extraerInfo(r'ListaPropiedadesVenta.txt')
+listaa = extraerInfo(r'ListaPropiedadesAlquiler')
+empleados = extraerInfo(r'DatosEmpleados.unknown')
 lista = listaa + listav
-clientes=extraerInfo(r"C:\Users\consu\OneDrive\Documents\GitHub\TP_EDP2\DatosClientes.unknown")
+clientes=extraerInfo(r"DatosClientes.unknown")
 
 lista1 =  [['Scarlett Greenless', '969', '374 Sloan Drive', 'Caballito', '001', '2', 'casa', '2009', 'en alquiler', '4000000', 'Norton McClaren', 'Cecilius Lukas', '10/07/22'], ['pedro', '332', '3 Hoard Terrace', 'Recoleta', '002', '7', 'departamento', '2004', 'en venta', '3000000', 'Scarlett Greenless', 'Cyb Burl', '2023-05-02']]
 prop = Propiedad('Scarlett Greenless','332','3 Hoard Terrace', 'Recoleta','002','7','departamento','2004','en venta','3000000',' ','Cyb Burl',' ')
+pro = Propiedad('Scarlett Greenless',332,'3 Hoard Terrace', 'Recoleta',2,7,'departamento',2004,'en venta',3000000,' ','Cyb Burl',' ')
 empl=Empleado('Marlena Skiplorne','44816108','Male','Administrativo','20000','62750','1980','408-722-6688')
+emp=Empleado('Marlena Skiplorne',44816108,'Male','Administrativo',20000,62750,1980,'408-722-6688')
 cliente=Cliente('Evelyn Tithacott','44116184','Female','mroundg9','df45tg','412-766-0581','56 Doe Crossing Crossing','2000','bbon@youku.com')
+client=Cliente('Evelyn Tithacott',44116184,'Female','mroundg9','df45tg','412-766-0581','56 Doe Crossing Crossing',2000,'bbon@youku.com')
 
 if __name__ =='__main__':
 
@@ -70,7 +73,7 @@ if __name__ =='__main__':
                     prop.venta('en venta' , listav)
                     correcto, continuar = verificarmenu()
                 elif eleccion2==8:
-                    prop.Dar_alta(listav,listaa)
+                    prop.Dar_alta(listav,listaa,clientes,empleados)
                     correcto, continuar = verificarmenu()
                 elif eleccion2==9:
                     prop.Dar_baja()
@@ -79,13 +82,13 @@ if __name__ =='__main__':
                     cliente.Dar_baja()
                     correcto, continuar = verificarmenu()
                 elif eleccion2==11:
-                    cliente.Actualizar()
+                    client.Actualizar(listav,listaa,clientes,empleados)
                     correcto, continuar = verificarmenu()
                 elif eleccion2==12:
-                    empl.Actualizar()
+                    emp.Actualizar(listav,listaa,clientes,empleados)
                     correcto, continuar = verificarmenu()
                 elif eleccion2==13:
-                    prop.Actualizar()
+                    pro.Actualizar(listav,listaa,clientes,empleados)
                     correcto, continuar = verificarmenu()
                     
                 elif eleccion2 == 14:
@@ -120,7 +123,7 @@ if __name__ =='__main__':
                     continuar=False
                     
         elif eleccion==2:
-            cliente.Dar_alta(clientes)
+            cliente.Dar_alta(listav,listaa,clientes,empleados)
             correcto, continuar = verificarmenu()
             
         elif eleccion==3:
