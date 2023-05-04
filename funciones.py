@@ -17,7 +17,7 @@ def extraerInfo (archivo):
             fd.close()
             return listaGen
         except IOError:
-            print ('el archivo no fue encontrado')
+            print ('El archivo no fue encontrado.')
 
 def crearstring(lista1):
     cadena = ''
@@ -33,12 +33,12 @@ def escribirinfo (archivo, contenido):
     fd.write(contenido)
     fd.close()
 
-def agregar_años(fecha, años):
+def agregar_anios(fecha, anios):
     try:
-        return fecha.replace(year=fecha.year + años)
+        return fecha.replace(year=fecha.year + anios)
     except ValueError:
         # si no existe el 29 de febrero, poner el 28:
-        return fecha.replace(year=fecha.year + años, dia=28)
+        return fecha.replace(year=fecha.year + anios, dia=28)
     
 def leer_archivo(archivo):
     archivo=open(archivo,'r')
@@ -66,7 +66,8 @@ def verificarmenu():
 def print_tabla( lista ):
     for fila in lista:
         for dato in fila:
-            print(dato, end='\t') 
+            dato=dato+'\t'
+            print(dato) 
         print()
 
 def validacionesgrales(campo,dato,listav,listaa,clientes,empleados):

@@ -7,11 +7,11 @@ from ClaseLista import *
 from random import *
     
 #armado de listas para propiedades
-listav = extraerInfo(r'ListaPropiedadesVenta.txt')
-listaa = extraerInfo(r'ListaPropiedadesAlquiler')
-empleados = extraerInfo(r'DatosEmpleados.unknown')
+listav = extraerInfo(r'/Users/constanzanicoli/Documents/GitHub/TP_EDP2/ListaPropiedadesVenta.txt')
+listaa = extraerInfo(r'/Users/constanzanicoli/Documents/GitHub/TP_EDP2/ListaPropiedadesAlquiler')
+empleados = extraerInfo(r'/Users/constanzanicoli/Documents/GitHub/TP_EDP2/DatosEmpleados.unknown')
 lista = listaa + listav
-clientes=extraerInfo(r"DatosClientes.unknown")
+clientes=extraerInfo(r"/Users/constanzanicoli/Documents/GitHub/TP_EDP2/DatosClientes.unknown")
 
 lista1 =  [['Scarlett Greenless', '969', '374 Sloan Drive', 'Caballito', '001', '2', 'casa', '2009', 'en alquiler', '4000000', 'Norton McClaren', 'Cecilius Lukas', '10/07/22'], ['pedro', '332', '3 Hoard Terrace', 'Recoleta', '002', '7', 'departamento', '2004', 'en venta', '3000000', 'Scarlett Greenless', 'Cyb Burl', '2023-05-02']]
 prop = Propiedad('Scarlett Greenless','332','3 Hoard Terrace', 'Recoleta','002','7','departamento','2004','en venta','3000000',' ','Cyb Burl',' ')
@@ -49,11 +49,11 @@ if __name__ =='__main__':
                     print('El numero ingresado debe estar entre el 1 y el 14.')
                     eleccion2=int(input('Ingrese un el numero de la opcion a la que desea acceder: '))
                 if eleccion2==1:
-                    print('las propiedades en alquiler son las siguientes:')
+                    print('Las propiedades en alquiler son las siguientes:')
                     prop.mostrarprop(listaa)
                     correcto, continuar = verificarmenu()
                 elif eleccion2==2:
-                    print('las propiedades en venta son las siguientes:')
+                    print('Las propiedades en venta son las siguientes: ')
                     prop.mostrarprop(listav)
                     correcto, continuar = verificarmenu()
                 elif eleccion2==3:
@@ -63,14 +63,14 @@ if __name__ =='__main__':
                     prop.buscarporprecio(lista)
                     correcto, continuar = verificarmenu()
                 elif eleccion2==5:
-                    print('las propiedades disponibles para alquilar y vender son las siguientes:')
+                    print('Las propiedades disponibles para alquilar y vender son las siguientes: ')
                     prop.mostrarprop(lista)
                     correcto, continuar = verificarmenu()
                 elif eleccion2==6:
                     prop.alquiler('alquilado', listaa)
                     correcto, continuar = verificarmenu()
                 elif eleccion2==7:
-                    prop.venta('en venta' , listav)
+                    prop.venta('vendido' , listav)
                     correcto, continuar = verificarmenu()
                 elif eleccion2==8:
                     prop.Dar_alta(listav,listaa,clientes,empleados)

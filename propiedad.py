@@ -41,7 +41,7 @@ class Propiedad():
             num_ambientes=validacionesgrales("numambientes",num_ambientes,listav,listaa,clientess,empleadoss)
             tipo=input("Ingrese 1 si la propiedad es un departamento,2 si es una casa, o 3 si es un local comercial: ")
             tipo=validacionesgrales("tipo",tipo,listav,listaa,clientess,empleadoss)
-            anio_const=input("Ingrese el año de contruccion de la propiedad: ")
+            anio_const=input("Ingrese el anio de contruccion de la propiedad: ")
             anio_const=validacionesgrales("anioconstruccion",anio_const,listav,listaa,clientess,empleadoss)
             estado=input("Ingrese 1 si desea poner su popiedad en venta, o 2 si desea ponerla en alquiler: ")#Asumo q no va a estar vendida o alquilada cuando se ingresa
             estado=validacionesgrales("estado",estado,listav,listaa,clientess,empleadoss)
@@ -50,9 +50,9 @@ class Propiedad():
             inquilino=" "
             fechainicio=" "
             fechafin=" "
-            venta=open(r"ListaPropiedadesVenta.txt",'a')
-            alquiler=open(r"ListaPropiedadesAlquiler",'a')
-            arch_empleados=r"DatosEmpleados.unknown"
+            venta=open(r"/Users/constanzanicoli/Documents/GitHub/TP_EDP2/ListaPropiedadesVenta.txt",'a')
+            alquiler=open(r"/Users/constanzanicoli/Documents/GitHub/TP_EDP2/ListaPropiedadesAlquiler",'a')
+            arch_empleados=r"/Users/constanzanicoli/Documents/GitHub/TP_EDP2/DatosEmpleados.unknown"
             empleados=extraerInfo(arch_empleados)
             pos_em=randint(0,len(empleados)-1)
             for i in range(len(empleados)):
@@ -84,8 +84,8 @@ class Propiedad():
         try:
             print("Ha seleccionado eliminar una propiedad del sistema.")
             id=input("Ingrese el id de la propiedad que desea eliminar: ")
-            en_venta=open(r'ListaPropiedadesVenta.txt','r')
-            en_alquiler=open(r"ListaPropiedadesAlquiler",'r')
+            en_venta=open(r'/Users/constanzanicoli/Documents/GitHub/TP_EDP2/ListaPropiedadesVenta.txt','r')
+            en_alquiler=open(r"/Users/constanzanicoli/Documents/GitHub/TP_EDP2/ListaPropiedadesAlquiler",'r')
             se_queda_v=""
             se_queda_a=""
             esta=""
@@ -102,11 +102,11 @@ class Propiedad():
             en_venta.close()
             en_alquiler.close()
             if esta=="venta":
-                en_venta_w=open(r'ListaPropiedadesVenta.txt','w')  
+                en_venta_w=open(r'/Users/constanzanicoli/Documents/GitHub/TP_EDP2/ListaPropiedadesVenta.txt','w')  
                 en_venta_w.write(se_queda_v)
                 en_venta_w.close()
             elif esta=="alquiler":
-                en_alquiler_w=open(r"ListaPropiedadesAlquiler",'w')  
+                en_alquiler_w=open(r"/Users/constanzanicoli/Documents/GitHub/TP_EDP2/ListaPropiedadesAlquiler",'w')  
                 en_alquiler_w.write(se_queda_a)
                 en_alquiler_w.close()
 
@@ -118,19 +118,19 @@ class Propiedad():
 
     def Actualizar(self,listav,listaa,clientess,empleadoss):
         try:
-            campo=input('ingrese campo a actualizar')   
-            dato=input('ingrese el nuevo dato')
+            campo=input('Ingrese campo a actualizar: ')   
+            dato=input('Ingrese el nuevo dato: ')
             dato=validacionesgrales(campo,dato,listav,listaa,clientess,empleadoss)
-            propiedad=input('ingrese id de la propiedad que quiere actualizar')
-            accion=input('ingrese 1 si la propiedad esta en venta o 2 si esta en alquiler')
+            propiedad=input('Ingrese id de la propiedad que quiere actualizar: ')
+            accion=input('Ingrese 1 si la propiedad esta en venta o 2 si esta en alquiler: ')
             while accion!= '1' and accion!='2':
-                accion=input('ingrese si la propiedad esta en venta o en alquiler')
+                accion=input('Ingrese si la propiedad esta en venta o en alquiler: ')
             if accion=='1':
-                propiedades=open("ListaPropiedadesVenta.txt",'r')
-                arch="ListaPropiedadesVenta.txt"
+                propiedades=open("/Users/constanzanicoli/Documents/GitHub/TP_EDP2/ListaPropiedadesVenta.txt",'r')
+                arch="/Users/constanzanicoli/Documents/GitHub/TP_EDP2/ListaPropiedadesVenta.txt"
             if accion=='2':
-                propiedades=open("ListaPropiedadesAlquiler",'r')
-                arch="ListaPropiedadesAlquiler"
+                propiedades=open("/Users/constanzanicoli/Documents/GitHub/TP_EDP2/ListaPropiedadesAlquiler",'r')
+                arch="/Users/constanzanicoli/Documents/GitHub/TP_EDP2/ListaPropiedadesAlquiler"
             lista =propiedades.readlines()
             propiedades.close()
             cont=0
@@ -165,16 +165,16 @@ class Propiedad():
                         elif campo=='fechafin':
                             rotulo[12]=dato
                         else:
-                            print('el campo ingresado no esta registrado')
+                            print('El campo ingresado no esta registrado.')
                         cont=1
                         lineaNueva = ','.join(rotulo)
                         archivo.write(lineaNueva)
                     else: #no es la propiedad
                         archivo.write(linea)
                 if cont==0:
-                    print('el id ingresado no esta registrado')
+                    print('El id ingresado no esta registrado.')
         except:
-            print("ha habido un error y no se pudo actualizar la propiedad")
+            print("Ha habido un error y no se pudo actualizar la propiedad")
 
     def alquiler(self, estado, lista):
         alquilada = True
@@ -191,11 +191,11 @@ class Propiedad():
                     lista[i][8] = estado
                     lista[i][10] = inquilino 
                     lista[i][12] = str(date.today()) #fecha de inicio de alquiler
-                    lista[i][13] = str(agregar_años(date.today(), 1)) #fecha de fin de alquiler
+                    lista[i][13] = str(agregar_anios(date.today(), 1)) #fecha de fin de alquiler
                     
                     contenido = crearstring(lista)
-                    escribirinfo(r'ListaPropiedadesAlquiler', contenido)
-                    print ('la operación fue exitosa')
+                    escribirinfo(r'/Users/constanzanicoli/Documents/GitHub/TP_EDP2/ListaPropiedadesAlquiler', contenido)
+                    print ('La operacion fue exitosa.')
                     alquilada = False
             
             if alquilada:
@@ -222,8 +222,8 @@ class Propiedad():
                     lista[i][8] = estado
                     lista[i][12] = str(date.today()) #fecha de venta
                     contenido = crearstring(lista)
-                    escribirinfo(r'ListaPropiedadesVenta.txt', contenido)
-                    print ('la operación fue exitosa')
+                    escribirinfo(r'/Users/constanzanicoli/Documents/GitHub/TP_EDP2/ListaPropiedadesVenta.txt', contenido)
+                    print ('La operacion fue exitosa')
                     vendida = False
 
             if vendida:

@@ -1,7 +1,8 @@
-from ClasePersonaTP import*
+from ClasePersonaTP import *
 from datetime import date
 from funciones import *
 
+# coding=utf-8
 hoy=date.today()
 anio=hoy.year
 class Cliente(Persona):
@@ -16,15 +17,15 @@ class Cliente(Persona):
         
     def Actualizar(self,listav,listaa,clientess,empleadoss):
         try:
-            campo=input('ingrese campo a actualizar')
-            dato=input('ingrese el nuevo dato')
+            campo=input('Ingrese campo a actualizar: ')
+            dato=input('Ingrese el nuevo dato: ')
             dato=validacionesgrales(campo,dato,listav,listaa,clientess,empleadoss)
-            cliente=input('ingrese DNI del cliente que quiere actualizar')
-            clientes=open("DatosClientes.unknown",'r')
+            cliente=input('Ingrese DNI del cliente que quiere actualizar: ')
+            clientes=open("/Users/constanzanicoli/Documents/GitHub/TP_EDP2/DatosClientes.unknown",'r')
             lista =clientes.readlines()
             clientes.close()
             cont=0
-            with open("DatosClientes.unknown",'w')as archivo:  
+            with open("/Users/constanzanicoli/Documents/GitHub/TP_EDP2/DatosClientes.unknown",'w')as archivo:  
                 for linea in lista:
                     if cliente in linea:
                         rotulo=linea.split(',')
@@ -47,14 +48,14 @@ class Cliente(Persona):
                         elif campo=='email':
                             rotulo[8]=dato
                         else:
-                            print('el campo ingresado no esta registrado')
+                            print('El campo ingresado no esta registrado.')
                         cont=1
                         lineaNueva =  ','.join(rotulo)
                         archivo.write(lineaNueva)
                     else: 
                         archivo.write(linea)
                 if cont==0:
-                    print('el DNI ingresado no esta registrado')
+                    print('El DNI ingresado no esta registrado.')
         except:
             print("ha habido un error y no se pudo actualizar el cliente")
 
@@ -64,19 +65,19 @@ class Cliente(Persona):
     def Dar_alta(self,listav,listaa,list_clientes,empleadoss):
         try:
             print("Ha seleccionado registrarse")
-            nuevo_usuario=input("Ingrese un nombre de usuario") 
+            nuevo_usuario=input("Ingrese un nombre de usuario: ") 
             nuevo_usuario=validacionesgrales("usuario",nuevo_usuario,listav,listaa,list_clientes,empleadoss)
-            contrasenia=input("Ingrese una contraseña: ")
+            contrasenia=input("Ingrese una contrasenia: ")
             nombre=input("Ingrese su nombre completo: ")
-            dni=input("Ingrese su numero de DNI")
+            dni=input("Ingrese su numero de DNI: ")
             dni=validacionesgrales("DNIcliente",dni,listav,listaa,list_clientes,empleadoss)
             genero=input("Ingrese 1 si es hombre, o 2 si es mujer: ")
             genero=validacionesgrales("genero",genero,listav,listaa,list_clientes,empleadoss)
             telefono=input("Ingrese su numero de telefono: ")
             direccion=input("Ingrese su direccion: ")
             anio_ingreso=anio
-            email=input("Ingrese su email:")
-            clientes=open(r"DatosClientes.unknown",'a')
+            email=input("Ingrese su email: ")
+            clientes=open(r"/Users/constanzanicoli/Documents/GitHub/TP_EDP2/DatosClientes.unknown",'a')
             atributos=[nombre,dni,genero,nuevo_usuario,contrasenia,telefono,direccion,anio_ingreso,email]
             for i in range(len(atributos)):
                 if i!=len(atributos)-1:
@@ -94,13 +95,13 @@ class Cliente(Persona):
         try:
             print("Ha seleccionado eliminar un cliente del sistema.")
             dni=input("Ingrese el dni del cliente que desea eliminar: ")
-            clientes=open(r'DatosClientes.unknown','r')
+            clientes=open(r'/Users/constanzanicoli/Documents/GitHub/TP_EDP2/DatosClientes.unknown','r')
             se_queda=""
             for fila in clientes:
                 if dni not in fila:
                     se_queda+=(fila)
             clientes.close()
-            clientes_w=open(r'DatosClientes.unknown','w')  
+            clientes_w=open(r'/Users/constanzanicoli/Documents/GitHub/TP_EDP2/DatosClientes.unknown','w')  
             clientes_w.write(se_queda)
             clientes_w.close()
             print("Se ha dado de baja el usuario cliente con DNI:",str(dni))      

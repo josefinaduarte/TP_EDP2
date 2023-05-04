@@ -4,7 +4,7 @@ class Lista():
     def __init__(self):
         self.head = None
         self.len = 0
-    def agregarinicio(self, nodo:Nodo):
+    def agregarinicio(self, nodo=Nodo):
         if(self.len==0): #averiguo la longitud de mi lista. Si es =0 mi lista esvacia, por lo que mi head va a estar direccionada al nodo
             self.head=nodo
             self.len+=1
@@ -22,7 +22,7 @@ class Lista():
                 cadena+=str(nodo.dato)+'\t'
                 nodo=nodo.prox
             return cadena
-    def append(self,nodo:Nodo):
+    def append(self,nodo=Nodo):
         if(self.len==0):
             self.head=nodo
         else:
