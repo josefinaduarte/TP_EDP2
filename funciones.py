@@ -70,7 +70,7 @@ def print_tabla( lista ):
         print()
 
 def validacionesgrales(campo,dato,listav,listaa,clientes,empleados):
-    if campo=='m2':
+    if campo=='m2' or campo=='anioconstruccion' or campo=='numambientes' or campo=='salario' or campo=='anioIngreso':
         while not dato.isdigit():
             dato=input("El ingreso no es valido. Ingrese el numero de metros cuadrados de la propiedad: ")
     if campo=='id':
@@ -79,11 +79,8 @@ def validacionesgrales(campo,dato,listav,listaa,clientes,empleados):
             lista_ids.append(listav[i][4])
         for j in range(len(listaa)):
             lista_ids.append(listaa[j][4])
-        while dato in lista_ids:
+        while dato in lista_ids or not dato.isdigit():
             dato=str(randint(000,999))
-    if campo=='numambientes':
-        while not dato.isdigit():
-                dato=input("Hubo un error con el numero ingresado, intente nuevamente. Ingres el numero de ambientes de la propiedad: ")
     if campo=='tipo':
         while tipo not in "123":
                 tipo=input("Hubo un error con el numero ingresado. Ingrese 1 si la propiedad es un departamento,2 si es una casa, o 3 si es un local comercial: ")
@@ -93,9 +90,6 @@ def validacionesgrales(campo,dato,listav,listaa,clientes,empleados):
             tipo="casa"
         else:
             tipo="local"
-    if campo=='anionconstruccion':
-        while not dato.isdigit():
-            dato=input("Hubo un error con el valor ingresado. Ingrese el año de contruccion de la propiedad: ")
     if campo=='estado':
         while dato not in "12":
                 dato=input("Hubo un error con el valor ingresado. Ingrese 1 si desea poner su popiedad en venta, o 2 si desea ponerla en alquiler: ")
@@ -112,32 +106,24 @@ def validacionesgrales(campo,dato,listav,listaa,clientes,empleados):
         lista_dni=[]
         for i in range(len(empleados)):
             lista_dni.append(empleados[i][1])
-        while dato in lista_dnis:
+        while dato in lista_dnis or not dato.isdigit():
             dato=input("Hubo un error con el valor ingresado. Ingrese el dni del empleado: ")
     if campo=='DNIcliente':
         lista_dnis=[]
         for i in range(len(clientes)):
             lista_dnis.append(clientes[i][1])
-        while dato in lista_dnis:
+        while dato in lista_dnis or not dato.isdigit():
             dato=input("Hubo un error con el valor ingresado. Ingrese el dni del cliente: ")
-    if campo=='salario':
-        while not dato.isdigit():
-            dato=input("Hubo un error con el valor ingresado. Ingrese el salario del empleado: ")
     if campo=='legajo':
-        while not dato.isdigit():
-            dato=input("Hubo un error con el valor ingresado. Ingrese el legajo del empleado: ")
         lista_legajos=[]
         for i in range(len(empleados)):
             lista_dnis.append(empleados[i][1])
-        while dato in lista_legajos:
+        while dato in lista_legajos or not dato.isdigit():
             dato=input("Hubo un error con el valor ingresado. Ingrese el legajo del cliente: ")
-    if campo=='anioIngreso':
-         while not dato.isdigit():
-            dato=input("Hubo un error con el valor ingresado. Ingrese el anio de ingreso: ")
     if campo=='usuario':
         lista_usuarios=[]
         for i in range(len(clientes)):
             lista_dnis.append(clientes[i][5])
-        while dato in lista_dnis:
+        while dato in lista_usuarios:
             dato=input("Hubo un error con el valor ingresado. Ingrese el dni del cliente: ")
     return dato
