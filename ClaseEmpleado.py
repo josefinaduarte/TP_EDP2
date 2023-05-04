@@ -20,11 +20,11 @@ class Empleado(Persona):
             dato=input('Ingrese el nuevo dato: ')
             dato=validacionesgrales(campo,dato,listav,listaa,clientes,empleadoss)
             empleado=input('Ingrese dni del empleado que quiere actualizar: ')
-            empleados=open("/Users/constanzanicoli/Documents/GitHub/TP_EDP2/DatosEmpleados.unknown",'r')
+            empleados=open('DatosEmpleados.txt','r')
             lista =empleados.readlines()
             empleados.close()
             cont=0
-            with open("/Users/constanzanicoli/Documents/GitHub/TP_EDP2/DatosEmpleados.unknown",'w')as archivo:  
+            with open("DatosEmpleados.txt",'w')as archivo:  
                 for linea in lista:
                     if empleado in linea:
                         rotulo=linea.split(',')
@@ -72,7 +72,7 @@ class Empleado(Persona):
             salario=str(randint(50000,500000))
             legajo=str(randint(10000,99999))
             legajo=validacionesgrales("legajo",legajo,listav,listaa,clientes,lista_empleados)
-            empleados=open(r"/Users/constanzanicoli/Documents/GitHub/TP_EDP2/DatosEmpleados.unknown",'a')
+            empleados=open("DatosEmpleados.txt",'a')
             atributos=[nuevo_nombre,dni,genero,cargo,salario,legajo,anio_ingreso,telefono]
             for i in range(len(atributos)):
                 if i!=len(atributos)-1:
@@ -88,13 +88,13 @@ class Empleado(Persona):
 
     def Dar_baja(self,legajo):
         try:
-            empleados=open(r'/Users/constanzanicoli/Documents/GitHub/TP_EDP2/DatosEmpleados.unknown','r')
+            empleados=open('DatosEmpleados.txt','r')
             se_queda=""
             for fila in empleados:
                 if legajo not in fila:
                     se_queda+=(fila)
             empleados.close()
-            empleados_w=open(r'/Users/constanzanicoli/Documents/GitHub/TP_EDP2/DatosEmpleados.unknown','w')  
+            empleados_w=open('DatosEmpleados.txt','w')  
             empleados_w.write(se_queda)
             empleados_w.close()
             print("Se ha dado de baja el empleado con legajo:",str(legajo))      

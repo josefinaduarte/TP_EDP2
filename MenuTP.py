@@ -9,11 +9,11 @@ from ClaseLista import *
 from random import *
     
 #Armamos las listas que necesitamos para la implementación de los métodos
-listav = extraerInfo(r'/Users/constanzanicoli/Documents/GitHub/TP_EDP2/ListaPropiedadesVenta.txt')
-listaa = extraerInfo(r'/Users/constanzanicoli/Documents/GitHub/TP_EDP2/ListaPropiedadesAlquiler')
+listav = extraerInfo('ListaPropiedadesVenta.txt')
+listaa = extraerInfo('ListaPropiedadesAlquiler.txt')
 lista = listaa + listav
-empleados = extraerInfo(r'/Users/constanzanicoli/Documents/GitHub/TP_EDP2/DatosEmpleados.unknown')
-clientes=extraerInfo(r"/Users/constanzanicoli/Documents/GitHub/TP_EDP2/DatosClientes.unknown")
+empleados = extraerInfo('DatosEmpleados.txt')
+clientes=extraerInfo('DatosClientes.txt')
 
 lista1 =  [['Scarlett Greenless', '969', '374 Sloan Drive', 'Caballito', '001', '2', 'casa', '2009', 'en alquiler', '4000000', 'Norton McClaren', 'Cecilius Lukas', '10/07/22'], ['pedro', '332', '3 Hoard Terrace', 'Recoleta', '002', '7', 'departamento', '2004', 'en venta', '3000000', 'Scarlett Greenless', 'Cyb Burl', '2023-05-02']]
 prop = Propiedad('Scarlett Greenless','332','3 Hoard Terrace', 'Recoleta','002','7','departamento','2004','en venta','3000000',' ','Cyb Burl',' ')

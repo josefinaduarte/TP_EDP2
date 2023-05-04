@@ -50,9 +50,9 @@ class Propiedad():
             inquilino=" "
             fechainicio=" "
             fechafin=" "
-            venta=open(r"/Users/constanzanicoli/Documents/GitHub/TP_EDP2/ListaPropiedadesVenta.txt",'a')
-            alquiler=open(r"/Users/constanzanicoli/Documents/GitHub/TP_EDP2/ListaPropiedadesAlquiler",'a')
-            arch_empleados=r"/Users/constanzanicoli/Documents/GitHub/TP_EDP2/DatosEmpleados.unknown"
+            venta=open("ListaPropiedadesVenta.txt",'a')
+            alquiler=open("ListaPropiedadesAlquiler.txt",'a')
+            arch_empleados="DatosEmpleados.txt"
             empleados=extraerInfo(arch_empleados)
             pos_em=randint(0,len(empleados)-1)
             for i in range(len(empleados)):
@@ -84,8 +84,8 @@ class Propiedad():
         try:
             print("Ha seleccionado eliminar una propiedad del sistema.")
             id=input("Ingrese el id de la propiedad que desea eliminar: ")
-            en_venta=open(r'/Users/constanzanicoli/Documents/GitHub/TP_EDP2/ListaPropiedadesVenta.txt','r')
-            en_alquiler=open(r"/Users/constanzanicoli/Documents/GitHub/TP_EDP2/ListaPropiedadesAlquiler",'r')
+            en_venta=open('ListaPropiedadesVenta.txt','r')
+            en_alquiler=open("ListaPropiedadesAlquiler.txt",'r')
             se_queda_v=""
             se_queda_a=""
             esta=""
@@ -102,11 +102,11 @@ class Propiedad():
             en_venta.close()
             en_alquiler.close()
             if esta=="venta":
-                en_venta_w=open(r'/Users/constanzanicoli/Documents/GitHub/TP_EDP2/ListaPropiedadesVenta.txt','w')  
+                en_venta_w=open('ListaPropiedadesVenta.txt','w')  
                 en_venta_w.write(se_queda_v)
                 en_venta_w.close()
             elif esta=="alquiler":
-                en_alquiler_w=open(r"/Users/constanzanicoli/Documents/GitHub/TP_EDP2/ListaPropiedadesAlquiler",'w')  
+                en_alquiler_w=open("ListaPropiedadesAlquiler.txt",'w')  
                 en_alquiler_w.write(se_queda_a)
                 en_alquiler_w.close()
 
@@ -126,11 +126,11 @@ class Propiedad():
             while accion!= '1' and accion!='2':
                 accion=input('Ingrese si la propiedad esta en venta o en alquiler: ')
             if accion=='1':
-                propiedades=open("/Users/constanzanicoli/Documents/GitHub/TP_EDP2/ListaPropiedadesVenta.txt",'r')
-                arch="/Users/constanzanicoli/Documents/GitHub/TP_EDP2/ListaPropiedadesVenta.txt"
+                propiedades=open("ListaPropiedadesVenta.txt",'r')
+                arch="ListaPropiedadesVenta.txt"
             if accion=='2':
-                propiedades=open("/Users/constanzanicoli/Documents/GitHub/TP_EDP2/ListaPropiedadesAlquiler",'r')
-                arch="/Users/constanzanicoli/Documents/GitHub/TP_EDP2/ListaPropiedadesAlquiler"
+                propiedades=open("ListaPropiedadesAlquiler.txt",'r')
+                arch="ListaPropiedadesAlquiler.txt"
             lista =propiedades.readlines()
             propiedades.close()
             cont=0
@@ -194,7 +194,7 @@ class Propiedad():
                     lista[i][13] = str(agregar_anios(date.today(), 1)) #fecha de fin de alquiler
                     
                     contenido = crearstring(lista)
-                    escribirinfo(r'/Users/constanzanicoli/Documents/GitHub/TP_EDP2/ListaPropiedadesAlquiler', contenido)
+                    escribirinfo('ListaPropiedadesAlquiler.txt', contenido)
                     print ('La operacion fue exitosa.')
                     alquilada = False
             
@@ -220,7 +220,7 @@ class Propiedad():
                     lista[i][8] = estado
                     lista[i][12] = str(date.today()) #fecha de venta
                     contenido = crearstring(lista)
-                    escribirinfo(r'/Users/constanzanicoli/Documents/GitHub/TP_EDP2/ListaPropiedadesVenta.txt', contenido)
+                    escribirinfo('ListaPropiedadesVenta.txt', contenido)
                     print ('La operacion fue exitosa')
                     vendida = False
 
