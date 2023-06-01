@@ -2,6 +2,8 @@ from ClasePersonaTP import*
 from datetime import date
 from random import *
 from funciones import *
+from propiedad import *
+
 hoy=date.today()
 anio=hoy.year
 
@@ -102,24 +104,37 @@ class Empleado(Persona):
         except:     
             print("Ha habido un error y no se ha podido dar de baja el empleado pedido")
 
-    def calcular_comision(self, empleado, lista1):
-        self.empleado = empleado
-        if self.estado == 'vendido':
-            comision =self.precio  * 0.05
+    def trabajoEmpleados(self,nombreEmpleado,listaEmpleados,listaArchivo): #tiene que venir por parametro el empleado del cual quieren obtener la spropiedades, la lista de empleados y la lista de propiedades
+        propiedades=[]
+        if verificoEmpleado(nombreEmpleado,listaEmpleados):
+            for i in range(len(listaArchivo)):
+                if nombreEmpleado==listaArchivo[i][11]:
+                    propiedades+=listaArchivo[i]
+        return propiedades
+    
+    def calcular_comision(self,empleado,codPropiedad,listaArchivo,listaEmpleados):  #empleado es el nombre del empleado
+        if verificoEmpleado(empleado,listaEmpleados):
+            for i in range(len(listaArchivo)):
+                if codPropiedad==listaArchivo[i][4]:
+                    estado=listaArchivo[i][8]
+                    precio=listaArchivo[i][9]
+        if estado == 'vendido':
+            comision =precio  * 0.05
         elif self.estado=='alquilado':
-            comision=self.precio*0.04
+            comision=precio*0.04
         else:
             comision=0
         es=False
-        print_tabla(lista1)
-        for i in range(len(lista1)):
-          if lista1[i][0]==empleado:
+        print_tabla(listaArchivo)
+        for i in range(len(listaArchivo)):
+          if listaArchivo[i][0]==empleado:
               es=True
               fila=i
             
         if es:
-            salario=lista1[fila][4]
+            salario=listaArchivo[fila][4]
         print(salario)
         salarioFinal=int(salario)+int(comision)
         return empleado,int(comision),salarioFinal
     
+#falta ponerlo en el menu!!!!!Q!!!!!!!

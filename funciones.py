@@ -138,3 +138,13 @@ def validacionesgrales(campo,dato,listav,listaa,clientes,empleados):
         else:
             dato="Polygender"
     return dato
+
+def verificoEmpleado(nombreEmpleado,listaEmpleados):
+    listanombreEmpleados=[]
+    for i in range(len(listaEmpleados)):
+        listanombreEmpleados+=[listaEmpleados[i][1]]
+    if nombreEmpleado in listanombreEmpleados:
+        existe=True
+    else:
+        existe=False
+    return existe
