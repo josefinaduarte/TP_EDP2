@@ -71,16 +71,17 @@ def print_tabla( lista ):
         print()
 
 def validacionesgrales(campo,dato,listav,listaa,clientes,empleados):
-    if campo=='m2' or campo=='anioconstruccion' or campo=='numambientes' or campo=='salario' or campo=='anioIngreso':
+    conjunto=set(['m2','anioconstruccion','numambientes','salario','anioIngreso'])
+    if campo in conjunto:
         while not dato.isdigit():
             dato=input("El ingreso no es valido. Ingrese el numero de metros cuadrados de la propiedad: ")
     if campo=='id':
-        lista_ids=[]
+        conj_ids={}
         for i in range(len(listav)):
-            lista_ids.append(listav[i][4])
+            conj_ids.add(listav[i][4])
         for j in range(len(listaa)):
-            lista_ids.append(listaa[j][4])
-        while dato in lista_ids or not dato.isdigit():
+            conj_ids.add(listaa[j][4])
+        while dato in conj_ids or not dato.isdigit():
             dato=str(randint(000,999))
     if campo=='tipo':
         while tipo not in "123":
@@ -104,28 +105,28 @@ def validacionesgrales(campo,dato,listav,listaa,clientes,empleados):
         while not dato.isdigit():
             dato=input("Hubo un error con el monto ingresado. Ingrese el monto en dolares al cual desea {} la propiedad: ".format(actividad))
     if campo=='DNIempleado':
-        lista_dni=[]
+        conj_dni={}
         for i in range(len(empleados)):
-            lista_dni.append(empleados[i][1])
-        while dato in lista_dnis or not dato.isdigit() or len(dato)!=8:
+            conj_dni.add(empleados[i][1])
+        while dato in conj_dnis or not dato.isdigit() or len(dato)!=8:
             dato=input("Hubo un error con el valor ingresado. Ingrese el dni del empleado: ")
     if campo=='DNIcliente':
-        lista_dnis=[]
+        conj_dnis={}
         for i in range(len(clientes)):
-            lista_dnis.append(clientes[i][1])
-        while dato in lista_dnis or not dato.isdigit() or len(dato)!=8:
+            conj_dnis.add(clientes[i][1])
+        while dato in conj_dnis or not dato.isdigit() or len(dato)!=8:
             dato=input("Hubo un error con el valor ingresado. Ingrese el dni del cliente: ")
     if campo=='legajo':
-        lista_legajos=[]
+        conj_legajos={}
         for i in range(len(empleados)):
-            lista_dnis.append(empleados[i][5])
-        while dato in lista_legajos or not dato.isdigit():
+            conj_dnis.add(empleados[i][5])
+        while dato in conj_legajos or not dato.isdigit():
             dato=input("Hubo un error con el valor ingresado. Ingrese el legajo del empleado: ")
     if campo=='usuario':
-        lista_usuarios=[]
+        conj_usuarios={}
         for i in range(len(clientes)):
-            lista_usuarios.append(clientes[i][3])
-        while dato in lista_usuarios:
+            conj_usuarios.add(clientes[i][3])
+        while dato in conj_usuarios:
             dato=input("Hubo un error con el valor ingresado. Ingrese el dni del cliente: ")
     if campo=='genero':
         while dato not in "123":
