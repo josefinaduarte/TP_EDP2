@@ -101,3 +101,25 @@ class Empleado(Persona):
             print("Se ha dado de baja el empleado con legajo:",str(legajo))      
         except:     
             print("Ha habido un error y no se ha podido dar de baja el empleado pedido")
+
+    def calcular_comision(self, empleado, lista1):
+        self.empleado = empleado
+        if self.estado == 'vendido':
+            comision =self.precio  * 0.05
+        elif self.estado=='alquilado':
+            comision=self.precio*0.04
+        else:
+            comision=0
+        es=False
+        print_tabla(lista1)
+        for i in range(len(lista1)):
+          if lista1[i][0]==empleado:
+              es=True
+              fila=i
+            
+        if es:
+            salario=lista1[fila][4]
+        print(salario)
+        salarioFinal=int(salario)+int(comision)
+        return empleado,int(comision),salarioFinal
+    
