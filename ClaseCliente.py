@@ -18,7 +18,6 @@ class Cliente(Persona):
     def Actualizar(self,listav,listaa,clientess,empleadoss):
         try:
             campos={'nombre', 'DNIcliente', 'genero', 'usuario', 'contrasenia', 'telefono', 'direccion', 'anioIngreso',' email'}
-            print('Campos disponibles a actualizar:nombre, DNIcliente, genero, usuario, contrasenia, telefono, direccion, anioIngreso, email')
             print('Campos disponibles a actualizar:',','.join(campos))
             campo=input('Ingrese campo a actualizar: ')
             if campo not in campos:
