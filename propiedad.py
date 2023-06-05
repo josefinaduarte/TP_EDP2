@@ -6,7 +6,7 @@ hoy = date.today()
 anio = hoy.year
     
 class Propiedad():
-    estados_validos = ['en venta', 'en alquiler', 'alquilado', 'vendido']
+    estados_validos = {'en venta', 'en alquiler', 'alquilado', 'vendido'}
     def __init__(self,cliente, m2,direccion,barrio,id,numambientes,tipo,anioconstruccion,estado,precio,fechainicio,inquilino,fechafin):
         if estado not in Propiedad.estados_validos:
             raise ValueError("el estado no es valido")
@@ -118,8 +118,11 @@ class Propiedad():
 
     def Actualizar(self,listav,listaa,clientess,empleadoss): #la utlizamos para modificar datos del sistema
         try:
-            print('Campos disponibles a actualizar: cliente, m2, direccion, barrio, id, numambientes, tipo, anioconstruccion, estado, precio, fechainicio, inquilino, fechafin')
-            campo=input('Ingrese campo a actualizar: ')   
+            campos={'cliente', 'm2', 'direccion', 'barrio', 'id', 'numambientes', 'tipo', 'anioconstruccion',' estado','precio','fechainicio','inquilino','fechafin'}
+            print('Campos disponibles a actualizar:',','.join(campos))
+            campo=input('Ingrese campo a actualizar: ')
+            if campo not in campos:
+                campo=input('Ingrese campo a actualizar: ') 
             dato=input('Ingrese el nuevo dato: ')
             dato=validacionesgrales(campo,dato,listav,listaa,clientess,empleadoss)
             propiedad=input('Ingrese id de la propiedad que quiere actualizar: ')

@@ -18,8 +18,11 @@ class Empleado(Persona):
     
     def Actualizar(self,listav,listaa,clientes,empleadoss):
         try:
-            print('Campos disponibles a actualizar: nombre, DNIempleado, genero, cargo, salario, legajo, anioIngreso, telefono')
+            campos={'nombre', 'DNIempleado', 'genero', 'cargo', 'salario', 'legajo', 'anioIngreso', 'telefono'}
+            print('Campos disponibles a actualizar:',','.join(campos))
             campo=input('Ingrese campo a actualizar: ')
+            if campo not in campos:
+                campo=input('Ingrese campo a actualizar: ')
             dato=input('Ingrese el nuevo dato: ')
             dato=validacionesgrales(campo,dato,listav,listaa,clientes,empleadoss)
             empleado=input('Ingrese dni del empleado que quiere actualizar: ')
