@@ -117,7 +117,8 @@ if __name__ =='__main__':
                     list.pop(1)
                     print(list)
                     correcto, continuar = verificarmenu()
-                    
+                elif eleccion2==16:
+                    print()    
                 else:
                     print('Adios')
                     correcto=False
